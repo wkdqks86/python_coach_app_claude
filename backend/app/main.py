@@ -1,7 +1,19 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="PyCoach API")
+from app import db
+from app.routers import levels, practice
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    db.init_db()
+    yield
+
+
+app = FastAPI(title="PyCoach API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -10,6 +22,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(levels.router)
+app.include_router(practice.router)
 
 
 @app.get("/api/hello")

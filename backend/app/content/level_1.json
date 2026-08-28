@@ -1,0 +1,126 @@
+{
+  "id": 1,
+  "title": "Hello, Python",
+  "goal": "print()와 코드 실행에 익숙해지기",
+  "concepts": [
+    {
+      "id": "print-basics",
+      "title": "print()로 화면에 출력하기",
+      "explanation": "print는 컴퓨터에게 화면에 무언가를 보여 달라고 말하는 명령입니다. 괄호 안에 보여주고 싶은 내용을 넣습니다.",
+      "example_code": "print(\"안녕하세요\")",
+      "example_output": "안녕하세요"
+    },
+    {
+      "id": "string-quotes",
+      "title": "문자열은 따옴표로 감싸기",
+      "explanation": "글자(문자열)를 출력하려면 큰따옴표(\") 또는 작은따옴표(') 중 하나로 감싸야 합니다. 어떤 걸 써도 결과는 같습니다.",
+      "example_code": "print('Python')",
+      "example_output": "Python"
+    },
+    {
+      "id": "print-multiple",
+      "title": "한 번에 여러 값 출력하기",
+      "explanation": "print에 콤마(,)로 값을 여러 개 넘기면 자동으로 띄어쓰기가 들어간 채로 한 줄에 출력됩니다. print를 여러 번 부르면 줄이 바뀌고, 문자열 안에 \\n을 넣어도 줄이 바뀝니다.",
+      "example_code": "print(\"Hello\", \"World\")",
+      "example_output": "Hello World"
+    }
+  ],
+  "problems": [
+    {
+      "id": "p1-print-hello",
+      "concept_id": "print-basics",
+      "prompt": "화면에 정확히 \"안녕하세요\" 를 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "안녕하세요",
+      "hints": [
+        "화면에 내용을 출력할 때 쓰는 함수를 떠올려 보세요.",
+        "글자는 큰따옴표나 작은따옴표로 감싸야 합니다.",
+        "print(\"안녕하세요\")"
+      ]
+    },
+    {
+      "id": "p2-single-quotes",
+      "concept_id": "string-quotes",
+      "prompt": "작은따옴표를 사용해서 정확히 \"안녕, 파이썬!\" 을 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "안녕, 파이썬!",
+      "hints": [
+        "큰따옴표 대신 작은따옴표로도 문자열을 감쌀 수 있습니다.",
+        "print( ) 괄호 안에 작은따옴표로 감싼 글자를 넣어보세요.",
+        "print('안녕, 파이썬!')"
+      ]
+    },
+    {
+      "id": "p3-multiple-values",
+      "concept_id": "print-multiple",
+      "prompt": "print에 \"Hello\"와 \"World\" 두 값을 콤마로 넘겨서 정확히 \"Hello World\" 를 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "Hello World",
+      "hints": [
+        "print 괄호 안에 값을 콤마(,)로 구분해서 여러 개 넣을 수 있습니다.",
+        "콤마로 넘긴 값 사이에는 자동으로 띄어쓰기가 한 칸 들어갑니다.",
+        "print(\"Hello\", \"World\")"
+      ]
+    },
+    {
+      "id": "p4-two-prints",
+      "concept_id": "print-multiple",
+      "prompt": "print를 두 번 사용해서 첫 줄에 \"첫째 줄\", 둘째 줄에 \"둘째 줄\" 을 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "첫째 줄\n둘째 줄",
+      "hints": [
+        "print()를 한 번만 쓸 필요는 없습니다. 여러 번 불러도 됩니다.",
+        "print를 부를 때마다 자동으로 다음 줄로 넘어갑니다.",
+        "print(\"첫째 줄\")\nprint(\"둘째 줄\")"
+      ]
+    },
+    {
+      "id": "p5-escape-quote",
+      "concept_id": "string-quotes",
+      "prompt": "정확히 다음과 같이 출력하세요 (따옴표 포함): 그는 \"안녕\"이라고 말했다",
+      "starter_code": "",
+      "expected_stdout": "그는 \"안녕\"이라고 말했다",
+      "hints": [
+        "문자열 안에 큰따옴표를 그대로 넣고 싶다면, 문자열 전체는 다른 종류의 따옴표로 감싸면 편합니다.",
+        "전체 문자열을 작은따옴표(')로 감싸고, 안에는 큰따옴표(\")를 그대로 쓰세요.",
+        "print('그는 \"안녕\"이라고 말했다')"
+      ]
+    },
+    {
+      "id": "p6-newline-in-string",
+      "concept_id": "print-multiple",
+      "prompt": "print를 한 번만 사용해서 첫 줄에 \"첫째 줄\", 둘째 줄에 \"둘째 줄\" 을 출력하세요. (힌트: 줄바꿈 문자를 사용하세요)",
+      "starter_code": "",
+      "expected_stdout": "첫째 줄\n둘째 줄",
+      "hints": [
+        "문자열 안에서 줄을 바꾸고 싶을 때 쓰는 특수 문자가 있습니다.",
+        "\\n 을 문자열 중간에 넣으면 그 자리에서 줄이 바뀝니다.",
+        "print(\"첫째 줄\\n둘째 줄\")"
+      ]
+    },
+    {
+      "id": "p7-number-print",
+      "concept_id": "string-quotes",
+      "prompt": "따옴표 없이 숫자 2026을 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "2026",
+      "hints": [
+        "숫자는 문자열과 달라서 따옴표로 감싸지 않아도 됩니다.",
+        "print 괄호 안에 숫자를 그대로 넣어보세요.",
+        "print(2026)"
+      ]
+    },
+    {
+      "id": "p8-self-intro",
+      "concept_id": "print-multiple",
+      "prompt": "미니 프로젝트: 아래 세 줄을 정확히 그대로 출력하는 자기소개 출력기를 만드세요.\n이름: 파이코치\n취미: 코딩\n목표: 파이썬 마스터",
+      "starter_code": "",
+      "expected_stdout": "이름: 파이코치\n취미: 코딩\n목표: 파이썬 마스터",
+      "hints": [
+        "지금까지 배운 것처럼 print를 여러 번 사용하거나 \\n을 활용할 수 있습니다.",
+        "한 줄씩 print를 세 번 쓰는 게 가장 실수하기 어렵습니다.",
+        "print(\"이름: 파이코치\")\nprint(\"취미: 코딩\")\nprint(\"목표: 파이썬 마스터\")"
+      ]
+    }
+  ]
+}

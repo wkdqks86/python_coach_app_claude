@@ -1,9 +1,9 @@
 .app {
-  max-width: 480px;
-  margin: 4rem auto;
-  padding: 2rem;
-  text-align: center;
+  max-width: 640px;
+  margin: 2rem auto;
+  padding: 1.5rem;
   font-family: system-ui, sans-serif;
+  line-height: 1.5;
 }
 
 .status {
@@ -16,4 +16,136 @@
 .status.error {
   background: #fbeaea;
   color: #8a1f1f;
+}
+
+.muted {
+  color: #666;
+  font-size: 0.9em;
+}
+
+button {
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+/* Home */
+.level-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+}
+
+/* Concept cards */
+.concept-card {
+  border-left: 4px solid #2563eb;
+  background: #f7f9fc;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+}
+
+.goal {
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+/* Problem panel */
+.panel {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.progress {
+  color: #888;
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+}
+
+.prompt {
+  white-space: pre-wrap;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.code-editor {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 0.95rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.button-row {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+.output {
+  background: #1e1e1e;
+  color: #e5e5e5;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  min-height: 1.2em;
+}
+
+.output .stderr {
+  color: #f87171;
+}
+
+.feedback {
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  margin: 0.75rem 0;
+}
+
+.feedback.pass {
+  background: #eef7ee;
+  color: #1c5e1c;
+}
+
+.feedback.fail {
+  background: #fef6e7;
+  color: #92600a;
+}
+
+.hints {
+  margin-top: 0.75rem;
+}
+
+.hint-btn {
+  background: #f3f4f6;
+}
+
+.hint {
+  background: #f3f4f6;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+.next-btn {
+  margin-top: 1rem;
 }
