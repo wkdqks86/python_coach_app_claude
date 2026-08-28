@@ -1,9 +1,21 @@
 from fastapi import APIRouter
 
 from app import content_loader, db
-from app.schemas import ReviewItem
+from app.schemas import DueReview, ReviewItem
 
 router = APIRouter(prefix="/api", tags=["review"])
+
+
+@router.get("/review/due", response_model=list[DueReview])
+def review_due():
+    """Problems whose spaced-repetition schedule says they're due today."""
+    due = []
+    for problem_id in db.get_due_review_problem_ids():
+        level_id = content_loader.get_problem_level(problem_id)
+        if level_id is None:
+            continue
+        due.append(DueReview(problem_id=problem_id, level_id=level_id))
+    return due
 
 
 @router.get("/review", response_model=list[ReviewItem])

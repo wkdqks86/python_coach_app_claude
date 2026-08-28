@@ -1,8 +1,14 @@
 import sqlite3
 from contextlib import contextmanager
+from datetime import date, timedelta
 from pathlib import Path
 
 DB_PATH = Path(__file__).parent.parent / "pycoach.db"
+
+# Leitner box schedule: how many days until the next review at each box
+# level. Missing a review resets the problem back to box 0. Passing the
+# last box (14 days later) graduates the problem out of the rotation.
+BOX_INTERVALS_DAYS = [1, 3, 7, 14]
 
 
 @contextmanager
@@ -24,6 +30,16 @@ def init_db() -> None:
                 code TEXT NOT NULL,
                 passed INTEGER NOT NULL,
                 created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            )
+            """
+        )
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS review_schedule (
+                problem_id TEXT PRIMARY KEY,
+                box INTEGER NOT NULL DEFAULT 0,
+                next_review_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL DEFAULT (datetime('now'))
             )
             """
         )
@@ -96,5 +112,59 @@ def get_active_dates() -> list[str]:
     with get_connection() as conn:
         rows = conn.execute(
             "SELECT DISTINCT date(created_at) AS d FROM attempts ORDER BY d ASC"
+        ).fetchall()
+    return [row[0] for row in rows]
+
+
+def record_review_outcome(problem_id: str, passed: bool) -> None:
+    """Leitner-style spaced repetition bookkeeping, run after every grading.
+
+    A wrong answer (re)enters the problem into review at box 0, due
+    tomorrow. A right answer only matters here if the problem was already
+    in the rotation (i.e. it had been wrong before) — advance it to the
+    next box, or graduate it out of the rotation entirely once it clears
+    the last box.
+    """
+    with get_connection() as conn:
+        row = conn.execute(
+            "SELECT box FROM review_schedule WHERE problem_id = ?", (problem_id,)
+        ).fetchone()
+
+        if not passed:
+            next_review = (date.today() + timedelta(days=BOX_INTERVALS_DAYS[0])).isoformat()
+            conn.execute(
+                """
+                INSERT INTO review_schedule (problem_id, box, next_review_at, updated_at)
+                VALUES (?, 0, ?, datetime('now'))
+                ON CONFLICT(problem_id) DO UPDATE SET
+                    box = 0, next_review_at = excluded.next_review_at, updated_at = datetime('now')
+                """,
+                (problem_id, next_review),
+            )
+            conn.commit()
+            return
+
+        if row is None:
+            return  # passed, and was never in the review rotation — nothing to do.
+
+        next_box = row[0] + 1
+        if next_box >= len(BOX_INTERVALS_DAYS):
+            conn.execute("DELETE FROM review_schedule WHERE problem_id = ?", (problem_id,))
+        else:
+            next_review = (date.today() + timedelta(days=BOX_INTERVALS_DAYS[next_box])).isoformat()
+            conn.execute(
+                "UPDATE review_schedule SET box = ?, next_review_at = ?, updated_at = datetime('now') "
+                "WHERE problem_id = ?",
+                (next_box, next_review, problem_id),
+            )
+        conn.commit()
+
+
+def get_due_review_problem_ids() -> list[str]:
+    today = date.today().isoformat()
+    with get_connection() as conn:
+        rows = conn.execute(
+            "SELECT problem_id FROM review_schedule WHERE next_review_at <= ? ORDER BY next_review_at ASC",
+            (today,),
         ).fetchall()
     return [row[0] for row in rows]

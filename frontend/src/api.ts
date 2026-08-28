@@ -1,4 +1,4 @@
-import type { CoachResponse, Level, LevelSummary, ProgressSummary, ReviewItem, SubmitResult } from './types'
+import type { CoachResponse, DueReview, Level, LevelSummary, ProgressSummary, ReviewItem, SubmitResult } from './types'
 
 async function handle<T>(res: Response): Promise<T> {
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
@@ -34,6 +34,10 @@ export function submitCode(problemId: string, code: string): Promise<SubmitResul
 
 export function getReview(): Promise<ReviewItem[]> {
   return fetch('/api/review').then(handle)
+}
+
+export function getDueReviews(): Promise<DueReview[]> {
+  return fetch('/api/review/due').then(handle)
 }
 
 export function getProgress(): Promise<ProgressSummary> {

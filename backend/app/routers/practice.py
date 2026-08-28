@@ -49,6 +49,7 @@ def submit(req: SubmitRequest):
     passed = not timed_out and _outputs_match(stdout, expected)
 
     db.save_attempt(req.problem_id, req.code, passed)
+    db.record_review_outcome(req.problem_id, passed)
 
     if passed:
         feedback = "정확합니다! 다음 문제로 넘어가도 좋아요."

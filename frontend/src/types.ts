@@ -80,3 +80,8 @@ export interface CoachResponse {
   reply: string
   source: 'ai' | 'fallback'
 }
+
+export interface DueReview {
+  problem_id: string
+  level_id: number
+}

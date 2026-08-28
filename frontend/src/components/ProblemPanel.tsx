@@ -10,6 +10,7 @@ interface Props {
   total?: number
   initialCode?: string
   solvedLabel?: string
+  badge?: string
   onSolved: () => void
 }
 
@@ -19,6 +20,7 @@ export default function ProblemPanel({
   total,
   initialCode,
   solvedLabel,
+  badge,
   onSolved,
 }: Props) {
   const [code, setCode] = useState(initialCode ?? problem.starter_code)
@@ -66,6 +68,7 @@ export default function ProblemPanel({
 
   return (
     <div className="panel">
+      {badge && <span className="badge review-badge">{badge}</span>}
       {hasProgress && (
         <>
           <div className="level-progress-track">

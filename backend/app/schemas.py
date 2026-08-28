@@ -108,3 +108,8 @@ class CoachResponse(BaseModel):
 
 class SolvedProblems(BaseModel):
     problem_ids: list[str]
+
+
+class DueReview(BaseModel):
+    problem_id: str
+    level_id: int
