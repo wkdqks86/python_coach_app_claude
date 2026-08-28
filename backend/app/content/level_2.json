@@ -1,0 +1,96 @@
+{
+  "id": 2,
+  "title": "변수와 입력",
+  "goal": "값을 저장하고 사용자 입력 받기",
+  "concepts": [
+    {
+      "id": "variables",
+      "title": "변수에 값 저장하기",
+      "explanation": "변수는 값을 담아두는 상자입니다. '이름 = 값' 형태로 값을 저장하고, 이름만 써서 다시 꺼내 쓸 수 있습니다.",
+      "example_code": "name = \"파이코치\"\nprint(name)",
+      "example_output": "파이코치"
+    },
+    {
+      "id": "input-basics",
+      "title": "input()으로 사용자 입력받기",
+      "explanation": "input()은 사용자가 키보드로 입력한 내용을 문자열로 돌려줍니다. 보통 변수에 저장해서 사용합니다.",
+      "example_code": "name = input()\nprint(name)",
+      "example_output": "홍길동"
+    },
+    {
+      "id": "string-concat",
+      "title": "문자열끼리 합치기 (+)",
+      "explanation": "문자열은 + 연산자로 이어 붙일 수 있습니다. 변수와 고정된 문자열을 합쳐서 문장을 만들 때 자주 씁니다.",
+      "example_code": "name = \"파이코치\"\nprint(\"안녕하세요, \" + name + \"님!\")",
+      "example_output": "안녕하세요, 파이코치님!"
+    }
+  ],
+  "problems": [
+    {
+      "id": "p1-store-variable",
+      "concept_id": "variables",
+      "prompt": "name이라는 변수에 \"파이코치\"를 저장하고, name을 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "파이코치",
+      "hints": [
+        "변수는 '이름 = 값' 형태로 만듭니다.",
+        "name = \"파이코치\" 로 저장한 뒤, print(name)으로 변수를 출력하세요.",
+        "name = \"파이코치\"\nprint(name)"
+      ]
+    },
+    {
+      "id": "p2-echo-input",
+      "concept_id": "input-basics",
+      "prompt": "input()으로 이름을 입력받아, 입력받은 값을 그대로 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "파이코치",
+      "hints": [
+        "input()의 결과를 변수에 저장한 다음 그 변수를 출력해보세요.",
+        "name = input() 처럼 저장하고, print(name)으로 출력합니다.",
+        "name = input()\nprint(name)"
+      ],
+      "stdin": "파이코치\n",
+      "input_hint": "아무 이름이나 입력해보세요. 예: 홍길동"
+    },
+    {
+      "id": "p3-greeting",
+      "concept_id": "string-concat",
+      "prompt": "input()으로 이름을 입력받아, \"안녕하세요, OOO님!\" 형태로 인사말을 출력하세요. (OOO 자리에 입력한 이름)",
+      "starter_code": "",
+      "expected_stdout": "안녕하세요, 파이코치님!",
+      "hints": [
+        "먼저 입력값을 변수에 저장하세요.",
+        "문자열 + 변수 + 문자열 형태로 이어 붙이면 문장을 만들 수 있습니다.",
+        "name = input()\nprint(\"안녕하세요, \" + name + \"님!\")"
+      ],
+      "stdin": "파이코치\n",
+      "input_hint": "이름을 입력해보세요. 예: 홍길동"
+    },
+    {
+      "id": "p4-two-variables",
+      "concept_id": "variables",
+      "prompt": "city 변수에 \"서울\", hobby 변수에 \"코딩\"을 저장하고, 아래처럼 두 줄로 출력하세요.\n사는 곳: 서울\n취미: 코딩",
+      "starter_code": "",
+      "expected_stdout": "사는 곳: 서울\n취미: 코딩",
+      "hints": [
+        "변수를 두 개 만들어야 합니다. city와 hobby 각각에 값을 저장하세요.",
+        "print(\"사는 곳: \" + city) 처럼 고정 문구와 변수를 합쳐서 출력하세요.",
+        "city = \"서울\"\nhobby = \"코딩\"\nprint(\"사는 곳: \" + city)\nprint(\"취미: \" + hobby)"
+      ]
+    },
+    {
+      "id": "p5-self-intro",
+      "concept_id": "string-concat",
+      "prompt": "input()으로 이름과 나이를 순서대로 입력받아 \"OOO님은 OO살입니다.\" 형식으로 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "파이코치님은 5살입니다.",
+      "hints": [
+        "input()을 두 번 호출해서 이름과 나이를 각각 저장하세요.",
+        "age도 input()의 결과라 이미 문자열이라서 그대로 + 로 이어 붙일 수 있습니다.",
+        "name = input()\nage = input()\nprint(name + \"님은 \" + age + \"살입니다.\")"
+      ],
+      "stdin": "파이코치\n5\n",
+      "input_hint": "첫 줄에 이름, 둘째 줄에 나이를 입력해보세요. 예: 홍길동 / 10"
+    }
+  ]
+}

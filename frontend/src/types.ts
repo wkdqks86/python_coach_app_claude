@@ -12,6 +12,7 @@ export interface Problem {
   prompt: string
   starter_code: string
   hints: string[]
+  input_hint: string | null
 }
 
 export interface Level {

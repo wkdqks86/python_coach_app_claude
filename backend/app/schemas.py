@@ -15,6 +15,7 @@ class Problem(BaseModel):
     prompt: str
     starter_code: str
     hints: list[str]
+    input_hint: str | None = None
 
 
 class Level(BaseModel):
@@ -35,6 +36,7 @@ class LevelSummary(BaseModel):
 
 class RunRequest(BaseModel):
     code: str
+    stdin: str = ""
 
 
 class RunResult(BaseModel):

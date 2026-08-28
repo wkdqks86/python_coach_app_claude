@@ -47,6 +47,13 @@ _PROBLEM_PROMPT: dict[str, str] = {
     for problem in level["problems"]
 }
 
+# problem_id -> stdin fed to the grader, kept server-side for deterministic grading.
+_EXPECTED_STDIN: dict[str, str] = {
+    problem["id"]: problem.get("stdin", "")
+    for level in _RAW_LEVELS.values()
+    for problem in level["problems"]
+}
+
 
 def list_levels() -> list[LevelSummary]:
     return [
@@ -77,6 +84,7 @@ def get_level(level_id: int) -> Level | None:
                 prompt=p["prompt"],
                 starter_code=p["starter_code"],
                 hints=p["hints"],
+                input_hint=p.get("input_hint"),
             )
             for p in data["problems"]
         ],
@@ -105,3 +113,7 @@ def all_level_ids() -> list[int]:
 
 def get_problem_prompt(problem_id: str) -> str | None:
     return _PROBLEM_PROMPT.get(problem_id)
+
+
+def get_expected_stdin(problem_id: str) -> str:
+    return _EXPECTED_STDIN.get(problem_id, "")

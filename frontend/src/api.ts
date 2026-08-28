@@ -13,11 +13,14 @@ export function getLevel(id: number): Promise<Level> {
   return fetch(`/api/levels/${id}`).then(handle)
 }
 
-export function runCode(code: string): Promise<{ stdout: string; stderr: string; timed_out: boolean }> {
+export function runCode(
+  code: string,
+  stdin = '',
+): Promise<{ stdout: string; stderr: string; timed_out: boolean }> {
   return fetch('/api/run', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ code }),
+    body: JSON.stringify({ code, stdin }),
   }).then(handle)
 }
 

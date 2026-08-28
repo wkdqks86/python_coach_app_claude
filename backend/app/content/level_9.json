@@ -1,0 +1,92 @@
+{
+  "id": 9,
+  "title": "파일과 모듈",
+  "goal": "파일 저장·불러오기와 코드 가져오기",
+  "concepts": [
+    {
+      "id": "file-write",
+      "title": "파일에 쓰기",
+      "explanation": "open(\"파일명\", \"w\")로 파일을 쓰기 모드로 열고 write()로 내용을 저장합니다. with 문을 쓰면 자동으로 파일이 닫힙니다.",
+      "example_code": "with open(\"memo.txt\", \"w\") as f:\n    f.write(\"안녕하세요\")",
+      "example_output": ""
+    },
+    {
+      "id": "file-read",
+      "title": "파일 읽기",
+      "explanation": "open(\"파일명\")으로 파일을 열고 read()로 전체 내용을 문자열로 가져올 수 있습니다.",
+      "example_code": "with open(\"memo.txt\", \"w\") as f:\n    f.write(\"안녕하세요\")\n\nwith open(\"memo.txt\") as f:\n    print(f.read())",
+      "example_output": "안녕하세요"
+    },
+    {
+      "id": "import-module",
+      "title": "import로 모듈 가져오기",
+      "explanation": "import 모듈이름 으로 다른 파일(모듈)에 이미 만들어진 기능을 가져와 쓸 수 있습니다. math는 수학 계산을 위한 표준 모듈입니다.",
+      "example_code": "import math\nprint(math.sqrt(16))",
+      "example_output": "4.0"
+    }
+  ],
+  "problems": [
+    {
+      "id": "p1-write-read",
+      "concept_id": "file-write",
+      "prompt": "memo.txt 파일에 \"오늘의 다짐: 꾸준히 하자\"를 저장한 뒤, 파일을 다시 읽어서 내용을 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "오늘의 다짐: 꾸준히 하자",
+      "hints": [
+        "with open(\"memo.txt\", \"w\") as f: 다음 줄에서 f.write(...)로 저장합니다.",
+        "저장한 뒤에는 open(\"memo.txt\")로 다시 열어서 f.read()로 내용을 가져와 출력하세요.",
+        "with open(\"memo.txt\", \"w\") as f:\n    f.write(\"오늘의 다짐: 꾸준히 하자\")\n\nwith open(\"memo.txt\") as f:\n    print(f.read())"
+      ]
+    },
+    {
+      "id": "p2-write-multiline",
+      "concept_id": "file-read",
+      "prompt": "todo.txt 파일에 \"숙제\"와 \"운동\"을 줄바꿈으로 구분해서 저장한 뒤, 파일을 읽어서 그대로 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "숙제\n운동",
+      "hints": [
+        "문자열 안에 \\n을 넣으면 파일 안에서도 줄이 바뀝니다.",
+        "f.write(\"숙제\\n운동\") 처럼 한 번에 두 줄을 저장할 수 있습니다.",
+        "with open(\"todo.txt\", \"w\") as f:\n    f.write(\"숙제\\n운동\")\n\nwith open(\"todo.txt\") as f:\n    print(f.read())"
+      ]
+    },
+    {
+      "id": "p3-math-sqrt",
+      "concept_id": "import-module",
+      "prompt": "math 모듈을 가져와서 16의 제곱근을 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "4.0",
+      "hints": [
+        "가장 먼저 import math로 모듈을 가져와야 합니다.",
+        "제곱근 함수는 math.sqrt(숫자) 형태로 사용합니다.",
+        "import math\nprint(math.sqrt(16))"
+      ]
+    },
+    {
+      "id": "p4-math-floor",
+      "concept_id": "import-module",
+      "prompt": "math 모듈의 floor 함수를 사용해서 7.8을 내림한 값을 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "7",
+      "hints": [
+        "내림(소수점 버리기) 함수는 math 모듈 안에 있습니다.",
+        "math.floor(숫자) 형태로 사용해보세요.",
+        "import math\nprint(math.floor(7.8))"
+      ]
+    },
+    {
+      "id": "p5-mini-memo-saver",
+      "concept_id": "file-write",
+      "prompt": "input()으로 메모 내용을 입력받아 notes.txt에 저장하고, 저장 직후 파일을 다시 읽어 \"저장된 메모: OOO\" 형식으로 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "저장된 메모: 오늘도 화이팅",
+      "hints": [
+        "input()으로 받은 값을 변수에 저장한 뒤, 그 변수를 파일에 write하세요.",
+        "저장 후 파일을 다시 열어 read()로 읽은 값을 saved 같은 변수에 담아 출력하세요.",
+        "memo = input()\nwith open(\"notes.txt\", \"w\") as f:\n    f.write(memo)\n\nwith open(\"notes.txt\") as f:\n    saved = f.read()\nprint(\"저장된 메모: \" + saved)"
+      ],
+      "stdin": "오늘도 화이팅\n",
+      "input_hint": "메모로 남길 문장을 입력해보세요. 예: 오늘도 화이팅"
+    }
+  ]
+}

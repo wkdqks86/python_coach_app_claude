@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { KeyboardEvent } from 'react'
 import { runCode, submitCode } from '../api'
 import type { Problem, SubmitResult } from '../types'
 import CoachBox from './CoachBox'
@@ -21,6 +22,7 @@ export default function ProblemPanel({
   onSolved,
 }: Props) {
   const [code, setCode] = useState(initialCode ?? problem.starter_code)
+  const [stdin, setStdin] = useState('')
   const [output, setOutput] = useState<{ stdout: string; stderr: string } | null>(null)
   const [result, setResult] = useState<SubmitResult | null>(null)
   const [hintsShown, setHintsShown] = useState(0)
@@ -29,7 +31,7 @@ export default function ProblemPanel({
   async function handleRun() {
     setBusy(true)
     try {
-      const res = await runCode(code)
+      const res = await runCode(code, stdin)
       setOutput(res)
       setResult(null)
     } finally {
@@ -48,12 +50,32 @@ export default function ProblemPanel({
     }
   }
 
+  function handleCodeKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
+    if (e.key !== 'Tab') return
+    e.preventDefault()
+    const target = e.currentTarget
+    const start = target.selectionStart
+    const end = target.selectionEnd
+    setCode(code.slice(0, start) + '    ' + code.slice(end))
+    requestAnimationFrame(() => {
+      target.selectionStart = target.selectionEnd = start + 4
+    })
+  }
+
   const hasProgress = typeof index === 'number' && typeof total === 'number'
 
   return (
     <div className="panel">
       {hasProgress && (
-        <p className="progress">문제 {index! + 1} / {total}</p>
+        <>
+          <div className="level-progress-track">
+            <div
+              className="level-progress-track-fill"
+              style={{ width: `${((index! + 1) / total!) * 100}%` }}
+            />
+          </div>
+          <p className="progress">문제 {index! + 1} / {total}</p>
+        </>
       )}
       <p className="prompt">{problem.prompt}</p>
 
@@ -61,9 +83,23 @@ export default function ProblemPanel({
         className="code-editor"
         value={code}
         onChange={(e) => setCode(e.target.value)}
+        onKeyDown={handleCodeKeyDown}
         spellCheck={false}
         rows={6}
       />
+
+      {problem.input_hint && (
+        <>
+          <p className="stdin-hint">💡 {problem.input_hint}</p>
+          <textarea
+            className="stdin-editor"
+            value={stdin}
+            onChange={(e) => setStdin(e.target.value)}
+            placeholder="input()에 전달할 값을 한 줄씩 입력 (실행 미리보기용)"
+            rows={2}
+          />
+        </>
+      )}
 
       <div className="button-row">
         <button type="button" onClick={handleRun} disabled={busy}>
@@ -75,14 +111,19 @@ export default function ProblemPanel({
       </div>
 
       {output && (
-        <pre className="output">
-          {output.stdout || <span className="muted">(출력 없음)</span>}
-          {output.stderr && <span className="stderr">{'\n' + output.stderr}</span>}
-        </pre>
+        <>
+          <p className="output-label">출력</p>
+          <pre className="output">
+            {output.stdout || <span className="muted">(출력 없음)</span>}
+            {output.stderr && <span className="stderr">{'\n' + output.stderr}</span>}
+          </pre>
+        </>
       )}
 
       {result && (
-        <p className={result.passed ? 'feedback pass' : 'feedback fail'}>{result.feedback}</p>
+        <p className={result.passed ? 'feedback pass' : 'feedback fail'}>
+          {result.passed ? '✓' : '!'} {result.feedback}
+        </p>
       )}
 
       <div className="hints">
@@ -101,7 +142,7 @@ export default function ProblemPanel({
       <CoachBox problemId={problem.id} code={code} />
 
       {result?.passed && (
-        <button type="button" className="next-btn" onClick={onSolved}>
+        <button type="button" className="next-btn primary" onClick={onSolved}>
           {solvedLabel ?? (hasProgress && index! + 1 < total! ? '다음 문제 →' : '레벨 완료 →')}
         </button>
       )}
