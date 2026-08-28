@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "backend: run",
+      "type": "shell",
+      "command": "${workspaceFolder}/backend/venv/Scripts/python.exe -m uvicorn app.main:app --reload",
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "isBackground": true,
+      "presentation": { "panel": "dedicated", "group": "pycoach" },
+      "problemMatcher": []
+    },
+    {
+      "label": "frontend: run",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "isBackground": true,
+      "presentation": { "panel": "dedicated", "group": "pycoach" },
+      "problemMatcher": []
+    },
+    {
+      "label": "PyCoach: run all",
+      "dependsOn": ["backend: run", "frontend: run"],
+      "problemMatcher": []
+    }
+  ]
+}
