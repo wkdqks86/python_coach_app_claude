@@ -24,7 +24,9 @@ venv\Scripts\python.exe -m uvicorn app.main:app --reload
 
 `http://localhost:8000/api/hello` 에서 응답을 확인할 수 있습니다.
 
-AI 코치 기능을 쓰려면 `backend/.env.example`을 `backend/.env`로 복사하고 본인의 API 키를 채워 넣으세요.
+AI 코치 기능을 쓰려면 `backend/.env.example`을 `backend/.env`로 복사하고 본인의 API 키를 채워 넣으세요. `ANTHROPIC_API_KEY`가 있으면 Claude를, 없고 `OPENAI_API_KEY`만 있으면 OpenAI를 사용합니다. 둘 다 없으면 AI 코치는 자동으로 정적 안내 메시지로 대체됩니다(앱이 죽지 않습니다). `.env`를 바꾼 뒤에는 백엔드를 재시작(또는 `--reload`가 자동 재시작)해야 반영됩니다.
+
+> Claude Pro / ChatGPT Plus **구독**과 API 키는 별개입니다. API는 [console.anthropic.com](https://console.anthropic.com) / [platform.openai.com](https://platform.openai.com)에서 별도로 발급받고 사용량만큼 과금됩니다.
 
 ### 프론트엔드 (터미널 2)
 
