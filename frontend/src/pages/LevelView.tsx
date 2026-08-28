@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getLevel } from '../api'
+import { getLevel, getSolvedProblemIds } from '../api'
 import ProblemPanel from '../components/ProblemPanel'
 import type { Level } from '../types'
 
@@ -14,10 +14,16 @@ export default function LevelView({ levelId, onExit }: Props) {
   const [level, setLevel] = useState<Level | null>(null)
   const [stage, setStage] = useState<Stage>('loading')
   const [problemIndex, setProblemIndex] = useState(0)
+  const [resumed, setResumed] = useState(false)
 
   useEffect(() => {
-    getLevel(levelId).then((data) => {
+    Promise.all([getLevel(levelId), getSolvedProblemIds()]).then(([data, solvedIds]) => {
+      const solved = new Set(solvedIds)
+      const firstUnsolved = data.problems.findIndex((p) => !solved.has(p.id))
+      const startIndex = firstUnsolved === -1 ? 0 : firstUnsolved
       setLevel(data)
+      setProblemIndex(startIndex)
+      setResumed(startIndex > 0)
       setStage('concepts')
     })
   }, [levelId])
@@ -51,8 +57,13 @@ export default function LevelView({ levelId, onExit }: Props) {
             </div>
           </div>
         ))}
+        {resumed && (
+          <p className="muted resume-note">
+            이어서 학습하기: 문제 {problemIndex + 1}번부터 시작합니다.
+          </p>
+        )}
         <button type="button" className="primary start-practice-btn" onClick={() => setStage('problems')}>
-          실습 시작하기
+          {resumed ? '이어서 실습하기' : '실습 시작하기'}
         </button>
       </div>
     )

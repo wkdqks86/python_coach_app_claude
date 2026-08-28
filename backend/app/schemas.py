@@ -104,3 +104,7 @@ class CoachRequest(BaseModel):
 class CoachResponse(BaseModel):
     reply: str
     source: str  # "ai" | "fallback"
+
+
+class SolvedProblems(BaseModel):
+    problem_ids: list[str]

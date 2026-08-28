@@ -3,7 +3,7 @@ from datetime import date, timedelta
 from fastapi import APIRouter
 
 from app import content_loader, db
-from app.schemas import LevelProgress, ProgressSummary, WeakConcept
+from app.schemas import LevelProgress, ProgressSummary, SolvedProblems, WeakConcept
 
 router = APIRouter(prefix="/api", tags=["progress"])
 
@@ -27,6 +27,11 @@ def _compute_streak(active_dates: list[str]) -> int:
         streak += 1
         cursor -= timedelta(days=1)
     return streak
+
+
+@router.get("/solved", response_model=SolvedProblems)
+def solved():
+    return SolvedProblems(problem_ids=sorted(db.get_solved_problem_ids()))
 
 
 @router.get("/progress", response_model=ProgressSummary)

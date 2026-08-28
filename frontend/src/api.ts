@@ -40,6 +40,12 @@ export function getProgress(): Promise<ProgressSummary> {
   return fetch('/api/progress').then(handle)
 }
 
+export function getSolvedProblemIds(): Promise<string[]> {
+  return fetch('/api/solved')
+    .then(handle<{ problem_ids: string[] }>)
+    .then((res) => res.problem_ids)
+}
+
 export function askCoach(problemId: string, code: string, question: string): Promise<CoachResponse> {
   return fetch('/api/coach', {
     method: 'POST',
