@@ -1,0 +1,19 @@
+.app {
+  max-width: 480px;
+  margin: 4rem auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: system-ui, sans-serif;
+}
+
+.status {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: #eef7ee;
+  color: #1c5e1c;
+}
+
+.status.error {
+  background: #fbeaea;
+  color: #8a1f1f;
+}
