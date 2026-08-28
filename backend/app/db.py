@@ -66,3 +66,35 @@ def get_review_items() -> list[dict]:
         for problem_id, data in by_problem.items()
         if data["fail_count"] > 0
     ]
+
+
+def get_solved_problem_ids() -> set[str]:
+    with get_connection() as conn:
+        rows = conn.execute(
+            "SELECT DISTINCT problem_id FROM attempts WHERE passed = 1"
+        ).fetchall()
+    return {row[0] for row in rows}
+
+
+def get_fail_counts_by_problem() -> dict[str, int]:
+    with get_connection() as conn:
+        rows = conn.execute(
+            "SELECT problem_id, COUNT(*) FROM attempts WHERE passed = 0 GROUP BY problem_id"
+        ).fetchall()
+    return {row[0]: row[1] for row in rows}
+
+
+def get_attempt_stats() -> tuple[int, int]:
+    """Returns (total_attempts, passed_attempts)."""
+    with get_connection() as conn:
+        row = conn.execute("SELECT COUNT(*), SUM(passed) FROM attempts").fetchone()
+    return row[0] or 0, row[1] or 0
+
+
+def get_active_dates() -> list[str]:
+    """Distinct calendar dates (YYYY-MM-DD) with at least one attempt, ascending."""
+    with get_connection() as conn:
+        rows = conn.execute(
+            "SELECT DISTINCT date(created_at) AS d FROM attempts ORDER BY d ASC"
+        ).fetchall()
+    return [row[0] for row in rows]

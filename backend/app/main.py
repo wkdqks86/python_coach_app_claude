@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app import db
-from app.routers import levels, practice, review
+from app.routers import levels, practice, progress, review
 
 
 @asynccontextmanager
@@ -26,6 +26,7 @@ app.add_middleware(
 app.include_router(levels.router)
 app.include_router(practice.router)
 app.include_router(review.router)
+app.include_router(progress.router)
 
 
 @app.get("/api/hello")

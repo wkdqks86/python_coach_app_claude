@@ -206,3 +206,68 @@ button.primary {
   background: #eef7ee;
   color: #1c5e1c;
 }
+
+/* Dashboard */
+.stat-row {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1rem 0 2rem;
+}
+
+.stat-card {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.stat-label {
+  color: #666;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.level-progress {
+  margin: 0.75rem 0;
+}
+
+.level-progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.progress-bar {
+  background: #eee;
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  background: #2563eb;
+  height: 100%;
+  border-radius: 999px;
+}
+
+.weak-concept-list {
+  list-style: none;
+  padding: 0;
+}
+
+.weak-concept-list li {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  margin: 0.4rem 0;
+}

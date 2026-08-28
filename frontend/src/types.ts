@@ -47,3 +47,30 @@ export interface ReviewItem {
   last_code: string
   last_attempt_at: string
 }
+
+export interface LevelProgress {
+  level_id: number
+  title: string
+  total_problems: number
+  solved_problems: number
+  completion_rate: number
+}
+
+export interface WeakConcept {
+  concept_id: string
+  concept_title: string
+  fail_count: number
+}
+
+export interface ProgressSummary {
+  levels: LevelProgress[]
+  total_problems: number
+  total_solved: number
+  overall_completion_rate: number
+  total_attempts: number
+  passed_attempts: number
+  success_rate: number
+  weak_concepts: WeakConcept[]
+  streak_days: number
+  active_days: number
+}

@@ -29,6 +29,18 @@ _PROBLEM_LEVEL: dict[str, int] = {
     for problem in level["problems"]
 }
 
+_PROBLEM_CONCEPT: dict[str, str] = {
+    problem["id"]: problem["concept_id"]
+    for level in _RAW_LEVELS.values()
+    for problem in level["problems"]
+}
+
+_CONCEPT_TITLES: dict[str, str] = {
+    concept["id"]: concept["title"]
+    for level in _RAW_LEVELS.values()
+    for concept in level["concepts"]
+}
+
 
 def list_levels() -> list[LevelSummary]:
     return [
@@ -71,3 +83,15 @@ def get_expected_stdout(problem_id: str) -> str | None:
 
 def get_problem_level(problem_id: str) -> int | None:
     return _PROBLEM_LEVEL.get(problem_id)
+
+
+def get_problem_concept(problem_id: str) -> str | None:
+    return _PROBLEM_CONCEPT.get(problem_id)
+
+
+def get_concept_title(concept_id: str) -> str | None:
+    return _CONCEPT_TITLES.get(concept_id)
+
+
+def all_level_ids() -> list[int]:
+    return sorted(_RAW_LEVELS.keys())

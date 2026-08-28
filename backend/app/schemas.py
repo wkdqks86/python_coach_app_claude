@@ -64,3 +64,30 @@ class ReviewItem(BaseModel):
     resolved: bool
     last_code: str
     last_attempt_at: str
+
+
+class LevelProgress(BaseModel):
+    level_id: int
+    title: str
+    total_problems: int
+    solved_problems: int
+    completion_rate: float
+
+
+class WeakConcept(BaseModel):
+    concept_id: str
+    concept_title: str
+    fail_count: int
+
+
+class ProgressSummary(BaseModel):
+    levels: list[LevelProgress]
+    total_problems: int
+    total_solved: int
+    overall_completion_rate: float
+    total_attempts: int
+    passed_attempts: int
+    success_rate: float
+    weak_concepts: list[WeakConcept]
+    streak_days: int
+    active_days: int
