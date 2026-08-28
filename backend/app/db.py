@@ -43,6 +43,16 @@ def init_db() -> None:
             )
             """
         )
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS review_events (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                problem_id TEXT NOT NULL,
+                outcome TEXT NOT NULL,
+                created_at TEXT NOT NULL DEFAULT (datetime('now'))
+            )
+            """
+        )
         conn.commit()
 
 
@@ -141,6 +151,10 @@ def record_review_outcome(problem_id: str, passed: bool) -> None:
                 """,
                 (problem_id, next_review),
             )
+            conn.execute(
+                "INSERT INTO review_events (problem_id, outcome) VALUES (?, 'missed')",
+                (problem_id,),
+            )
             conn.commit()
             return
 
@@ -150,6 +164,7 @@ def record_review_outcome(problem_id: str, passed: bool) -> None:
         next_box = row[0] + 1
         if next_box >= len(BOX_INTERVALS_DAYS):
             conn.execute("DELETE FROM review_schedule WHERE problem_id = ?", (problem_id,))
+            outcome = "graduated"
         else:
             next_review = (date.today() + timedelta(days=BOX_INTERVALS_DAYS[next_box])).isoformat()
             conn.execute(
@@ -157,6 +172,11 @@ def record_review_outcome(problem_id: str, passed: bool) -> None:
                 "WHERE problem_id = ?",
                 (next_box, next_review, problem_id),
             )
+            outcome = "advanced"
+        conn.execute(
+            "INSERT INTO review_events (problem_id, outcome) VALUES (?, ?)",
+            (problem_id, outcome),
+        )
         conn.commit()
 
 
@@ -168,3 +188,63 @@ def get_due_review_problem_ids() -> list[str]:
             (today,),
         ).fetchall()
     return [row[0] for row in rows]
+
+
+# --- Report queries (date-range scoped, both bounds inclusive, YYYY-MM-DD) ---
+
+
+def get_attempt_stats_in_range(start: str, end: str) -> tuple[int, int]:
+    """Returns (total_attempts, passed_attempts) within [start, end]."""
+    with get_connection() as conn:
+        row = conn.execute(
+            "SELECT COUNT(*), SUM(passed) FROM attempts WHERE date(created_at) BETWEEN ? AND ?",
+            (start, end),
+        ).fetchone()
+    return row[0] or 0, row[1] or 0
+
+
+def get_active_dates_in_range(start: str, end: str) -> list[str]:
+    with get_connection() as conn:
+        rows = conn.execute(
+            "SELECT DISTINCT date(created_at) AS d FROM attempts WHERE date(created_at) BETWEEN ? AND ? ORDER BY d ASC",
+            (start, end),
+        ).fetchall()
+    return [row[0] for row in rows]
+
+
+def get_fail_counts_in_range(start: str, end: str) -> dict[str, int]:
+    with get_connection() as conn:
+        rows = conn.execute(
+            "SELECT problem_id, COUNT(*) FROM attempts "
+            "WHERE passed = 0 AND date(created_at) BETWEEN ? AND ? GROUP BY problem_id",
+            (start, end),
+        ).fetchall()
+    return {row[0]: row[1] for row in rows}
+
+
+def get_newly_solved_problem_ids(start: str, end: str) -> list[str]:
+    """Problems whose *first-ever* passing attempt falls within [start, end] —
+    i.e. genuinely learned during this period, not a re-solve of old work."""
+    with get_connection() as conn:
+        rows = conn.execute(
+            """
+            SELECT problem_id, MIN(created_at) AS first_pass
+            FROM attempts
+            WHERE passed = 1
+            GROUP BY problem_id
+            HAVING date(first_pass) BETWEEN ? AND ?
+            """,
+            (start, end),
+        ).fetchall()
+    return [row[0] for row in rows]
+
+
+def get_review_event_counts_in_range(start: str, end: str) -> dict[str, int]:
+    """Counts of review_events by outcome ('missed' | 'advanced' | 'graduated')."""
+    with get_connection() as conn:
+        rows = conn.execute(
+            "SELECT outcome, COUNT(*) FROM review_events "
+            "WHERE date(created_at) BETWEEN ? AND ? GROUP BY outcome",
+            (start, end),
+        ).fetchall()
+    return {row[0]: row[1] for row in rows}

@@ -113,3 +113,20 @@ class SolvedProblems(BaseModel):
 class DueReview(BaseModel):
     problem_id: str
     level_id: int
+
+
+class LearningReport(BaseModel):
+    period_start: str
+    period_end: str
+    period_length_days: int
+    active_days: int
+    problems_solved: int
+    new_concepts: int
+    total_attempts: int
+    success_rate: float
+    reviews_advanced: int
+    reviews_graduated: int
+    reviews_missed: int
+    weak_concepts: list[WeakConcept]
+    streak_days: int
+    highlight_message: str

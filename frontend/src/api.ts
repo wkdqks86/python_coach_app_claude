@@ -1,4 +1,13 @@
-import type { CoachResponse, DueReview, Level, LevelSummary, ProgressSummary, ReviewItem, SubmitResult } from './types'
+import type {
+  CoachResponse,
+  DueReview,
+  Level,
+  LevelSummary,
+  LearningReport,
+  ProgressSummary,
+  ReviewItem,
+  SubmitResult,
+} from './types'
 
 async function handle<T>(res: Response): Promise<T> {
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
@@ -48,6 +57,10 @@ export function getSolvedProblemIds(): Promise<string[]> {
   return fetch('/api/solved')
     .then(handle<{ problem_ids: string[] }>)
     .then((res) => res.problem_ids)
+}
+
+export function getReport(): Promise<LearningReport> {
+  return fetch('/api/report').then(handle)
 }
 
 export function askCoach(problemId: string, code: string, question: string): Promise<CoachResponse> {

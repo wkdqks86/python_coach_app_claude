@@ -545,6 +545,17 @@ button.primary:hover:not(:disabled) {
   margin-top: 0.5rem;
 }
 
+/* Report */
+.highlight-banner {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-soft-border);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.4rem;
+  margin: 1.1rem 0 1.6rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
 /* Dashboard */
 .stat-row {
   display: flex;

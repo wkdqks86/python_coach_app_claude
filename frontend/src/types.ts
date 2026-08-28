@@ -85,3 +85,20 @@ export interface DueReview {
   problem_id: string
   level_id: number
 }
+
+export interface LearningReport {
+  period_start: string
+  period_end: string
+  period_length_days: number
+  active_days: number
+  problems_solved: number
+  new_concepts: number
+  total_attempts: number
+  success_rate: number
+  reviews_advanced: number
+  reviews_graduated: number
+  reviews_missed: number
+  weak_concepts: WeakConcept[]
+  streak_days: number
+  highlight_message: string
+}

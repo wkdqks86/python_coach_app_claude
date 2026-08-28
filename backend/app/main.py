@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 
 from app import db
-from app.routers import coach, levels, practice, progress, review
+from app.routers import coach, levels, practice, progress, report, review
 
 
 @asynccontextmanager
@@ -20,7 +20,7 @@ app = FastAPI(title="PyCoach API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173", "http://localhost:5190"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -31,6 +31,7 @@ app.include_router(practice.router)
 app.include_router(review.router)
 app.include_router(progress.router)
 app.include_router(coach.router)
+app.include_router(report.router)
 
 
 @app.get("/api/hello")

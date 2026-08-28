@@ -3,12 +3,14 @@ import './App.css'
 import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
 import LevelView from './pages/LevelView'
+import Report from './pages/Report'
 import ReviewNote from './pages/ReviewNote'
 
 type View =
   | { name: 'home' }
   | { name: 'review' }
   | { name: 'progress' }
+  | { name: 'report' }
   | { name: 'level'; levelId: number }
 
 function App() {
@@ -40,6 +42,13 @@ function App() {
           >
             진도율
           </button>
+          <button
+            type="button"
+            className={view.name === 'report' ? 'nav-link active' : 'nav-link'}
+            onClick={() => setView({ name: 'report' })}
+          >
+            리포트
+          </button>
         </div>
       </nav>
       <main className="app">
@@ -48,6 +57,7 @@ function App() {
         )}
         {view.name === 'review' && <ReviewNote />}
         {view.name === 'progress' && <Dashboard />}
+        {view.name === 'report' && <Report />}
         {view.name === 'level' && (
           <LevelView levelId={view.levelId} onExit={() => setView({ name: 'home' })} />
         )}
