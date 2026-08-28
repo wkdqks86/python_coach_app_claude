@@ -31,15 +31,27 @@ export default function LevelView({ levelId, onExit }: Props) {
       <div>
         <h2>{level.title}</h2>
         <p className="goal">목표: {level.goal}</p>
-        {level.concepts.map((c) => (
+        {level.concepts.map((c, i) => (
           <div key={c.id} className="concept-card">
-            <h3>{c.title}</h3>
-            <p>{c.explanation}</p>
-            <pre className="output">{c.example_code}</pre>
-            <p className="muted">→ {c.example_output}</p>
+            <span className="concept-badge">{i + 1}</span>
+            <div className="concept-body">
+              <h3>{c.title}</h3>
+              <p>{c.explanation}</p>
+              <div className="concept-example">
+                <code>{c.example_code}</code>
+                <div className="concept-example-result">
+                  <span className="arrow">→</span>
+                  {c.example_output ? (
+                    <code>{c.example_output}</code>
+                  ) : (
+                    <span className="muted">(화면 출력 없음)</span>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         ))}
-        <button type="button" className="primary" onClick={() => setStage('problems')}>
+        <button type="button" className="primary start-practice-btn" onClick={() => setStage('problems')}>
           실습 시작하기
         </button>
       </div>

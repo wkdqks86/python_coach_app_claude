@@ -17,27 +17,30 @@ function App() {
   return (
     <>
       <nav className="nav">
-        <button
-          type="button"
-          className={view.name === 'home' ? 'nav-link active' : 'nav-link'}
-          onClick={() => setView({ name: 'home' })}
-        >
-          오늘의 학습
-        </button>
-        <button
-          type="button"
-          className={view.name === 'review' ? 'nav-link active' : 'nav-link'}
-          onClick={() => setView({ name: 'review' })}
-        >
-          오답노트
-        </button>
-        <button
-          type="button"
-          className={view.name === 'progress' ? 'nav-link active' : 'nav-link'}
-          onClick={() => setView({ name: 'progress' })}
-        >
-          진도율
-        </button>
+        <span className="nav-brand">PyCoach</span>
+        <div className="nav-links">
+          <button
+            type="button"
+            className={view.name === 'home' ? 'nav-link active' : 'nav-link'}
+            onClick={() => setView({ name: 'home' })}
+          >
+            오늘의 학습
+          </button>
+          <button
+            type="button"
+            className={view.name === 'review' ? 'nav-link active' : 'nav-link'}
+            onClick={() => setView({ name: 'review' })}
+          >
+            오답노트
+          </button>
+          <button
+            type="button"
+            className={view.name === 'progress' ? 'nav-link active' : 'nav-link'}
+            onClick={() => setView({ name: 'progress' })}
+          >
+            진도율
+          </button>
+        </div>
       </nav>
       <main className="app">
         {view.name === 'home' && (
