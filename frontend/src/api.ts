@@ -1,4 +1,4 @@
-import type { Level, LevelSummary, SubmitResult } from './types'
+import type { Level, LevelSummary, ReviewItem, SubmitResult } from './types'
 
 async function handle<T>(res: Response): Promise<T> {
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
@@ -27,4 +27,8 @@ export function submitCode(problemId: string, code: string): Promise<SubmitResul
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ problem_id: problemId, code }),
   }).then(handle)
+}
+
+export function getReview(): Promise<ReviewItem[]> {
+  return fetch('/api/review').then(handle)
 }

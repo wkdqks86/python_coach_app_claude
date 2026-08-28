@@ -54,3 +54,13 @@ class SubmitResult(BaseModel):
     stderr: str
     expected_stdout: str
     feedback: str
+
+
+class ReviewItem(BaseModel):
+    problem_id: str
+    level_id: int
+    attempt_count: int
+    fail_count: int
+    resolved: bool
+    last_code: str
+    last_attempt_at: str

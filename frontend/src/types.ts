@@ -37,3 +37,13 @@ export interface SubmitResult {
   expected_stdout: string
   feedback: string
 }
+
+export interface ReviewItem {
+  problem_id: string
+  level_id: number
+  attempt_count: number
+  fail_count: number
+  resolved: boolean
+  last_code: string
+  last_attempt_at: string
+}

@@ -23,6 +23,12 @@ _EXPECTED_STDOUT: dict[str, str] = {
     for problem in level["problems"]
 }
 
+_PROBLEM_LEVEL: dict[str, int] = {
+    problem["id"]: level["id"]
+    for level in _RAW_LEVELS.values()
+    for problem in level["problems"]
+}
+
 
 def list_levels() -> list[LevelSummary]:
     return [
@@ -61,3 +67,7 @@ def get_level(level_id: int) -> Level | None:
 
 def get_expected_stdout(problem_id: str) -> str | None:
     return _EXPECTED_STDOUT.get(problem_id)
+
+
+def get_problem_level(problem_id: str) -> int | None:
+    return _PROBLEM_LEVEL.get(problem_id)

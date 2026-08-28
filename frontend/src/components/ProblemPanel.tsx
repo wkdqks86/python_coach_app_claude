@@ -4,13 +4,22 @@ import type { Problem, SubmitResult } from '../types'
 
 interface Props {
   problem: Problem
-  index: number
-  total: number
+  index?: number
+  total?: number
+  initialCode?: string
+  solvedLabel?: string
   onSolved: () => void
 }
 
-export default function ProblemPanel({ problem, index, total, onSolved }: Props) {
-  const [code, setCode] = useState(problem.starter_code)
+export default function ProblemPanel({
+  problem,
+  index,
+  total,
+  initialCode,
+  solvedLabel,
+  onSolved,
+}: Props) {
+  const [code, setCode] = useState(initialCode ?? problem.starter_code)
   const [output, setOutput] = useState<{ stdout: string; stderr: string } | null>(null)
   const [result, setResult] = useState<SubmitResult | null>(null)
   const [hintsShown, setHintsShown] = useState(0)
@@ -38,9 +47,13 @@ export default function ProblemPanel({ problem, index, total, onSolved }: Props)
     }
   }
 
+  const hasProgress = typeof index === 'number' && typeof total === 'number'
+
   return (
     <div className="panel">
-      <p className="progress">문제 {index + 1} / {total}</p>
+      {hasProgress && (
+        <p className="progress">문제 {index! + 1} / {total}</p>
+      )}
       <p className="prompt">{problem.prompt}</p>
 
       <textarea
@@ -86,7 +99,7 @@ export default function ProblemPanel({ problem, index, total, onSolved }: Props)
 
       {result?.passed && (
         <button type="button" className="next-btn" onClick={onSolved}>
-          {index + 1 < total ? '다음 문제 →' : '레벨 완료 →'}
+          {solvedLabel ?? (hasProgress && index! + 1 < total! ? '다음 문제 →' : '레벨 완료 →')}
         </button>
       )}
     </div>
