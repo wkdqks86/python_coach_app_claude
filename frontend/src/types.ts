@@ -74,3 +74,8 @@ export interface ProgressSummary {
   streak_days: number
   active_days: number
 }
+
+export interface CoachResponse {
+  reply: string
+  source: 'ai' | 'fallback'
+}

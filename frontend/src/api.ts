@@ -1,4 +1,4 @@
-import type { Level, LevelSummary, ProgressSummary, ReviewItem, SubmitResult } from './types'
+import type { CoachResponse, Level, LevelSummary, ProgressSummary, ReviewItem, SubmitResult } from './types'
 
 async function handle<T>(res: Response): Promise<T> {
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
@@ -35,4 +35,12 @@ export function getReview(): Promise<ReviewItem[]> {
 
 export function getProgress(): Promise<ProgressSummary> {
   return fetch('/api/progress').then(handle)
+}
+
+export function askCoach(problemId: string, code: string, question: string): Promise<CoachResponse> {
+  return fetch('/api/coach', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ problem_id: problemId, code, question }),
+  }).then(handle)
 }

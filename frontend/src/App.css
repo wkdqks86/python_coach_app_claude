@@ -175,6 +175,57 @@ button.primary {
   margin-top: 1rem;
 }
 
+/* AI coach */
+.coach-toggle {
+  background: #f5f0ff;
+  color: #6d28d9;
+  border-color: #ddd0fb;
+  margin-top: 0.75rem;
+}
+
+.coach-box {
+  border: 1px solid #ddd0fb;
+  background: #faf8ff;
+  border-radius: 8px;
+  padding: 0.9rem;
+  margin-top: 0.75rem;
+}
+
+.coach-title {
+  font-weight: 600;
+  color: #6d28d9;
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.coach-input {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  margin-bottom: 0.5rem;
+}
+
+.coach-reply {
+  background: #fff;
+  border: 1px solid #ddd0fb;
+  border-radius: 6px;
+  padding: 0.6rem 0.9rem;
+  margin-top: 0.75rem;
+  white-space: pre-wrap;
+  font-size: 0.92rem;
+}
+
+.coach-reply.fallback {
+  background: #f3f4f6;
+  border-color: #ddd;
+  color: #555;
+}
+
 /* Review note */
 .review-card {
   border: 1px solid #ddd;

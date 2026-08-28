@@ -91,3 +91,14 @@ class ProgressSummary(BaseModel):
     weak_concepts: list[WeakConcept]
     streak_days: int
     active_days: int
+
+
+class CoachRequest(BaseModel):
+    problem_id: str
+    code: str
+    question: str
+
+
+class CoachResponse(BaseModel):
+    reply: str
+    source: str  # "ai" | "fallback"

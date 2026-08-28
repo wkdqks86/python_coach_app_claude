@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { runCode, submitCode } from '../api'
 import type { Problem, SubmitResult } from '../types'
+import CoachBox from './CoachBox'
 
 interface Props {
   problem: Problem
@@ -96,6 +97,8 @@ export default function ProblemPanel({
           </p>
         ))}
       </div>
+
+      <CoachBox problemId={problem.id} code={code} />
 
       {result?.passed && (
         <button type="button" className="next-btn" onClick={onSolved}>

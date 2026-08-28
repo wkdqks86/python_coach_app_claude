@@ -41,6 +41,12 @@ _CONCEPT_TITLES: dict[str, str] = {
     for concept in level["concepts"]
 }
 
+_PROBLEM_PROMPT: dict[str, str] = {
+    problem["id"]: problem["prompt"]
+    for level in _RAW_LEVELS.values()
+    for problem in level["problems"]
+}
+
 
 def list_levels() -> list[LevelSummary]:
     return [
@@ -95,3 +101,7 @@ def get_concept_title(concept_id: str) -> str | None:
 
 def all_level_ids() -> list[int]:
     return sorted(_RAW_LEVELS.keys())
+
+
+def get_problem_prompt(problem_id: str) -> str | None:
+    return _PROBLEM_PROMPT.get(problem_id)
