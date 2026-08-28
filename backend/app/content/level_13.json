@@ -1,0 +1,90 @@
+{
+  "id": 13,
+  "title": "pandas Series/DataFrame",
+  "goal": "표 형태 데이터 읽기·선택·필터링",
+  "concepts": [
+    {
+      "id": "series-basics",
+      "title": "Series 만들기",
+      "explanation": "pandas의 Series는 인덱스가 붙은 1차원 데이터입니다. pd.Series(리스트)로 만들 수 있습니다.",
+      "example_code": "import pandas as pd\ns = pd.Series([10, 20, 30])\nprint(s)",
+      "example_output": "0    10\n1    20\n2    30\ndtype: int64"
+    },
+    {
+      "id": "dataframe-basics",
+      "title": "DataFrame 만들고 컬럼 선택하기",
+      "explanation": "DataFrame은 여러 열(컬럼)로 이루어진 표입니다. pd.DataFrame({\"컬럼\": [값들]})로 만들고, df[\"컬럼\"]으로 원하는 열만 꺼낼 수 있습니다.",
+      "example_code": "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\"], \"점수\": [90, 85]}\ndf = pd.DataFrame(data)\nprint(df[\"점수\"])",
+      "example_output": "0    90\n1    85\nName: 점수, dtype: int64"
+    },
+    {
+      "id": "dataframe-filter",
+      "title": "조건으로 행 선택하기",
+      "explanation": "df[df[\"컬럼\"] > 값] 형태로 조건을 만족하는 행만 골라낼 수 있습니다. numpy 배열 필터링과 같은 원리입니다.",
+      "example_code": "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\"], \"점수\": [90, 85]}\ndf = pd.DataFrame(data)\nprint(df[df[\"점수\"] >= 90])",
+      "example_output": "   이름  점수\n0  철수  90"
+    }
+  ],
+  "problems": [
+    {
+      "id": "p1-make-series",
+      "concept_id": "series-basics",
+      "prompt": "pandas로 [10, 20, 30] 값을 가진 Series를 만들고 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "0    10\n1    20\n2    30\ndtype: int64",
+      "hints": [
+        "import pandas as pd로 pandas를 가져오세요.",
+        "pd.Series(리스트)로 Series를 만들 수 있습니다.",
+        "import pandas as pd\ns = pd.Series([10, 20, 30])\nprint(s)"
+      ]
+    },
+    {
+      "id": "p2-dataframe-column",
+      "concept_id": "dataframe-basics",
+      "prompt": "이름 [\"철수\", \"영희\", \"민수\"]과 점수 [90, 85, 95]로 DataFrame을 만들고, \"점수\" 컬럼만 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "0    90\n1    85\n2    95\nName: 점수, dtype: int64",
+      "hints": [
+        "딕셔너리 {\"컬럼명\": [값들]} 형태로 pd.DataFrame()에 전달하세요.",
+        "df[\"점수\"]로 점수 컬럼만 꺼낼 수 있습니다.",
+        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df[\"점수\"])"
+      ]
+    },
+    {
+      "id": "p3-first-row-value",
+      "concept_id": "dataframe-basics",
+      "prompt": "위와 같은 DataFrame에서 첫 번째 사람의 이름을 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "철수",
+      "hints": [
+        "먼저 df[\"이름\"]으로 이름 컬럼(Series)을 꺼내세요.",
+        "그 뒤에 [0]을 붙이면 첫 번째 값에 접근할 수 있습니다.",
+        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df[\"이름\"][0])"
+      ]
+    },
+    {
+      "id": "p4-filter-rows",
+      "concept_id": "dataframe-filter",
+      "prompt": "위와 같은 DataFrame에서 점수가 90 이상인 사람만 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "   이름  점수\n0  철수  90\n2  민수  95",
+      "hints": [
+        "df[\"점수\"] >= 90은 각 행이 조건을 만족하는지 알려주는 True/False 목록입니다.",
+        "df[조건] 형태로 감싸면 조건을 만족하는 행만 남습니다.",
+        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df[df[\"점수\"] >= 90])"
+      ]
+    },
+    {
+      "id": "p5-mini-csv-explorer",
+      "concept_id": "dataframe-filter",
+      "prompt": "상품 [\"사과\", \"바나나\", \"포도\"], 수량 [10, 5, 8]로 DataFrame을 만들고, 수량이 6개 이상인 상품의 이름만 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "0    사과\n2    포도\nName: 상품, dtype: str",
+      "hints": [
+        "먼저 조건으로 행을 필터링한 뒤, 그 결과에서 다시 [\"상품\"] 컬럼만 꺼내면 됩니다.",
+        "df[df[\"수량\"] >= 6][\"상품\"] 처럼 대괄호를 두 번 이어서 쓸 수 있습니다.",
+        "import pandas as pd\ndata = {\"상품\": [\"사과\", \"바나나\", \"포도\"], \"수량\": [10, 5, 8]}\ndf = pd.DataFrame(data)\nprint(df[df[\"수량\"] >= 6][\"상품\"])"
+      ]
+    }
+  ]
+}

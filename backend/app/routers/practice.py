@@ -6,6 +6,29 @@ from app.schemas import RunRequest, RunResult, SubmitRequest, SubmitResult
 
 router = APIRouter(prefix="/api", tags=["practice"])
 
+FLOAT_TOLERANCE = 1e-6
+
+
+def _outputs_match(actual: str, expected: str) -> bool:
+    """Exact match, with a fallback: a line that's purely a number is compared
+    within a small tolerance instead of as text. This lets numpy/pandas
+    problems pass even if two mathematically-equivalent computations produce
+    a bit-different float repr (e.g. summing in a different order)."""
+    a_lines = actual.rstrip("\n").split("\n")
+    e_lines = expected.rstrip("\n").split("\n")
+    if len(a_lines) != len(e_lines):
+        return False
+    for a_line, e_line in zip(a_lines, e_lines):
+        if a_line == e_line:
+            continue
+        try:
+            if abs(float(a_line) - float(e_line)) < FLOAT_TOLERANCE:
+                continue
+        except ValueError:
+            pass
+        return False
+    return True
+
 
 @router.post("/run", response_model=RunResult)
 def run(req: RunRequest):
@@ -23,7 +46,7 @@ def submit(req: SubmitRequest):
     # 정답 비교가 흔들리지 않도록 하기 위함이다.
     stdin = content_loader.get_expected_stdin(req.problem_id)
     stdout, stderr, timed_out = run_python(req.code, stdin)
-    passed = not timed_out and stdout.rstrip("\n") == expected.rstrip("\n")
+    passed = not timed_out and _outputs_match(stdout, expected)
 
     db.save_attempt(req.problem_id, req.code, passed)
 
