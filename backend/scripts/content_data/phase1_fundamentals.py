@@ -164,7 +164,7 @@ LEVELS = [
                 ],
             },
             {
-                "id": "p5-mini-self-intro",
+                "id": "p5-mini-age-greeting",
                 "concept_id": "string-concat",
                 "prompt": 'input()으로 이름과 나이를 순서대로 입력받아 "OOO님은 OO살입니다." 형식으로 출력하세요.',
                 "reference_code": 'name = input()\nage = input()\nprint(name + "님은 " + age + "살입니다.")',

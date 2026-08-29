@@ -14,7 +14,25 @@ def _load_raw_levels() -> dict[int, dict]:
     return levels
 
 
+def _check_problem_ids_unique(levels: dict[int, dict]) -> None:
+    """Every dict below is keyed by problem_id across ALL levels, so a
+    duplicate id silently overwrites another problem's answer/level/concept —
+    grading then compares against the wrong problem with no error raised.
+    Fail loudly at startup instead."""
+    seen: dict[str, int] = {}
+    for level in levels.values():
+        for problem in level["problems"]:
+            pid = problem["id"]
+            if pid in seen:
+                raise ValueError(
+                    f"중복된 문제 id '{pid}': 레벨 {seen[pid]}와 레벨 {level['id']}에서 "
+                    "함께 사용됨. 문제 id는 전체 커리큘럼에서 유일해야 합니다."
+                )
+            seen[pid] = level["id"]
+
+
 _RAW_LEVELS = _load_raw_levels()
+_check_problem_ids_unique(_RAW_LEVELS)
 
 # problem_id -> expected_stdout, kept server-side only so the frontend can't peek at answers.
 _EXPECTED_STDOUT: dict[str, str] = {

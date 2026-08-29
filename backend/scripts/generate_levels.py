@@ -86,11 +86,25 @@ def build_level(level: dict) -> dict:
 def main():
     CONTENT_DIR.mkdir(parents=True, exist_ok=True)
 
-    seen_ids = set()
+    seen_level_ids = set()
     for level in LEVELS:
-        if level["id"] in seen_ids:
+        if level["id"] in seen_level_ids:
             raise ValueError(f"중복된 레벨 id: {level['id']}")
-        seen_ids.add(level["id"])
+        seen_level_ids.add(level["id"])
+
+    # problem_id는 content_loader.py에서 레벨 전체를 통틀어 하나의 평평한
+    # dict로 다뤄지므로, 레벨이 달라도 problem id가 겹치면 나중에 로드된
+    # 레벨의 정답으로 조용히 덮어써져 채점이 엉뚱하게 통과/실패한다.
+    # (실제로 레벨 1과 2가 둘 다 "p5-mini-self-intro"를 쓴 적이 있었다.)
+    seen_problem_ids: dict[str, int] = {}
+    for level in LEVELS:
+        for p in level["problems"]:
+            if p["id"] in seen_problem_ids:
+                raise ValueError(
+                    f"중복된 문제 id '{p['id']}': 레벨 {seen_problem_ids[p['id']]}와 "
+                    f"레벨 {level['id']}에서 함께 사용됨. 문제 id는 전체 커리큘럼에서 유일해야 합니다."
+                )
+            seen_problem_ids[p["id"]] = level["id"]
 
     for level in LEVELS:
         data = build_level(level)
