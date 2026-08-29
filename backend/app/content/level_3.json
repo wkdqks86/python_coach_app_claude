@@ -1,94 +1,90 @@
 {
   "id": 3,
-  "title": "자료형과 연산",
-  "goal": "문자열·숫자·불리언과 계산 이해하기",
+  "title": "문자열 다루기",
+  "goal": "인덱싱·슬라이싱, 이스케이프, 포매팅과 문자열 함수",
   "concepts": [
     {
-      "id": "numbers",
-      "title": "정수와 실수, 사칙연산",
-      "explanation": "파이썬 숫자는 정수(int)와 실수(float)가 있습니다. +, -, *, / 로 계산할 수 있고, /는 항상 실수(float) 결과를 돌려줍니다.",
-      "example_code": "print(3 + 5)",
-      "example_output": "8"
+      "id": "string-index-slice",
+      "title": "문자열 인덱싱과 슬라이싱",
+      "explanation": "문자열도 리스트처럼 문자열[인덱스]로 한 글자를, 문자열[시작:끝]으로 여러 글자를 잘라낼 수 있습니다. 인덱스는 0부터 시작하고, -1은 맨 뒤 글자를 뜻합니다.",
+      "example_code": "a = \"Hello World\"\nprint(a[0])\nprint(a[6:])",
+      "example_output": "H\nWorld"
     },
     {
-      "id": "type-conversion",
-      "title": "input()은 항상 문자열",
-      "explanation": "input()으로 받은 값은 계산 없이 그냥 쓰면 숫자가 아니라 문자열입니다. 계산하려면 int()나 float()로 바꿔야 합니다.",
-      "example_code": "n = int(input())\nprint(n + 1)",
-      "example_output": "11"
+      "id": "escape-chars",
+      "title": "이스케이프 문자",
+      "explanation": "\\n(줄바꿈), \\t(탭), \\\\(역슬래시 자체), \\'와 \\\"(따옴표를 그대로 표현)처럼 문자열 안에서 특별한 의미를 갖는 문자 조합입니다.",
+      "example_code": "print(\"이름\\t나이\")",
+      "example_output": "이름\t나이"
     },
     {
-      "id": "booleans",
-      "title": "불리언과 비교 연산자",
-      "explanation": "==, >, < 같은 비교 연산자의 결과는 True 또는 False(불리언)입니다.",
-      "example_code": "print(7 > 10)",
-      "example_output": "False"
+      "id": "fstring-and-functions",
+      "title": "f-string과 문자열 함수",
+      "explanation": "f\"...{변수}...\" 형태로 문자열 안에 변수를 바로 넣을 수 있습니다. len()/upper()/lower()/strip()/replace() 같은 함수로 문자열을 다룰 수도 있습니다.",
+      "example_code": "name = \"파이썬\"\nprint(f\"안녕, {name}!\")",
+      "example_output": "안녕, 파이썬!"
     }
   ],
   "problems": [
     {
-      "id": "p1-add",
-      "concept_id": "numbers",
-      "prompt": "3과 5를 더한 결과를 출력하세요.",
+      "id": "p1-first-last-char",
+      "concept_id": "string-index-slice",
+      "prompt": "\"Hello World\"에서 첫 글자와 마지막 글자를 각각 한 줄씩 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "8",
+      "expected_stdout": "H\nd",
       "hints": [
-        "print 안에 계산식을 그대로 넣을 수 있습니다.",
-        "print(3 + 5) 처럼 써보세요.",
-        "print(3 + 5)"
+        "인덱스는 0부터 시작합니다. a[0]이 첫 글자입니다.",
+        "a[-1]은 맨 뒤에서 첫 번째, 즉 마지막 글자입니다.",
+        "a = \"Hello World\"\nprint(a[0])\nprint(a[-1])"
       ]
     },
     {
-      "id": "p2-input-add",
-      "concept_id": "type-conversion",
-      "prompt": "input()으로 숫자 두 개를 한 줄씩 입력받아 더한 값을 출력하세요.",
+      "id": "p2-slice-hello",
+      "concept_id": "string-index-slice",
+      "prompt": "\"Hello World\"에서 앞 5글자(\"Hello\")만 슬라이싱으로 잘라 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "8",
+      "expected_stdout": "Hello",
       "hints": [
-        "input()의 결과는 문자열이라 바로 더하면 오류가 납니다.",
-        "int()로 감싸서 숫자로 바꾼 다음 변수에 저장하세요.",
-        "a = int(input())\nb = int(input())\nprint(a + b)"
-      ],
-      "stdin": "3\n5\n",
-      "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 3 / 5"
-    },
-    {
-      "id": "p3-division",
-      "concept_id": "numbers",
-      "prompt": "10을 2로 나눈 값을 출력하세요.",
-      "starter_code": "",
-      "expected_stdout": "5.0",
-      "hints": [
-        "나눗셈 연산자를 떠올려 보세요.",
-        "/ 연산자는 결과를 항상 실수(float)로 돌려줍니다.",
-        "print(10 / 2)"
+        "슬라이싱 a[시작:끝]에서 시작을 생략하면 처음부터라는 뜻입니다.",
+        "a[:5]는 인덱스 0부터 4까지, 즉 앞 5글자를 잘라냅니다.",
+        "a = \"Hello World\"\nprint(a[:5])"
       ]
     },
     {
-      "id": "p4-comparison",
-      "concept_id": "booleans",
-      "prompt": "7이 10보다 큰지 비교한 결과를 출력하세요.",
+      "id": "p3-tab-escape",
+      "concept_id": "escape-chars",
+      "prompt": "\\t를 사용해서 \"이름\"과 \"나이\" 사이를 탭으로 띄운 \"이름\\t나이\" 를 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "False",
+      "expected_stdout": "이름\t나이",
       "hints": [
-        "비교 연산자를 사용하면 결과가 True/False로 나옵니다.",
-        "> 연산자로 두 숫자를 비교해보세요.",
-        "print(7 > 10)"
+        "탭 간격을 줄 때 쓰는 이스케이프 문자를 떠올려 보세요.",
+        "\\t를 문자열 중간에 그대로 넣으면 됩니다.",
+        "print(\"이름\\t나이\")"
       ]
     },
     {
-      "id": "p5-mini-calculator",
-      "concept_id": "type-conversion",
-      "prompt": "input()으로 숫자 두 개를 입력받아 합, 차, 곱을 아래 형식으로 출력하는 간단한 계산기를 만드세요.\n합: N\n차: N\n곱: N",
+      "id": "p4-fstring",
+      "concept_id": "fstring-and-functions",
+      "prompt": "name = \"파이코치\", age = 5 변수를 만들고, f-string으로 \"이름: 파이코치, 나이: 5\" 형식으로 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "합: 6\n차: 2\n곱: 8",
+      "expected_stdout": "이름: 파이코치, 나이: 5",
       "hints": [
-        "먼저 두 입력값을 int()로 변환해서 변수에 저장하세요.",
-        "print(\"합:\", a + b) 처럼 콤마로 이어서 출력하면 자동으로 띄어쓰기가 들어갑니다.",
-        "a = int(input())\nb = int(input())\nprint(\"합:\", a + b)\nprint(\"차:\", a - b)\nprint(\"곱:\", a * b)"
-      ],
-      "stdin": "4\n2\n",
-      "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 4 / 2"
+        "문자열 앞에 f를 붙이면 중괄호 { } 안에 변수를 바로 넣을 수 있습니다.",
+        "f\"이름: {name}, 나이: {age}\" 형태로 써보세요.",
+        "name = \"파이코치\"\nage = 5\nprint(f\"이름: {name}, 나이: {age}\")"
+      ]
+    },
+    {
+      "id": "p5-mini-string-functions",
+      "concept_id": "fstring-and-functions",
+      "prompt": "\"  Hello World  \" 문자열의 양쪽 공백을 제거(strip)하고, 소문자로 바꾼(lower) 뒤, 공백을 \"-\"로 치환(replace)해서 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "hello-world",
+      "hints": [
+        "strip()으로 양쪽 공백을 지우고, lower()로 소문자로 바꾸는 걸 순서대로 적용하세요.",
+        "마지막으로 replace(\" \", \"-\")로 남은 공백을 하이픈으로 바꾸세요.",
+        "a = \"  Hello World  \"\na = a.strip()\na = a.lower()\na = a.replace(\" \", \"-\")\nprint(a)"
+      ]
     }
   ]
 }

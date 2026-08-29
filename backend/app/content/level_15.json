@@ -1,89 +1,89 @@
 {
   "id": 15,
-  "title": "데이터 탐색과 요약 통계",
-  "goal": "describe·value_counts로 분포 파악하기 (그래프 시각화는 실제 노트북 환경에서 별도로 연습하는 것을 권장)",
+  "title": "클래스 기초",
+  "goal": "class, self, __init__로 나만의 객체 만들기",
   "concepts": [
     {
-      "id": "describe",
-      "title": "describe()로 요약 통계 한눈에 보기",
-      "explanation": "describe()를 쓰면 개수, 평균, 표준편차, 최솟값, 최댓값 등을 한 번에 볼 수 있습니다. 데이터를 처음 살펴볼 때 가장 먼저 쓰는 명령입니다.",
-      "example_code": "import pandas as pd\ns = pd.Series([10, 20, 30, 40, 50])\nprint(s.describe())",
-      "example_output": "count     5.000000\nmean     30.000000\nstd      15.811388\nmin      10.000000\n25%      20.000000\n50%      30.000000\n75%      40.000000\nmax      50.000000\ndtype: float64"
+      "id": "class-instance",
+      "title": "클래스와 인스턴스",
+      "explanation": "class는 객체를 만들기 위한 설계도입니다. 설계도로 실제 만들어낸 객체를 인스턴스라고 합니다.",
+      "example_code": "class Dog:\n    pass\n\nmy_dog = Dog()\nprint(type(my_dog))",
+      "example_output": "<class '__main__.Dog'>"
     },
     {
-      "id": "value-counts",
-      "title": "value_counts()로 값별 개수 세기",
-      "explanation": "카테고리 데이터에서 각 값이 몇 번씩 나오는지 value_counts()로 셀 수 있습니다. 어떤 값이 가장 흔한지 바로 알 수 있습니다.",
-      "example_code": "import pandas as pd\nfruits = pd.Series([\"사과\", \"바나나\", \"사과\"])\nprint(fruits.value_counts())",
-      "example_output": "사과     2\n바나나    1\nName: count, dtype: int64"
+      "id": "init-self",
+      "title": "__init__과 self",
+      "explanation": "__init__은 인스턴스가 만들어질 때 자동으로 실행되는 초기화 함수입니다. self는 그 인스턴스 자기 자신을 가리킵니다.",
+      "example_code": "class Person:\n    def __init__(self, name):\n        self.name = name\n\np = Person(\"파이코치\")\nprint(p.name)",
+      "example_output": "파이코치"
     },
     {
-      "id": "agg",
-      "title": "agg()로 여러 통계를 한 번에 계산하기",
-      "explanation": "agg([\"mean\", \"max\", \"min\"])처럼 원하는 통계 함수 이름을 리스트로 넘기면, 여러 결과를 한 번에 계산해줍니다.",
-      "example_code": "import pandas as pd\ns = pd.Series([10, 20, 30])\nprint(s.agg([\"mean\", \"max\"]))",
-      "example_output": "mean    20.0\nmax     30.0\ndtype: float64"
+      "id": "methods",
+      "title": "메서드",
+      "explanation": "클래스 안에 정의된 함수를 메서드라고 합니다. 첫 번째 매개변수는 항상 self이고, 인스턴스.메서드() 형태로 호출합니다.",
+      "example_code": "class Person:\n    def __init__(self, name):\n        self.name = name\n\n    def greet(self):\n        print(self.name + \"입니다\")\n\np = Person(\"파이코치\")\np.greet()",
+      "example_output": "파이코치입니다"
     }
   ],
   "problems": [
     {
-      "id": "p1-describe",
-      "concept_id": "describe",
-      "prompt": "점수 [70, 85, 90, 60, 95]로 Series를 만들고 describe()의 결과를 출력하세요.",
+      "id": "p1-dog-class",
+      "concept_id": "init-self",
+      "prompt": "이름을 속성으로 갖는 Dog 클래스를 만드세요. __init__(self, name)에서 self.name에 저장하고, Dog(\"초코\")로 인스턴스를 만들어 name을 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "count     5.00000\nmean     80.00000\nstd      14.57738\nmin      60.00000\n25%      70.00000\n50%      85.00000\n75%      90.00000\nmax      95.00000\ndtype: float64",
+      "expected_stdout": "초코",
       "hints": [
-        "Series를 만든 뒤 describe() 메서드를 바로 이어서 부를 수 있습니다.",
-        "print(s.describe())를 써보세요.",
-        "import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95])\nprint(s.describe())"
+        "__init__(self, name) 안에서 self.name = name으로 저장하세요.",
+        "Dog(\"초코\")로 인스턴스를 만든 뒤 my_dog.name을 출력하세요.",
+        "class Dog:\n    def __init__(self, name):\n        self.name = name\n\nmy_dog = Dog(\"초코\")\nprint(my_dog.name)"
       ]
     },
     {
-      "id": "p2-describe-mean",
-      "concept_id": "describe",
-      "prompt": "위와 같은 점수 Series의 describe() 결과에서 평균(mean)만 출력하세요.",
+      "id": "p2-person-introduce",
+      "concept_id": "methods",
+      "prompt": "이름과 나이를 속성으로 갖는 Person 클래스를 만드세요. introduce(self) 메서드가 \"파이코치는 5살입니다\" 형식으로 출력하도록 만들고, Person(\"파이코치\", 5)를 만들어 introduce()를 호출하세요.",
       "starter_code": "",
-      "expected_stdout": "80.0",
+      "expected_stdout": "파이코치는 5살입니다",
       "hints": [
-        "describe()의 결과도 Series라서 [\"mean\"]처럼 이름으로 값을 꺼낼 수 있습니다.",
-        "s.describe()[\"mean\"]을 출력해보세요.",
-        "import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95])\nprint(s.describe()[\"mean\"])"
+        "__init__에서 name과 age를 각각 self.name, self.age에 저장하세요.",
+        "introduce(self) 메서드 안에서는 self.name, self.age로 속성에 접근합니다.",
+        "class Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def introduce(self):\n        print(self.name + \"는 \" + str(self.age) + \"살입니다\")\n\np = Person(\"파이코치\", 5)\np.introduce()"
       ]
     },
     {
-      "id": "p3-value-counts",
-      "concept_id": "value-counts",
-      "prompt": "과일 목록 [\"사과\", \"바나나\", \"사과\", \"포도\", \"바나나\", \"사과\"]에서 각 과일이 몇 번 나오는지 세어 출력하세요.",
+      "id": "p3-counter-class",
+      "concept_id": "methods",
+      "prompt": "count를 0으로 초기화하는 Counter 클래스를 만드세요. increase(self) 메서드를 호출할 때마다 count가 1씩 늘어나게 만들고, increase()를 세 번 호출한 뒤 count를 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "사과     3\n바나나    2\n포도     1\nName: count, dtype: int64",
+      "expected_stdout": "3",
       "hints": [
-        "리스트를 Series로 만든 뒤 value_counts()를 이어서 부르세요.",
-        "print(fruits.value_counts())를 써보세요.",
-        "import pandas as pd\nfruits = pd.Series([\"사과\", \"바나나\", \"사과\", \"포도\", \"바나나\", \"사과\"])\nprint(fruits.value_counts())"
+        "__init__(self)에서 self.count = 0으로 시작하세요.",
+        "increase(self) 안에서 self.count += 1을 실행하세요.",
+        "class Counter:\n    def __init__(self):\n        self.count = 0\n\n    def increase(self):\n        self.count += 1\n\nc = Counter()\nc.increase()\nc.increase()\nc.increase()\nprint(c.count)"
       ]
     },
     {
-      "id": "p4-most-common",
-      "concept_id": "value-counts",
-      "prompt": "위와 같은 과일 데이터에서 가장 많이 나온 과일 이름만 출력하세요.",
+      "id": "p4-circle-area",
+      "concept_id": "methods",
+      "prompt": "반지름을 속성으로 갖는 Circle 클래스를 만드세요. area(self) 메서드가 반지름 * 반지름 * 3.14를 돌려주도록 만들고, Circle(5)의 넓이를 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "사과",
+      "expected_stdout": "78.5",
       "hints": [
-        "value_counts()의 결과에서 idxmax()를 쓰면 가장 큰 값의 이름(인덱스)을 알 수 있습니다.",
-        "fruits.value_counts().idxmax()를 출력해보세요.",
-        "import pandas as pd\nfruits = pd.Series([\"사과\", \"바나나\", \"사과\", \"포도\", \"바나나\", \"사과\"])\nprint(fruits.value_counts().idxmax())"
+        "__init__에서 radius를 self.radius에 저장하세요.",
+        "area(self)는 print가 아니라 return으로 값을 돌려줘야, 밖에서 print(c.area())로 출력할 수 있습니다.",
+        "class Circle:\n    def __init__(self, radius):\n        self.radius = radius\n\n    def area(self):\n        return self.radius * self.radius * 3.14\n\nc = Circle(5)\nprint(c.area())"
       ]
     },
     {
-      "id": "p5-mini-eda-summary",
-      "concept_id": "agg",
-      "prompt": "점수 [70, 85, 90, 60, 95, 100]으로 Series를 만들고, 평균·최댓값·최솟값을 agg([\"mean\", \"max\", \"min\"])으로 한 번에 계산해서 출력하세요.",
+      "id": "p5-mini-account",
+      "concept_id": "methods",
+      "prompt": "잔액을 속성으로 갖는 Account 클래스를 만드세요. deposit(self, amount)로 입금하면 잔액이 늘고, withdraw(self, amount)로 출금하면 잔액이 줄어듭니다. 잔액 1000으로 시작해서 500 입금, 300 출금한 뒤 최종 잔액을 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "mean     83.333333\nmax     100.000000\nmin      60.000000\ndtype: float64",
+      "expected_stdout": "1200",
       "hints": [
-        "agg()에 원하는 통계 함수 이름을 문자열 리스트로 넘기면 한 번에 계산됩니다.",
-        "s.agg([\"mean\", \"max\", \"min\"])을 출력해보세요.",
-        "import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95, 100])\nprint(s.agg([\"mean\", \"max\", \"min\"]))"
+        "__init__(self, balance)에서 self.balance = balance로 시작 잔액을 저장하세요.",
+        "deposit은 self.balance += amount, withdraw는 self.balance -= amount 입니다.",
+        "class Account:\n    def __init__(self, balance):\n        self.balance = balance\n\n    def deposit(self, amount):\n        self.balance += amount\n\n    def withdraw(self, amount):\n        self.balance -= amount\n\naccount = Account(1000)\naccount.deposit(500)\naccount.withdraw(300)\nprint(account.balance)"
       ]
     }
   ]

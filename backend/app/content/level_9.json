@@ -1,92 +1,90 @@
 {
   "id": 9,
-  "title": "파일과 모듈",
-  "goal": "파일 저장·불러오기와 코드 가져오기",
+  "title": "리스트 심화와 컴프리헨션",
+  "goal": "리스트 인덱싱·함수들과 리스트 컴프리헨션",
   "concepts": [
     {
-      "id": "file-write",
-      "title": "파일에 쓰기",
-      "explanation": "open(\"파일명\", \"w\")로 파일을 쓰기 모드로 열고 write()로 내용을 저장합니다. with 문을 쓰면 자동으로 파일이 닫힙니다.",
-      "example_code": "with open(\"memo.txt\", \"w\") as f:\n    f.write(\"안녕하세요\")",
-      "example_output": ""
+      "id": "list-basics",
+      "title": "리스트 만들고 값 꺼내기",
+      "explanation": "리스트는 [ ] 안에 여러 값을 콤마로 나열해서 저장합니다. 순서(인덱스)는 0부터 시작합니다.",
+      "example_code": "fruits = [\"사과\", \"바나나\", \"포도\"]\nprint(fruits[1])",
+      "example_output": "바나나"
     },
     {
-      "id": "file-read",
-      "title": "파일 읽기",
-      "explanation": "open(\"파일명\")으로 파일을 열고 read()로 전체 내용을 문자열로 가져올 수 있습니다.",
-      "example_code": "with open(\"memo.txt\", \"w\") as f:\n    f.write(\"안녕하세요\")\n\nwith open(\"memo.txt\") as f:\n    print(f.read())",
-      "example_output": "안녕하세요"
+      "id": "list-functions",
+      "title": "리스트 함수들",
+      "explanation": "sort()로 정렬, reverse()로 뒤집기, append()로 추가, count()로 개수 세기처럼 리스트에는 다양한 기능이 붙어 있습니다.",
+      "example_code": "nums = [3, 1, 4, 1, 5]\nnums.sort()\nprint(nums)",
+      "example_output": "[1, 1, 3, 4, 5]"
     },
     {
-      "id": "import-module",
-      "title": "import로 모듈 가져오기",
-      "explanation": "import 모듈이름 으로 다른 파일(모듈)에 이미 만들어진 기능을 가져와 쓸 수 있습니다. math는 수학 계산을 위한 표준 모듈입니다.",
-      "example_code": "import math\nprint(math.sqrt(16))",
-      "example_output": "4.0"
+      "id": "list-comprehension",
+      "title": "리스트 컴프리헨션",
+      "explanation": "[식 for 변수 in 리스트] 형태로, 반복문과 조건문을 한 줄로 줄여서 새 리스트를 만들 수 있습니다.",
+      "example_code": "nums = [1, 2, 3, 4, 5]\nsquares = [n ** 2 for n in nums]\nprint(squares)",
+      "example_output": "[1, 4, 9, 16, 25]"
     }
   ],
   "problems": [
     {
-      "id": "p1-write-read",
-      "concept_id": "file-write",
-      "prompt": "memo.txt 파일에 \"오늘의 다짐: 꾸준히 하자\"를 저장한 뒤, 파일을 다시 읽어서 내용을 출력하세요.",
+      "id": "p1-list-index",
+      "concept_id": "list-basics",
+      "prompt": "fruits 리스트에 \"사과\", \"바나나\", \"포도\"를 저장하고, 두 번째 항목을 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "오늘의 다짐: 꾸준히 하자",
+      "expected_stdout": "바나나",
       "hints": [
-        "with open(\"memo.txt\", \"w\") as f: 다음 줄에서 f.write(...)로 저장합니다.",
-        "저장한 뒤에는 open(\"memo.txt\")로 다시 열어서 f.read()로 내용을 가져와 출력하세요.",
-        "with open(\"memo.txt\", \"w\") as f:\n    f.write(\"오늘의 다짐: 꾸준히 하자\")\n\nwith open(\"memo.txt\") as f:\n    print(f.read())"
+        "리스트의 순서(인덱스)는 0부터 시작합니다. 두 번째 항목의 인덱스는 몇일까요?",
+        "fruits[1]로 두 번째 항목에 접근할 수 있습니다.",
+        "fruits = [\"사과\", \"바나나\", \"포도\"]\nprint(fruits[1])"
       ]
     },
     {
-      "id": "p2-write-multiline",
-      "concept_id": "file-read",
-      "prompt": "todo.txt 파일에 \"숙제\"와 \"운동\"을 줄바꿈으로 구분해서 저장한 뒤, 파일을 읽어서 그대로 출력하세요.",
+      "id": "p2-sort",
+      "concept_id": "list-functions",
+      "prompt": "[3, 1, 4, 1, 5] 리스트를 sort()로 오름차순 정렬해서 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "숙제\n운동",
+      "expected_stdout": "[1, 1, 3, 4, 5]",
       "hints": [
-        "문자열 안에 \\n을 넣으면 파일 안에서도 줄이 바뀝니다.",
-        "f.write(\"숙제\\n운동\") 처럼 한 번에 두 줄을 저장할 수 있습니다.",
-        "with open(\"todo.txt\", \"w\") as f:\n    f.write(\"숙제\\n운동\")\n\nwith open(\"todo.txt\") as f:\n    print(f.read())"
+        "리스트에는 .sort() 메서드가 있어서 바로 정렬할 수 있습니다.",
+        "nums.sort()를 호출한 뒤 nums를 출력하세요.",
+        "nums = [3, 1, 4, 1, 5]\nnums.sort()\nprint(nums)"
       ]
     },
     {
-      "id": "p3-math-sqrt",
-      "concept_id": "import-module",
-      "prompt": "math 모듈을 가져와서 16의 제곱근을 출력하세요.",
+      "id": "p3-count",
+      "concept_id": "list-functions",
+      "prompt": "[1, 2, 2, 3, 2, 4] 리스트에서 2가 몇 번 나오는지 count()로 세어 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "4.0",
+      "expected_stdout": "3",
       "hints": [
-        "가장 먼저 import math로 모듈을 가져와야 합니다.",
-        "제곱근 함수는 math.sqrt(숫자) 형태로 사용합니다.",
-        "import math\nprint(math.sqrt(16))"
+        "리스트.count(값)으로 특정 값이 몇 번 나오는지 셀 수 있습니다.",
+        "nums.count(2)를 출력해보세요.",
+        "nums = [1, 2, 2, 3, 2, 4]\nprint(nums.count(2))"
       ]
     },
     {
-      "id": "p4-math-floor",
-      "concept_id": "import-module",
-      "prompt": "math 모듈의 floor 함수를 사용해서 7.8을 내림한 값을 출력하세요.",
+      "id": "p4-comprehension-filter",
+      "concept_id": "list-comprehension",
+      "prompt": "[1, 2, 3, 4, 5] 리스트에서 짝수만 골라 새 리스트로 만드는 리스트 컴프리헨션을 사용해서 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "7",
+      "expected_stdout": "[2, 4]",
       "hints": [
-        "내림(소수점 버리기) 함수는 math 모듈 안에 있습니다.",
-        "math.floor(숫자) 형태로 사용해보세요.",
-        "import math\nprint(math.floor(7.8))"
+        "[식 for 변수 in 리스트 if 조건] 형태로 조건을 추가할 수 있습니다.",
+        "[n for n in nums if n % 2 == 0]을 출력해보세요.",
+        "nums = [1, 2, 3, 4, 5]\nevens = [n for n in nums if n % 2 == 0]\nprint(evens)"
       ]
     },
     {
-      "id": "p5-mini-memo-saver",
-      "concept_id": "file-write",
-      "prompt": "input()으로 메모 내용을 입력받아 notes.txt에 저장하고, 저장 직후 파일을 다시 읽어 \"저장된 메모: OOO\" 형식으로 출력하세요.",
+      "id": "p5-mini-comprehension-map",
+      "concept_id": "list-comprehension",
+      "prompt": "[1, 2, 3, 4, 5] 각각을 제곱한 값으로 이루어진 새 리스트를 컴프리헨션으로 만들어 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "저장된 메모: 오늘도 화이팅",
+      "expected_stdout": "[1, 4, 9, 16, 25]",
       "hints": [
-        "input()으로 받은 값을 변수에 저장한 뒤, 그 변수를 파일에 write하세요.",
-        "저장 후 파일을 다시 열어 read()로 읽은 값을 saved 같은 변수에 담아 출력하세요.",
-        "memo = input()\nwith open(\"notes.txt\", \"w\") as f:\n    f.write(memo)\n\nwith open(\"notes.txt\") as f:\n    saved = f.read()\nprint(\"저장된 메모: \" + saved)"
-      ],
-      "stdin": "오늘도 화이팅\n",
-      "input_hint": "메모로 남길 문장을 입력해보세요. 예: 오늘도 화이팅"
+        "조건 없이 [식 for 변수 in 리스트] 만으로도 새 리스트를 만들 수 있습니다.",
+        "[n ** 2 for n in nums]를 출력해보세요.",
+        "nums = [1, 2, 3, 4, 5]\nsquares = [n ** 2 for n in nums]\nprint(squares)"
+      ]
     }
   ]
 }

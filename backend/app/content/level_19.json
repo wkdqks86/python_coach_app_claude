@@ -1,89 +1,96 @@
 {
   "id": 19,
-  "title": "베이스라인 모델링",
-  "goal": "scikit-learn으로 첫 모델 학습·검증(train/valid split)",
+  "title": "numpy 벡터 연산",
+  "goal": "브로드캐스팅, 축(axis) 연산, 반복문 없이 계산하기",
   "concepts": [
     {
-      "id": "train-test-split",
-      "title": "train_test_split으로 데이터 나누기",
-      "explanation": "모델이 처음 보는 데이터에서도 잘 맞히는지 확인하려면, 가진 데이터를 학습용과 검증용으로 미리 나눠둬야 합니다. random_state를 고정하면 항상 같은 방식으로 나뉩니다.",
-      "example_code": "from sklearn.model_selection import train_test_split\nX = [[1], [2], [3], [4], [5], [6]]\ny = [0, 0, 0, 1, 1, 1]\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)\nprint(len(X_train), len(X_test))",
-      "example_output": "4 2"
+      "id": "broadcasting",
+      "title": "배열 전체에 한 번에 연산하기",
+      "explanation": "arr + 10 처럼 배열에 숫자를 바로 연산하면, 반복문 없이 모든 값에 그 연산이 적용됩니다. 이를 브로드캐스팅이라고 합니다.",
+      "example_code": "import numpy as np\narr = np.array([1, 2, 3])\nprint(arr + 10)",
+      "example_output": "[11 12 13]"
     },
     {
-      "id": "model-fit",
-      "title": "모델 학습시키기 (fit)",
-      "explanation": "LogisticRegression() 같은 모델을 만든 뒤 fit(X, y)를 호출하면 학습이 시작됩니다. 학습이 끝나면 predict()로 새 데이터의 결과를 예측할 수 있습니다.",
-      "example_code": "from sklearn.linear_model import LogisticRegression\nX_train = [[1], [2], [3], [7], [8], [9]]\ny_train = [0, 0, 0, 1, 1, 1]\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\nprint(model.predict([[5]]))",
-      "example_output": "[1]"
+      "id": "array-array-op",
+      "title": "배열끼리 연산하기",
+      "explanation": "크기가 같은 두 배열은 +, -, *, / 로 같은 위치의 값끼리 계산됩니다.",
+      "example_code": "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([10, 20, 30])\nprint(a + b)",
+      "example_output": "[11 22 33]"
     },
     {
-      "id": "accuracy",
-      "title": "정확도 평가하기 (accuracy_score)",
-      "explanation": "accuracy_score(정답, 예측)으로 전체 중 몇 %를 맞혔는지 확인할 수 있습니다. 모델의 성능을 숫자로 비교할 때 가장 기본이 되는 지표입니다.",
-      "example_code": "from sklearn.metrics import accuracy_score\ny_true = [0, 1, 1, 0]\ny_pred = [0, 1, 0, 0]\nprint(accuracy_score(y_true, y_pred))",
-      "example_output": "0.75"
+      "id": "boolean-filtering",
+      "title": "조건으로 배열 필터링하기",
+      "explanation": "arr[arr > 5] 처럼 배열 안에 조건을 넣으면, 그 조건을 만족하는 값만 골라낼 수 있습니다.",
+      "example_code": "import numpy as np\narr = np.array([1, 6, 3, 8])\nprint(arr[arr > 5])",
+      "example_output": "[6 8]"
+    },
+    {
+      "id": "axis-aggregation",
+      "title": "axis로 방향을 지정한 집계",
+      "explanation": "2차원 배열에서 axis=0은 열(세로) 방향으로, axis=1은 행(가로) 방향으로 계산합니다.",
+      "example_code": "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr.sum(axis=0))\nprint(arr.sum(axis=1))",
+      "example_output": "[5 7 9]\n[ 6 15]"
     }
   ],
   "problems": [
     {
-      "id": "p1-split-sizes",
-      "concept_id": "train-test-split",
-      "prompt": "X = [[1]~[10]] (10개), y = [0,0,0,0,0,1,1,1,1,1] 데이터를 test_size=0.2, random_state=42로 나누고, 학습용/검증용 크기를 각각 출력하세요.",
+      "id": "p1-add-scalar",
+      "concept_id": "broadcasting",
+      "prompt": "배열 [1, 2, 3, 4, 5]의 모든 값에 10을 더한 결과를 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "8 2",
+      "expected_stdout": "[11 12 13 14 15]",
       "hints": [
-        "train_test_split(X, y, test_size=0.2, random_state=42)로 나눌 수 있습니다.",
-        "결과로 X_train, X_test, y_train, y_test 네 개가 순서대로 나옵니다. len()으로 각 크기를 출력하세요.",
-        "from sklearn.model_selection import train_test_split\nX = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]\ny = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\nprint(len(X_train), len(X_test))"
+        "반복문 없이 arr + 10처럼 배열에 바로 숫자를 더할 수 있습니다.",
+        "print(arr + 10)을 그대로 써보세요.",
+        "import numpy as np\narr = np.array([1, 2, 3, 4, 5])\nprint(arr + 10)"
       ]
     },
     {
-      "id": "p2-fit-predict",
-      "concept_id": "model-fit",
-      "prompt": "X_train = [[1],[2],[3],[8],[9],[10]], y_train = [0,0,0,1,1,1]로 LogisticRegression 모델을 학습시키고, [[5]]를 예측한 결과를 출력하세요.",
+      "id": "p2-array-plus-array",
+      "concept_id": "array-array-op",
+      "prompt": "배열 [1, 2, 3]과 [10, 20, 30]을 더한 결과를 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "[0]",
+      "expected_stdout": "[11 22 33]",
       "hints": [
-        "model = LogisticRegression() 으로 모델을 만들고 model.fit(X_train, y_train)으로 학습시키세요.",
-        "model.predict([[5]])처럼 새로운 값을 리스트 안의 리스트로 넘겨서 예측하세요.",
-        "from sklearn.linear_model import LogisticRegression\nX_train = [[1], [2], [3], [8], [9], [10]]\ny_train = [0, 0, 0, 1, 1, 1]\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\nprint(model.predict([[5]]))"
+        "두 배열의 크기가 같으면 같은 위치끼리 더해집니다.",
+        "a + b를 출력해보세요.",
+        "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([10, 20, 30])\nprint(a + b)"
       ]
     },
     {
-      "id": "p3-accuracy-score",
-      "concept_id": "accuracy",
-      "prompt": "정답 y_true = [0, 1, 1, 0, 1]과 예측 y_pred = [0, 1, 0, 0, 1]의 정확도(accuracy)를 출력하세요.",
+      "id": "p3-filter",
+      "concept_id": "boolean-filtering",
+      "prompt": "배열 [3, 8, 1, 9, 4, 6]에서 5보다 큰 값만 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "0.8",
+      "expected_stdout": "[8 9 6]",
       "hints": [
-        "accuracy_score(정답, 예측) 형태로 순서에 주의해서 넘기세요.",
-        "print(accuracy_score(y_true, y_pred))를 그대로 써보세요.",
-        "from sklearn.metrics import accuracy_score\ny_true = [0, 1, 1, 0, 1]\ny_pred = [0, 1, 0, 0, 1]\nprint(accuracy_score(y_true, y_pred))"
+        "arr > 5는 각 값이 조건을 만족하는지 True/False 배열을 만들어줍니다.",
+        "arr[arr > 5] 처럼 배열 안에 조건을 그대로 넣으면 걸러낼 수 있습니다.",
+        "import numpy as np\narr = np.array([3, 8, 1, 9, 4, 6])\nprint(arr[arr > 5])"
       ]
     },
     {
-      "id": "p4-train-accuracy",
-      "concept_id": "model-fit",
-      "prompt": "X_train = [[1],[2],[3],[8],[9],[10]], y_train = [0,0,0,1,1,1]로 모델을 학습시킨 뒤, 학습 데이터 자체에 대한 정확도를 출력하세요.",
+      "id": "p4-axis-sum",
+      "concept_id": "axis-aggregation",
+      "prompt": "[[1, 2, 3], [4, 5, 6]] 배열에서 각 열의 합(axis=0)과 각 행의 합(axis=1)을 순서대로 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "1.0",
+      "expected_stdout": "[5 7 9]\n[ 6 15]",
       "hints": [
-        "학습에 쓴 X_train을 그대로 predict()에 다시 넣어보세요.",
-        "예측 결과와 y_train을 accuracy_score로 비교하세요.",
-        "from sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score\nX_train = [[1], [2], [3], [8], [9], [10]]\ny_train = [0, 0, 0, 1, 1, 1]\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\npred = model.predict(X_train)\nprint(accuracy_score(y_train, pred))"
+        "axis=0은 세로(열) 방향, axis=1은 가로(행) 방향으로 계산합니다.",
+        "arr.sum(axis=0)과 arr.sum(axis=1)을 순서대로 출력하세요.",
+        "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr.sum(axis=0))\nprint(arr.sum(axis=1))"
       ]
     },
     {
-      "id": "p5-mini-baseline-pipeline",
-      "concept_id": "train-test-split",
-      "prompt": "X = [[1]~[10]] (10개), y = [0,0,0,0,0,1,1,1,1,1] 데이터를 test_size=0.3, random_state=42로 나누고, LogisticRegression을 학습시켜 검증 데이터에 대한 정확도를 \"정확도: N\" 형식으로 출력하세요.",
+      "id": "p5-mini-brightness",
+      "concept_id": "boolean-filtering",
+      "prompt": "이미지 픽셀 배열 [200, 220, 240, 260, 280]의 모든 값에 30을 더한 뒤, 255 이하인 값만 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "정확도: 0.6666666666666666",
+      "expected_stdout": "[230 250]",
       "hints": [
-        "지금까지 배운 세 단계(나누기 → 학습 → 평가)를 순서대로 이어 붙이면 됩니다.",
-        "검증에는 X_test/y_test를 쓴다는 점에 주의하세요 — 학습에 쓴 데이터로 평가하면 안 됩니다.",
-        "from sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score\nX = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]\ny = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\npred = model.predict(X_test)\nprint(\"정확도:\", accuracy_score(y_test, pred))"
+        "먼저 브로드캐스팅으로 전체 값에 30을 더한 새 배열을 만드세요.",
+        "그 다음 조건 필터링으로 255 이하인 값만 골라내세요.",
+        "import numpy as np\npixels = np.array([200, 220, 240, 260, 280])\nbrightened = pixels + 30\nprint(brightened[brightened <= 255])"
       ]
     }
   ]

@@ -1,0 +1,90 @@
+{
+  "id": 21,
+  "title": "pandas 인덱싱: loc와 iloc",
+  "goal": ".loc/.iloc로 행과 열을 정확히 선택하고, 다중 조건으로 필터링하기",
+  "concepts": [
+    {
+      "id": "iloc",
+      "title": "iloc — 정수 위치로 선택하기",
+      "explanation": "iloc는 순서(정수 위치)로 행이나 열을 선택합니다. 리스트 인덱싱과 비슷하게 0부터 시작합니다.",
+      "example_code": "import pandas as pd\ndf = pd.DataFrame({\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]})\nprint(df.iloc[1])",
+      "example_output": "이름    영희\n점수    85\nName: 1, dtype: object"
+    },
+    {
+      "id": "loc",
+      "title": "loc — 라벨(이름)로 선택하기",
+      "explanation": "loc는 인덱스 라벨이나 컬럼 이름으로 선택합니다. df.loc[행라벨, 컬럼이름] 형태로 행과 열을 동시에 지정할 수 있습니다.",
+      "example_code": "import pandas as pd\ndf = pd.DataFrame({\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]})\nprint(df.loc[0, \"이름\"])",
+      "example_output": "철수"
+    },
+    {
+      "id": "multi-condition-mask",
+      "title": "다중 조건 마스킹",
+      "explanation": "&(and), |(or), ~(not)로 여러 조건을 조합할 수 있습니다. 각 조건은 반드시 괄호로 감싸야 합니다.",
+      "example_code": "import pandas as pd\ndf = pd.DataFrame({\"점수\": [90, 85, 95, 70], \"나이\": [22, 35, 28, 40]})\nmask = (df[\"점수\"] >= 80) & (df[\"나이\"] < 30)\nprint(df[mask])",
+      "example_output": "   점수  나이\n0  90  22\n2  95  28"
+    }
+  ],
+  "problems": [
+    {
+      "id": "p1-iloc-row",
+      "concept_id": "iloc",
+      "prompt": "이름 [\"철수\", \"영희\", \"민수\"]과 점수 [90, 85, 95]로 DataFrame을 만들고, iloc[1]로 두 번째 행을 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "이름    영희\n점수    85\nName: 1, dtype: object",
+      "hints": [
+        "iloc는 순서(정수 위치)로 행을 선택합니다. 인덱스는 0부터 시작합니다.",
+        "df.iloc[1]을 출력해보세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]})\nprint(df.iloc[1])"
+      ]
+    },
+    {
+      "id": "p2-loc-cell",
+      "concept_id": "loc",
+      "prompt": "위와 같은 DataFrame에서 loc를 사용해 인덱스 0의 '이름' 값을 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "철수",
+      "hints": [
+        "loc[행라벨, 컬럼이름] 형태로 특정 칸을 콕 집어 선택할 수 있습니다.",
+        "df.loc[0, \"이름\"]을 출력해보세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]})\nprint(df.loc[0, \"이름\"])"
+      ]
+    },
+    {
+      "id": "p3-iloc-slice",
+      "concept_id": "iloc",
+      "prompt": "위와 같은 DataFrame에서 iloc로 첫 두 행, 첫 번째 컬럼만 선택해서 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "   이름\n0  철수\n1  영희",
+      "hints": [
+        "iloc도 슬라이싱을 지원합니다: df.iloc[행범위, 열범위].",
+        "df.iloc[:2, :1]을 출력해보세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]})\nprint(df.iloc[:2, :1])"
+      ]
+    },
+    {
+      "id": "p4-and-mask",
+      "concept_id": "multi-condition-mask",
+      "prompt": "점수 [90, 85, 95, 70], 나이 [22, 35, 28, 40]로 DataFrame을 만들고, 점수가 80 이상이면서 동시에 나이가 30 미만인 행만 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "   점수  나이\n0  90  22\n2  95  28",
+      "hints": [
+        "두 조건을 모두 만족해야 하니 &(and)를 사용하세요.",
+        "각 조건은 괄호로 감싸야 합니다: (조건1) & (조건2)",
+        "import pandas as pd\ndf = pd.DataFrame({\"점수\": [90, 85, 95, 70], \"나이\": [22, 35, 28, 40]})\nmask = (df[\"점수\"] >= 80) & (df[\"나이\"] < 30)\nprint(df[mask])"
+      ]
+    },
+    {
+      "id": "p5-mini-or-mask",
+      "concept_id": "multi-condition-mask",
+      "prompt": "위와 같은 데이터에서 점수가 80 미만이거나 나이가 35 이상인 행을 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "   점수  나이\n1  85  35\n3  70  40",
+      "hints": [
+        "둘 중 하나만 만족해도 되니 |(or)를 사용하세요.",
+        "(df[\"점수\"] < 80) | (df[\"나이\"] >= 35) 형태로 작성하세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"점수\": [90, 85, 95, 70], \"나이\": [22, 35, 28, 40]})\nmask = (df[\"점수\"] < 80) | (df[\"나이\"] >= 35)\nprint(df[mask])"
+      ]
+    }
+  ]
+}

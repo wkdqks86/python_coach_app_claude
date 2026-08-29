@@ -1,0 +1,90 @@
+{
+  "id": 25,
+  "title": "EDA 실전",
+  "goal": "결측치·이상치 탐색, feature별 타깃과의 관계 확인",
+  "concepts": [
+    {
+      "id": "check-missing",
+      "title": "결측치 확인하기",
+      "explanation": "isnull().sum()으로 각 컬럼에 빈 값이 몇 개 있는지 한눈에 확인할 수 있습니다.",
+      "example_code": "import pandas as pd\ndf = pd.DataFrame({\"나이\": [22, None, 26]})\nprint(df.isnull().sum())",
+      "example_output": "나이    1\ndtype: int64"
+    },
+    {
+      "id": "check-outliers",
+      "title": "숫자 컬럼 분포 살펴보기",
+      "explanation": "describe()의 min/max를 보면 비정상적으로 크거나 작은 값(이상치)이 있는지 힌트를 얻을 수 있습니다.",
+      "example_code": "import pandas as pd\ndf = pd.DataFrame({\"나이\": [22, 38, 26, 35]})\nprint(df[\"나이\"].describe())",
+      "example_output": "count     4.00\nmean     30.25\nstd       7.50\nmin      22.00\n25%      25.00\n50%      30.50\n75%      35.75\nmax      38.00\nName: 나이, dtype: float64"
+    },
+    {
+      "id": "target-relationship",
+      "title": "그룹별로 타깃과의 관계 살펴보기",
+      "explanation": "groupby(\"컬럼\")[\"타깃\"].mean()으로 각 그룹(예: 성별)에 따라 타깃 값이 어떻게 다른지 확인할 수 있습니다. 이 차이가 클수록 좋은 feature일 가능성이 높습니다.",
+      "example_code": "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\"], \"생존\": [0, 1, 1]})\nprint(df.groupby(\"성별\")[\"생존\"].mean())",
+      "example_output": "성별\n남    0.0\n여    1.0\nName: 생존, dtype: float64"
+    }
+  ],
+  "problems": [
+    {
+      "id": "p1-missing-all-columns",
+      "concept_id": "check-missing",
+      "prompt": "성별 [\"남\", \"여\", \"여\", \"남\", \"여\"], 나이 [22, 38, 26, None, 35], 생존 [0, 1, 1, 0, 1] 데이터를 만들고, 각 컬럼의 결측치 개수를 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "성별    0\n나이    1\n생존    0\ndtype: int64",
+      "hints": [
+        "df.isnull()은 각 칸이 비어있는지 True/False로 알려줍니다.",
+        ".sum()을 이어 붙이면 컬럼별로 True(결측치)의 개수를 셀 수 있습니다.",
+        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\nprint(df.isnull().sum())"
+      ]
+    },
+    {
+      "id": "p2-missing-one-column",
+      "concept_id": "check-missing",
+      "prompt": "위와 같은 데이터에서 나이 컬럼의 결측치가 몇 개인지 숫자만 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "1",
+      "hints": [
+        "전체가 아니라 나이 컬럼 하나만 골라서 확인하면 됩니다.",
+        "df[\"나이\"].isnull().sum()을 출력해보세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\nprint(df[\"나이\"].isnull().sum())"
+      ]
+    },
+    {
+      "id": "p3-describe-outliers",
+      "concept_id": "check-outliers",
+      "prompt": "위와 같은 데이터에서 나이 컬럼의 describe() 결과를 출력해서 최솟값과 최댓값을 확인하세요.",
+      "starter_code": "",
+      "expected_stdout": "count     4.00\nmean     30.25\nstd       7.50\nmin      22.00\n25%      25.00\n50%      30.50\n75%      35.75\nmax      38.00\nName: 나이, dtype: float64",
+      "hints": [
+        "describe()는 결측치를 자동으로 제외하고 통계를 계산합니다.",
+        "df[\"나이\"].describe()를 출력해보세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\nprint(df[\"나이\"].describe())"
+      ]
+    },
+    {
+      "id": "p4-groupby-target",
+      "concept_id": "target-relationship",
+      "prompt": "위와 같은 데이터에서 성별별 생존 평균(생존율)을 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "성별\n남    0.0\n여    1.0\nName: 생존, dtype: float64",
+      "hints": [
+        "groupby(\"성별\")로 같은 성별끼리 묶을 수 있습니다.",
+        "묶은 뒤 [\"생존\"].mean()을 이어 붙이면 성별별 생존율이 나옵니다.",
+        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\nprint(df.groupby(\"성별\")[\"생존\"].mean())"
+      ]
+    },
+    {
+      "id": "p5-mini-eda-report",
+      "concept_id": "check-missing",
+      "prompt": "위와 같은 데이터에서 나이 결측치를 나이 평균으로 채우고 채워진 나이 컬럼을 출력한 뒤, 성별별 생존율도 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "0    22.00\n1    38.00\n2    26.00\n3    30.25\n4    35.00\nName: 나이, dtype: float64\n성별\n남    0.0\n여    1.0\nName: 생존, dtype: float64",
+      "hints": [
+        "fillna(df[\"나이\"].mean())로 결측치를 평균값으로 채울 수 있습니다.",
+        "채운 결과를 다시 df[\"나이\"]에 저장한 뒤, 나이 컬럼과 성별별 생존율을 순서대로 출력하세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\ndf[\"나이\"] = df[\"나이\"].fillna(df[\"나이\"].mean())\nprint(df[\"나이\"])\nprint(df.groupby(\"성별\")[\"생존\"].mean())"
+      ]
+    }
+  ]
+}

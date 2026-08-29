@@ -1,0 +1,97 @@
+{
+  "id": 22,
+  "title": "pandas 데이터 정제",
+  "goal": "결측치·중복 처리, groupby, 정렬, isin",
+  "concepts": [
+    {
+      "id": "missing-values",
+      "title": "결측치 확인하고 채우기",
+      "explanation": "빈 값(None)은 결측치라고 부릅니다. isna()로 어디가 비어있는지 확인하고, fillna(값)으로 채울 수 있습니다.",
+      "example_code": "import pandas as pd\ns = pd.Series([90, None, 95])\nprint(s.isna().sum())",
+      "example_output": "1"
+    },
+    {
+      "id": "groupby",
+      "title": "groupby로 그룹별 집계하기",
+      "explanation": "groupby(\"컬럼\")으로 같은 값끼리 묶은 뒤 sum(), mean() 등을 붙이면 그룹별 통계를 구할 수 있습니다.",
+      "example_code": "import pandas as pd\ndata = {\"분류\": [\"A\", \"A\", \"B\"], \"수량\": [10, 20, 5]}\ndf = pd.DataFrame(data)\nprint(df.groupby(\"분류\")[\"수량\"].sum())",
+      "example_output": "분류\nA    30\nB     5\nName: 수량, dtype: int64"
+    },
+    {
+      "id": "sort-values",
+      "title": "sort_values로 정렬하기",
+      "explanation": "sort_values(\"컬럼\")으로 특정 컬럼 기준 오름차순 정렬을, ascending=False를 추가하면 내림차순 정렬을 할 수 있습니다.",
+      "example_code": "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\"], \"점수\": [70, 95]}\ndf = pd.DataFrame(data)\nprint(df.sort_values(\"점수\", ascending=False)[\"이름\"])",
+      "example_output": "1    영희\n0    철수\nName: 이름, dtype: str"
+    },
+    {
+      "id": "isin",
+      "title": "isin()으로 여러 값 중 하나인지 확인하기",
+      "explanation": "컬럼.isin([값1, 값2, ...])는 그 컬럼의 값이 목록 중 하나와 일치하는지 True/False로 알려줍니다.",
+      "example_code": "import pandas as pd\ns = pd.Series([\"사과\", \"바나나\", \"포도\"])\nprint(s.isin([\"사과\", \"포도\"]))",
+      "example_output": "0     True\n1    False\n2     True\ndtype: bool"
+    }
+  ],
+  "problems": [
+    {
+      "id": "p1-count-missing",
+      "concept_id": "missing-values",
+      "prompt": "점수 [90, None, 95]로 Series를 만들고, 결측치(빈 값)가 몇 개인지 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "1",
+      "hints": [
+        "isna()는 각 값이 비어있는지 True/False로 알려줍니다.",
+        "isna().sum()을 이어서 쓰면 True(비어있음)의 개수를 셀 수 있습니다.",
+        "import pandas as pd\nscores = pd.Series([90, None, 95])\nprint(scores.isna().sum())"
+      ]
+    },
+    {
+      "id": "p2-fill-missing",
+      "concept_id": "missing-values",
+      "prompt": "위와 같은 점수 Series에서 빈 값을 0으로 채운 뒤 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "0    90.0\n1     0.0\n2    95.0\ndtype: float64",
+      "hints": [
+        "fillna(값)으로 빈 자리를 원하는 값으로 채울 수 있습니다.",
+        "scores = scores.fillna(0) 처럼 결과를 다시 저장한 뒤 출력하세요.",
+        "import pandas as pd\nscores = pd.Series([90, None, 95])\nscores = scores.fillna(0)\nprint(scores)"
+      ]
+    },
+    {
+      "id": "p3-groupby-sum",
+      "concept_id": "groupby",
+      "prompt": "분류 [\"과일\", \"과일\", \"채소\"]와 수량 [10, 20, 5]로 DataFrame을 만들고, 분류별 수량 합계를 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "분류\n과일    30\n채소     5\nName: 수량, dtype: int64",
+      "hints": [
+        "groupby(\"분류\")로 같은 분류끼리 묶을 수 있습니다.",
+        "묶은 뒤 [\"수량\"].sum()을 이어 붙이면 분류별 합계가 나옵니다.",
+        "import pandas as pd\ndata = {\"분류\": [\"과일\", \"과일\", \"채소\"], \"수량\": [10, 20, 5]}\ndf = pd.DataFrame(data)\nprint(df.groupby(\"분류\")[\"수량\"].sum())"
+      ]
+    },
+    {
+      "id": "p4-sort-values",
+      "concept_id": "sort-values",
+      "prompt": "이름 [\"철수\", \"영희\", \"민수\"]과 점수 [70, 95, 85]로 DataFrame을 만들고, 점수가 높은 순서대로 이름만 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "1    영희\n2    민수\n0    철수\nName: 이름, dtype: str",
+      "hints": [
+        "sort_values(\"점수\", ascending=False)로 점수를 내림차순 정렬할 수 있습니다.",
+        "정렬한 결과를 변수에 저장한 뒤, 그 결과에서 [\"이름\"]을 출력하세요.",
+        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [70, 95, 85]}\ndf = pd.DataFrame(data)\nsorted_df = df.sort_values(\"점수\", ascending=False)\nprint(sorted_df[\"이름\"])"
+      ]
+    },
+    {
+      "id": "p5-mini-isin",
+      "concept_id": "isin",
+      "prompt": "과일 [\"사과\", \"바나나\", \"포도\", \"오렌지\"] 컬럼에서 \"사과\" 또는 \"포도\"인 행만 isin()으로 필터링해서 출력하세요.",
+      "starter_code": "",
+      "expected_stdout": "   과일\n0  사과\n2  포도",
+      "hints": [
+        "컬럼.isin([값1, 값2])로 목록에 포함된 값인지 한 번에 확인할 수 있습니다.",
+        "df[df[\"과일\"].isin([\"사과\", \"포도\"])] 형태로 필터링하세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"과일\": [\"사과\", \"바나나\", \"포도\", \"오렌지\"]})\nmask = df[\"과일\"].isin([\"사과\", \"포도\"])\nprint(df[mask])"
+      ]
+    }
+  ]
+}

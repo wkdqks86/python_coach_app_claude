@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "p5-self-intro",
+      "id": "p5-mini-self-intro",
       "concept_id": "string-concat",
       "prompt": "input()으로 이름과 나이를 순서대로 입력받아 \"OOO님은 OO살입니다.\" 형식으로 출력하세요.",
       "starter_code": "",

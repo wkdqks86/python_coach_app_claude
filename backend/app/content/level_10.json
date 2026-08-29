@@ -1,87 +1,90 @@
 {
   "id": 10,
-  "title": "실전 종합",
-  "goal": "지금까지 배운 문법을 조합해 작은 프로그램 완성하기",
+  "title": "튜플과 집합",
+  "goal": "값을 바꿀 수 없는 튜플과 중복 없는 집합",
   "concepts": [
     {
-      "id": "combining-skills",
-      "title": "여러 기능 조합하기",
-      "explanation": "지금까지 배운 변수, 조건문, 반복문, 함수, 리스트, 파일을 하나의 프로그램 안에서 함께 사용할 수 있습니다. 큰 문제는 작은 단계로 나눠서 순서대로 해결하세요.",
-      "example_code": "def check_even_odd(n):\n    if n % 2 == 0:\n        return \"짝수\"\n    else:\n        return \"홀수\"\n\nprint(check_even_odd(7))",
-      "example_output": "홀수"
+      "id": "tuple-basics",
+      "title": "튜플",
+      "explanation": "튜플은 리스트와 비슷하지만 ( )로 감싸고, 한 번 만들면 값을 바꿀 수 없습니다(불변).",
+      "example_code": "point = (3, 4)\nprint(point[0])",
+      "example_output": "3"
     },
     {
-      "id": "program-design",
-      "title": "작은 프로그램 설계하기",
-      "explanation": "입력받기 → 처리하기 → 출력하기 순서로 생각하면 복잡한 프로그램도 단계별로 만들 수 있습니다.",
-      "example_code": "nums = [3, 8, 1, 9, 4]\nfor n in nums:\n    if n % 2 == 0:\n        print(n)",
-      "example_output": "8\n4"
+      "id": "set-basics",
+      "title": "집합 (set)",
+      "explanation": "집합은 중복을 허용하지 않고 순서가 없는 자료형입니다. 리스트를 set()으로 감싸면 중복이 자동으로 제거됩니다.",
+      "example_code": "numbers = set([1, 2, 2, 3])\nprint(numbers)",
+      "example_output": "{1, 2, 3}"
+    },
+    {
+      "id": "set-operations",
+      "title": "집합 연산",
+      "explanation": "&(교집합), |(합집합), -(차집합)로 두 집합 사이의 관계를 계산할 수 있습니다.",
+      "example_code": "a = {1, 2, 3}\nb = {2, 3, 4}\nprint(a & b)",
+      "example_output": "{2, 3}"
     }
   ],
   "problems": [
     {
-      "id": "p1-function-if",
-      "concept_id": "combining-skills",
-      "prompt": "숫자를 받아 짝수면 '짝수', 홀수면 '홀수'를 돌려주는 check_even_odd(n) 함수를 만들고, check_even_odd(7)의 결과를 출력하세요.",
+      "id": "p1-tuple-index",
+      "concept_id": "tuple-basics",
+      "prompt": "튜플 (3, 4)를 만들고 첫 번째 값을 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "홀수",
+      "expected_stdout": "3",
       "hints": [
-        "함수 안에서 if/else로 짝수인지 홀수인지 판단한 뒤 return하세요.",
-        "print(check_even_odd(7)) 로 결과를 확인하세요.",
-        "def check_even_odd(n):\n    if n % 2 == 0:\n        return \"짝수\"\n    else:\n        return \"홀수\"\n\nprint(check_even_odd(7))"
+        "튜플도 리스트처럼 인덱스로 값을 꺼낼 수 있습니다.",
+        "point[0]을 출력해보세요.",
+        "point = (3, 4)\nprint(point[0])"
       ]
     },
     {
-      "id": "p2-filter-even",
-      "concept_id": "program-design",
-      "prompt": "숫자 리스트 [3, 8, 1, 9, 4]에서 짝수만 한 줄에 하나씩 출력하세요.",
+      "id": "p2-set-dedupe",
+      "concept_id": "set-basics",
+      "prompt": "리스트 [1, 1, 2, 2, 3, 3]을 집합으로 만들어서 중복이 제거된 결과를 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "8\n4",
+      "expected_stdout": "{1, 2, 3}",
       "hints": [
-        "리스트를 for로 순회하면서, 각 값에 if로 짝수 조건을 검사하세요.",
-        "조건이 참일 때만 print 하면 짝수만 걸러낼 수 있습니다.",
-        "nums = [3, 8, 1, 9, 4]\nfor n in nums:\n    if n % 2 == 0:\n        print(n)"
+        "set(리스트)로 리스트를 집합으로 바꿀 수 있습니다.",
+        "set(nums)를 출력해보세요.",
+        "nums = [1, 1, 2, 2, 3, 3]\nprint(set(nums))"
       ]
     },
     {
-      "id": "p3-function-list-total",
-      "concept_id": "combining-skills",
-      "prompt": "숫자 리스트를 받아 합계를 돌려주는 total(nums) 함수를 만들고, total([1, 2, 3, 4, 5])의 결과를 출력하세요.",
+      "id": "p3-intersection",
+      "concept_id": "set-operations",
+      "prompt": "집합 {1, 2, 3, 4}와 {3, 4, 5, 6}의 교집합을 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "15",
+      "expected_stdout": "{3, 4}",
       "hints": [
-        "함수 안에서 합계를 저장할 변수(s=0)를 만들고, for로 리스트를 돌며 더해나가세요.",
-        "반복이 끝난 뒤 s를 return하면 됩니다.",
-        "def total(nums):\n    s = 0\n    for n in nums:\n        s += n\n    return s\n\nprint(total([1, 2, 3, 4, 5]))"
+        "두 집합 모두에 있는 값만 남기는 연산자를 떠올려 보세요.",
+        "a & b를 출력해보세요.",
+        "a = {1, 2, 3, 4}\nb = {3, 4, 5, 6}\nprint(a & b)"
       ]
     },
     {
-      "id": "p4-find-max",
-      "concept_id": "program-design",
-      "prompt": "input()으로 숫자를 3개 입력받아, 그 중 가장 큰 값을 출력하세요.",
+      "id": "p4-union",
+      "concept_id": "set-operations",
+      "prompt": "집합 {1, 2, 3}와 {3, 4, 5}의 합집합을 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "9",
+      "expected_stdout": "{1, 2, 3, 4, 5}",
       "hints": [
-        "첫 입력값을 일단 가장 큰 값으로 가정하고 시작하세요.",
-        "나머지 두 번은 반복문 안에서 입력받아, 지금까지의 최댓값보다 크면 갱신하세요.",
-        "biggest = int(input())\nfor _ in range(2):\n    n = int(input())\n    if n > biggest:\n        biggest = n\nprint(biggest)"
-      ],
-      "stdin": "4\n9\n2\n",
-      "input_hint": "숫자 3개를 한 줄씩 입력해보세요. 예: 4 / 9 / 2"
+        "두 집합의 모든 값을 합치는 연산자를 떠올려 보세요.",
+        "a | b를 출력해보세요.",
+        "a = {1, 2, 3}\nb = {3, 4, 5}\nprint(a | b)"
+      ]
     },
     {
-      "id": "p5-final-project",
-      "concept_id": "combining-skills",
-      "prompt": "input()으로 이름, 나이, 취미를 순서대로 입력받아 아래 형식으로 출력하는 자기소개 프로그램을 완성하세요 (성인 여부는 19세 기준).\n=== 자기소개 ===\n이름: OOO\n나이: OO살\n취미: OOO\n성인 여부: 성인입니다 / 미성년자입니다",
+      "id": "p5-mini-difference",
+      "concept_id": "set-operations",
+      "prompt": "집합 {1, 2, 3, 4, 5}에서 {2, 4}를 뺀 차집합을 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "=== 자기소개 ===\n이름: 파이코치\n나이: 5살\n취미: 코딩\n성인 여부: 미성년자입니다",
+      "expected_stdout": "{1, 3, 5}",
       "hints": [
-        "input()을 세 번 받아 이름, 나이, 취미를 각각 변수에 저장하세요. 나이는 숫자로 변환합니다.",
-        "지금까지 배운 문자열 이어붙이기와 if/else를 그대로 활용하면 됩니다. 순서대로 한 줄씩 print하세요.",
-        "name = input()\nage = int(input())\nhobby = input()\nprint(\"=== 자기소개 ===\")\nprint(\"이름: \" + name)\nprint(\"나이: \" + str(age) + \"살\")\nprint(\"취미: \" + hobby)\nif age >= 19:\n    print(\"성인 여부: 성인입니다\")\nelse:\n    print(\"성인 여부: 미성년자입니다\")"
-      ],
-      "stdin": "파이코치\n5\n코딩\n",
-      "input_hint": "이름 / 나이 / 취미 순서로 한 줄씩 입력해보세요. 예: 홍길동 / 10 / 게임"
+        "한 집합에서 다른 집합의 값을 제외하는 연산자를 떠올려 보세요.",
+        "a - b를 출력해보세요.",
+        "a = {1, 2, 3, 4, 5}\nb = {2, 4}\nprint(a - b)"
+      ]
     }
   ]
 }

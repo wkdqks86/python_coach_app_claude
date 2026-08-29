@@ -1,89 +1,89 @@
 {
   "id": 14,
-  "title": "pandas 데이터 정제",
-  "goal": "결측치·중복 처리, groupby, 정렬",
+  "title": "예외처리",
+  "goal": "try/except/finally로 오류에 대응하기",
   "concepts": [
     {
-      "id": "missing-values",
-      "title": "결측치 확인하고 채우기",
-      "explanation": "빈 값(None)은 결측치라고 부릅니다. isna()로 어디가 비어있는지 확인하고, fillna(값)으로 채울 수 있습니다.",
-      "example_code": "import pandas as pd\ns = pd.Series([90, None, 95])\nprint(s.isna().sum())",
-      "example_output": "1"
+      "id": "try-except-basics",
+      "title": "try/except 기본 구조",
+      "explanation": "try 블록에서 오류가 발생하면 프로그램이 멈추는 대신, except 블록의 코드가 실행됩니다.",
+      "example_code": "try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print(\"0으로 나눌 수 없어요\")",
+      "example_output": "0으로 나눌 수 없어요"
     },
     {
-      "id": "groupby",
-      "title": "groupby로 그룹별 집계하기",
-      "explanation": "groupby(\"컬럼\")으로 같은 값끼리 묶은 뒤 sum(), mean() 등을 붙이면 그룹별 통계를 구할 수 있습니다.",
-      "example_code": "import pandas as pd\ndata = {\"분류\": [\"A\", \"A\", \"B\"], \"수량\": [10, 20, 5]}\ndf = pd.DataFrame(data)\nprint(df.groupby(\"분류\")[\"수량\"].sum())",
-      "example_output": "분류\nA    30\nB     5\nName: 수량, dtype: int64"
+      "id": "specific-exceptions",
+      "title": "구체적인 예외 처리하기",
+      "explanation": "ValueError, IndexError처럼 오류 종류에 맞는 except를 쓰면, 어떤 문제가 생겼는지 정확히 대응할 수 있습니다.",
+      "example_code": "try:\n    print(int(\"abc\"))\nexcept ValueError:\n    print(\"숫자로 변환할 수 없어요\")",
+      "example_output": "숫자로 변환할 수 없어요"
     },
     {
-      "id": "sort-values",
-      "title": "sort_values로 정렬하기",
-      "explanation": "sort_values(\"컬럼\")으로 특정 컬럼 기준 오름차순 정렬을, ascending=False를 추가하면 내림차순 정렬을 할 수 있습니다.",
-      "example_code": "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\"], \"점수\": [70, 95]}\ndf = pd.DataFrame(data)\nprint(df.sort_values(\"점수\", ascending=False)[\"이름\"])",
-      "example_output": "1    영희\n0    철수\nName: 이름, dtype: str"
+      "id": "finally",
+      "title": "finally",
+      "explanation": "finally 블록은 예외가 발생하든 안 하든 항상 마지막에 실행됩니다. 마무리 작업을 넣을 때 사용합니다.",
+      "example_code": "try:\n    print(1)\nfinally:\n    print(\"항상 실행\")",
+      "example_output": "1\n항상 실행"
     }
   ],
   "problems": [
     {
-      "id": "p1-count-missing",
-      "concept_id": "missing-values",
-      "prompt": "점수 [90, None, 95]로 Series를 만들고, 결측치(빈 값)가 몇 개인지 출력하세요.",
+      "id": "p1-zero-division",
+      "concept_id": "try-except-basics",
+      "prompt": "10을 0으로 나누는 코드를 try/except로 감싸서, ZeroDivisionError가 나면 \"0으로 나눌 수 없어요\"를 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "1",
+      "expected_stdout": "0으로 나눌 수 없어요",
       "hints": [
-        "isna()는 각 값이 비어있는지 True/False로 알려줍니다.",
-        "isna().sum()을 이어서 쓰면 True(비어있음)의 개수를 셀 수 있습니다.",
-        "import pandas as pd\nscores = pd.Series([90, None, 95])\nprint(scores.isna().sum())"
+        "0으로 나누면 어떤 종류의 오류(Error)가 나는지 떠올려 보세요.",
+        "try 블록 안에 문제가 되는 코드를, except ZeroDivisionError: 안에 대체 코드를 넣으세요.",
+        "try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print(\"0으로 나눌 수 없어요\")"
       ]
     },
     {
-      "id": "p2-fill-missing",
-      "concept_id": "missing-values",
-      "prompt": "위와 같은 점수 Series에서 빈 값을 0으로 채운 뒤 출력하세요.",
+      "id": "p2-value-error",
+      "concept_id": "specific-exceptions",
+      "prompt": "\"abc\"를 int()로 변환하는 코드를 try/except로 감싸서, ValueError가 나면 \"숫자로 변환할 수 없어요\"를 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "0    90.0\n1     0.0\n2    95.0\ndtype: float64",
+      "expected_stdout": "숫자로 변환할 수 없어요",
       "hints": [
-        "fillna(값)으로 빈 자리를 원하는 값으로 채울 수 있습니다.",
-        "scores = scores.fillna(0) 처럼 결과를 다시 저장한 뒤 출력하세요.",
-        "import pandas as pd\nscores = pd.Series([90, None, 95])\nscores = scores.fillna(0)\nprint(scores)"
+        "숫자로 바꿀 수 없는 문자열을 int()에 넣으면 어떤 오류가 날지 떠올려 보세요.",
+        "except ValueError: 블록에 대체 메시지를 출력하세요.",
+        "try:\n    print(int(\"abc\"))\nexcept ValueError:\n    print(\"숫자로 변환할 수 없어요\")"
       ]
     },
     {
-      "id": "p3-groupby-sum",
-      "concept_id": "groupby",
-      "prompt": "분류 [\"과일\", \"과일\", \"채소\"]와 수량 [10, 20, 5]로 DataFrame을 만들고, 분류별 수량 합계를 출력하세요.",
+      "id": "p3-index-error",
+      "concept_id": "specific-exceptions",
+      "prompt": "리스트 [1, 2, 3]에서 인덱스 10을 조회하는 코드를 try/except로 감싸서, IndexError가 나면 \"범위를 벗어났어요\"를 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "분류\n과일    30\n채소     5\nName: 수량, dtype: int64",
+      "expected_stdout": "범위를 벗어났어요",
       "hints": [
-        "groupby(\"분류\")로 같은 분류끼리 묶을 수 있습니다.",
-        "묶은 뒤 [\"수량\"].sum()을 이어 붙이면 분류별 합계가 나옵니다.",
-        "import pandas as pd\ndata = {\"분류\": [\"과일\", \"과일\", \"채소\"], \"수량\": [10, 20, 5]}\ndf = pd.DataFrame(data)\nprint(df.groupby(\"분류\")[\"수량\"].sum())"
+        "리스트 범위를 벗어난 인덱스로 접근하면 IndexError가 발생합니다.",
+        "try 블록에 nums[10]을, except IndexError: 블록에 대체 메시지를 넣으세요.",
+        "nums = [1, 2, 3]\ntry:\n    print(nums[10])\nexcept IndexError:\n    print(\"범위를 벗어났어요\")"
       ]
     },
     {
-      "id": "p4-sort-values",
-      "concept_id": "sort-values",
-      "prompt": "이름 [\"철수\", \"영희\", \"민수\"]과 점수 [70, 95, 85]로 DataFrame을 만들고, 점수가 높은 순서대로 이름만 출력하세요.",
+      "id": "p4-finally",
+      "concept_id": "finally",
+      "prompt": "try 블록에서 정상적으로 5를 출력한 뒤, finally 블록에서 \"완료\"를 항상 출력하세요.",
       "starter_code": "",
-      "expected_stdout": "1    영희\n2    민수\n0    철수\nName: 이름, dtype: str",
+      "expected_stdout": "5\n완료",
       "hints": [
-        "sort_values(\"점수\", ascending=False)로 점수를 내림차순 정렬할 수 있습니다.",
-        "정렬한 결과를 변수에 저장한 뒤, 그 결과에서 [\"이름\"]을 출력하세요.",
-        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [70, 95, 85]}\ndf = pd.DataFrame(data)\nsorted_df = df.sort_values(\"점수\", ascending=False)\nprint(sorted_df[\"이름\"])"
+        "예외가 없어도 finally 블록은 항상 실행됩니다.",
+        "try: 안에 print(5), finally: 안에 완료 메시지를 넣으세요.",
+        "try:\n    print(5)\nfinally:\n    print(\"완료\")"
       ]
     },
     {
-      "id": "p5-mini-sales-report",
-      "concept_id": "groupby",
-      "prompt": "분류 [\"과일\", \"채소\", \"과일\", \"채소\"]와 수량 [10, 15, 20, 5]로 DataFrame을 만들고, 분류별 합계를 출력한 뒤 \"가장 많이 팔린 카테고리: OOO\" 형식으로 가장 합계가 큰 분류를 출력하세요.",
+      "id": "p5-mini-safe-convert",
+      "concept_id": "specific-exceptions",
+      "prompt": "문자열 리스트 [\"10\", \"abc\", \"20\"] 각각을 int()로 변환해서 출력하되, 변환할 수 없는 값은 \"abc는 숫자가 아닙니다\" 형식으로 출력하세요 (for문 + try/except).",
       "starter_code": "",
-      "expected_stdout": "분류\n과일    30\n채소    20\nName: 수량, dtype: int64\n가장 많이 팔린 카테고리: 과일",
+      "expected_stdout": "10\nabc는 숫자가 아닙니다\n20",
       "hints": [
-        "먼저 groupby로 분류별 합계(summary)를 구해서 출력하세요.",
-        "summary.idxmax()는 값이 가장 큰 행의 인덱스(분류 이름)를 돌려줍니다.",
-        "import pandas as pd\ndata = {\"분류\": [\"과일\", \"채소\", \"과일\", \"채소\"], \"수량\": [10, 15, 20, 5]}\ndf = pd.DataFrame(data)\nsummary = df.groupby(\"분류\")[\"수량\"].sum()\nprint(summary)\nprint(\"가장 많이 팔린 카테고리:\", summary.idxmax())"
+        "for로 리스트를 순회하면서, 각 값마다 try/except를 적용하세요.",
+        "변환에 실패하면 except 블록에서 v를 그대로 활용해 메시지를 만드세요.",
+        "values = [\"10\", \"abc\", \"20\"]\nfor v in values:\n    try:\n        print(int(v))\n    except ValueError:\n        print(v + \"는 숫자가 아닙니다\")"
       ]
     }
   ]

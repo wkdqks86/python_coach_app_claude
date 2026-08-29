@@ -63,19 +63,7 @@
       ]
     },
     {
-      "id": "p4-two-prints",
-      "concept_id": "print-multiple",
-      "prompt": "print를 두 번 사용해서 첫 줄에 \"첫째 줄\", 둘째 줄에 \"둘째 줄\" 을 출력하세요.",
-      "starter_code": "",
-      "expected_stdout": "첫째 줄\n둘째 줄",
-      "hints": [
-        "print()를 한 번만 쓸 필요는 없습니다. 여러 번 불러도 됩니다.",
-        "print를 부를 때마다 자동으로 다음 줄로 넘어갑니다.",
-        "print(\"첫째 줄\")\nprint(\"둘째 줄\")"
-      ]
-    },
-    {
-      "id": "p5-escape-quote",
+      "id": "p4-escape-quote",
       "concept_id": "string-quotes",
       "prompt": "정확히 다음과 같이 출력하세요 (따옴표 포함): 그는 \"안녕\"이라고 말했다",
       "starter_code": "",
@@ -87,31 +75,7 @@
       ]
     },
     {
-      "id": "p6-newline-in-string",
-      "concept_id": "print-multiple",
-      "prompt": "print를 한 번만 사용해서 첫 줄에 \"첫째 줄\", 둘째 줄에 \"둘째 줄\" 을 출력하세요. (힌트: 줄바꿈 문자를 사용하세요)",
-      "starter_code": "",
-      "expected_stdout": "첫째 줄\n둘째 줄",
-      "hints": [
-        "문자열 안에서 줄을 바꾸고 싶을 때 쓰는 특수 문자가 있습니다.",
-        "\\n 을 문자열 중간에 넣으면 그 자리에서 줄이 바뀝니다.",
-        "print(\"첫째 줄\\n둘째 줄\")"
-      ]
-    },
-    {
-      "id": "p7-number-print",
-      "concept_id": "string-quotes",
-      "prompt": "따옴표 없이 숫자 2026을 출력하세요.",
-      "starter_code": "",
-      "expected_stdout": "2026",
-      "hints": [
-        "숫자는 문자열과 달라서 따옴표로 감싸지 않아도 됩니다.",
-        "print 괄호 안에 숫자를 그대로 넣어보세요.",
-        "print(2026)"
-      ]
-    },
-    {
-      "id": "p8-self-intro",
+      "id": "p5-mini-self-intro",
       "concept_id": "print-multiple",
       "prompt": "미니 프로젝트: 아래 세 줄을 정확히 그대로 출력하는 자기소개 출력기를 만드세요.\n이름: 파이코치\n취미: 코딩\n목표: 파이썬 마스터",
       "starter_code": "",
