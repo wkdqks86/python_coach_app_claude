@@ -4,6 +4,11 @@
 깊이를 참고해서 구성했다. 원래 기획서의 레벨 1~10보다 범위가 넓다 —
 튜플/집합, 컴프리헨션, 함수 심화(기본값/가변 인자/람다), 예외처리, 클래스
 기초가 실제 강의에는 있었지만 기존 콘텐츠에는 빠져 있었다.
+
+힌트 정책: 힌트 1은 개념적인 방향만 제시하고, 힌트 2는 구체적인 접근법을
+알려주되 정답 코드 그대로를 주지 않으며, 힌트 3(마지막 힌트)은 코드
+구조는 보여주되 핵심 토큰을 "____"로 비워서 직접 채우게 한다 — 복사·
+붙여넣기만으로는 통과할 수 없게 하기 위함이다.
 """
 
 LEVELS = [
@@ -40,7 +45,7 @@ LEVELS = [
                 "hints": [
                     "화면에 내용을 출력할 때 쓰는 함수를 떠올려 보세요.",
                     "글자는 큰따옴표나 작은따옴표로 감싸야 합니다.",
-                    'print("안녕하세요")',
+                    'print("____")',
                 ],
             },
             {
@@ -51,7 +56,7 @@ LEVELS = [
                 "hints": [
                     "큰따옴표 대신 작은따옴표로도 문자열을 감쌀 수 있습니다.",
                     "print( ) 괄호 안에 작은따옴표로 감싼 글자를 넣어보세요.",
-                    "print('안녕, 파이썬!')",
+                    "print('____')",
                 ],
             },
             {
@@ -62,7 +67,7 @@ LEVELS = [
                 "hints": [
                     "print 괄호 안에 값을 콤마(,)로 구분해서 여러 개 넣을 수 있습니다.",
                     "콤마로 넘긴 값 사이에는 자동으로 띄어쓰기가 한 칸 들어갑니다.",
-                    'print("Hello", "World")',
+                    'print("____", "____")',
                 ],
             },
             {
@@ -72,8 +77,8 @@ LEVELS = [
                 "reference_code": "print('그는 \"안녕\"이라고 말했다')",
                 "hints": [
                     "문자열 안에 큰따옴표를 그대로 넣고 싶다면, 문자열 전체는 다른 종류의 따옴표로 감싸면 편합니다.",
-                    "전체 문자열을 작은따옴표(')로 감싸고, 안에는 큰따옴표(\")를 그대로 쓰세요.",
-                    "print('그는 \"안녕\"이라고 말했다')",
+                    "바깥쪽과 안쪽에 서로 다른 종류의 따옴표를 하나씩 사용해보세요.",
+                    "바깥쪽은 작은따옴표(')로, 안쪽 큰따옴표(\")는 그대로 남겨두고 한 줄을 완성해보세요.",
                 ],
             },
             {
@@ -84,7 +89,7 @@ LEVELS = [
                 "hints": [
                     "지금까지 배운 것처럼 print를 여러 번 사용하거나 \\n을 활용할 수 있습니다.",
                     "한 줄씩 print를 세 번 쓰는 게 가장 실수하기 어렵습니다.",
-                    'print("이름: 파이코치")\nprint("취미: 코딩")\nprint("목표: 파이썬 마스터")',
+                    'print("____")\nprint("____")\nprint("____")',
                 ],
             },
         ],
@@ -122,8 +127,8 @@ LEVELS = [
                 "reference_code": 'name = "파이코치"\nprint(name)',
                 "hints": [
                     "변수는 '이름 = 값' 형태로 만듭니다.",
-                    'name = "파이코치" 로 저장한 뒤, print(name)으로 변수를 출력하세요.',
-                    'name = "파이코치"\nprint(name)',
+                    "변수를 만든 뒤 print(변수이름) 형태로 그 변수를 출력하면 됩니다.",
+                    'name = "____"\nprint(name)',
                 ],
             },
             {
@@ -135,8 +140,8 @@ LEVELS = [
                 "input_hint": "아무 이름이나 입력해보세요. 예: 홍길동",
                 "hints": [
                     "input()의 결과를 변수에 저장한 다음 그 변수를 출력해보세요.",
-                    "name = input() 처럼 저장하고, print(name)으로 출력합니다.",
-                    "name = input()\nprint(name)",
+                    "입력받은 값을 담을 변수 이름을 하나 정해서 저장하고, 그 변수를 그대로 출력하세요.",
+                    "____ = input()\nprint(____)",
                 ],
             },
             {
@@ -149,7 +154,7 @@ LEVELS = [
                 "hints": [
                     "먼저 입력값을 변수에 저장하세요.",
                     "문자열 + 변수 + 문자열 형태로 이어 붙이면 문장을 만들 수 있습니다.",
-                    'name = input()\nprint("안녕하세요, " + name + "님!")',
+                    'name = input()\nprint("안녕하세요, " + ____ + "님!")',
                 ],
             },
             {
@@ -159,8 +164,8 @@ LEVELS = [
                 "reference_code": 'city = "서울"\nhobby = "코딩"\nprint("사는 곳: " + city)\nprint("취미: " + hobby)',
                 "hints": [
                     "변수를 두 개 만들어야 합니다. city와 hobby 각각에 값을 저장하세요.",
-                    'print("사는 곳: " + city) 처럼 고정 문구와 변수를 합쳐서 출력하세요.',
-                    'city = "서울"\nhobby = "코딩"\nprint("사는 곳: " + city)\nprint("취미: " + hobby)',
+                    "고정된 문구와 변수를 + 로 이어 붙여서 각 줄을 만들어보세요.",
+                    'city = "서울"\nhobby = "코딩"\nprint("사는 곳: " + ____)\nprint("취미: " + ____)',
                 ],
             },
             {
@@ -173,7 +178,7 @@ LEVELS = [
                 "hints": [
                     "input()을 두 번 호출해서 이름과 나이를 각각 저장하세요.",
                     "age도 input()의 결과라 이미 문자열이라서 그대로 + 로 이어 붙일 수 있습니다.",
-                    'name = input()\nage = input()\nprint(name + "님은 " + age + "살입니다.")',
+                    'name = input()\nage = input()\nprint(____ + "님은 " + ____ + "살입니다.")',
                 ],
             },
         ],
@@ -210,8 +215,8 @@ LEVELS = [
                 "reference_code": 'a = "Hello World"\nprint(a[0])\nprint(a[-1])',
                 "hints": [
                     "인덱스는 0부터 시작합니다. a[0]이 첫 글자입니다.",
-                    "a[-1]은 맨 뒤에서 첫 번째, 즉 마지막 글자입니다.",
-                    'a = "Hello World"\nprint(a[0])\nprint(a[-1])',
+                    "음수 인덱스는 뒤에서부터 셉니다. -1은 맨 뒤에서 첫 번째, 즉 마지막 글자입니다.",
+                    'a = "Hello World"\nprint(a[____])\nprint(a[____])',
                 ],
             },
             {
@@ -221,8 +226,8 @@ LEVELS = [
                 "reference_code": 'a = "Hello World"\nprint(a[:5])',
                 "hints": [
                     "슬라이싱 a[시작:끝]에서 시작을 생략하면 처음부터라는 뜻입니다.",
-                    "a[:5]는 인덱스 0부터 4까지, 즉 앞 5글자를 잘라냅니다.",
-                    'a = "Hello World"\nprint(a[:5])',
+                    "끝 인덱스를 몇으로 하면 앞 5글자만 잘리는지 생각해보세요.",
+                    'a = "Hello World"\nprint(a[____])',
                 ],
             },
             {
@@ -232,8 +237,8 @@ LEVELS = [
                 "reference_code": 'print("이름\\t나이")',
                 "hints": [
                     "탭 간격을 줄 때 쓰는 이스케이프 문자를 떠올려 보세요.",
-                    "\\t를 문자열 중간에 그대로 넣으면 됩니다.",
-                    'print("이름\\t나이")',
+                    "이스케이프 문자는 문자열 중간에 그대로 넣어서 씁니다.",
+                    'print("이름____나이")',
                 ],
             },
             {
@@ -243,8 +248,8 @@ LEVELS = [
                 "reference_code": 'name = "파이코치"\nage = 5\nprint(f"이름: {name}, 나이: {age}")',
                 "hints": [
                     "문자열 앞에 f를 붙이면 중괄호 { } 안에 변수를 바로 넣을 수 있습니다.",
-                    'f"이름: {name}, 나이: {age}" 형태로 써보세요.',
-                    'name = "파이코치"\nage = 5\nprint(f"이름: {name}, 나이: {age}")',
+                    'f"...{변수}..." 형태로 문자열 중간 원하는 위치마다 변수를 넣을 수 있어요. name과 age가 들어갈 자리를 찾아보세요.',
+                    'name = "파이코치"\nage = 5\nprint(f"이름: {____}, 나이: {____}")',
                 ],
             },
             {
@@ -253,9 +258,9 @@ LEVELS = [
                 "prompt": '"  Hello World  " 문자열의 양쪽 공백을 제거(strip)하고, 소문자로 바꾼(lower) 뒤, 공백을 "-"로 치환(replace)해서 출력하세요.',
                 "reference_code": 'a = "  Hello World  "\na = a.strip()\na = a.lower()\na = a.replace(" ", "-")\nprint(a)',
                 "hints": [
-                    "strip()으로 양쪽 공백을 지우고, lower()로 소문자로 바꾸는 걸 순서대로 적용하세요.",
-                    "마지막으로 replace(\" \", \"-\")로 남은 공백을 하이픈으로 바꾸세요.",
-                    'a = "  Hello World  "\na = a.strip()\na = a.lower()\na = a.replace(" ", "-")\nprint(a)',
+                    "strip()으로 양쪽 공백을 지우고, 그 다음 대소문자를 바꾸는 함수를 순서대로 적용하세요.",
+                    "마지막으로 남은 공백을 원하는 문자로 바꾸는 함수를 사용하세요. 이 함수는 (찾을 값, 바꿀 값) 두 개를 받습니다.",
+                    'a = "  Hello World  "\na = a.strip()\na = a.____()\na = a.replace(" ", "____")\nprint(a)',
                 ],
             },
         ],
@@ -299,8 +304,8 @@ LEVELS = [
                 "reference_code": "print(3 + 5)",
                 "hints": [
                     "print 안에 계산식을 그대로 넣을 수 있습니다.",
-                    "print(3 + 5) 처럼 써보세요.",
-                    "print(3 + 5)",
+                    "덧셈 연산자를 사용해서 계산식을 print 괄호 안에 넣어보세요.",
+                    "print(____ + ____)",
                 ],
             },
             {
@@ -312,8 +317,8 @@ LEVELS = [
                 "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 3 / 5",
                 "hints": [
                     "input()의 결과는 문자열이라 바로 더하면 오류가 납니다.",
-                    "int()로 감싸서 숫자로 바꾼 다음 변수에 저장하세요.",
-                    "a = int(input())\nb = int(input())\nprint(a + b)",
+                    "int()로 감싸서 숫자로 바꾼 다음 각각 변수에 저장하세요.",
+                    "a = int(input())\nb = int(input())\nprint(____)",
                 ],
             },
             {
@@ -323,8 +328,8 @@ LEVELS = [
                 "reference_code": "print(2 ** 10)",
                 "hints": [
                     "거듭제곱은 * 두 개를 이어 쓴 ** 연산자로 표현합니다.",
-                    "print(2 ** 10)을 써보세요.",
-                    "print(2 ** 10)",
+                    "밑과 지수를 ** 사이에 순서대로 넣어보세요.",
+                    "print(____ ** ____)",
                 ],
             },
             {
@@ -334,8 +339,8 @@ LEVELS = [
                 "reference_code": "print(17 // 5)\nprint(17 % 5)",
                 "hints": [
                     "몫은 //, 나머지는 % 연산자로 구합니다.",
-                    "print(17 // 5)와 print(17 % 5)를 순서대로 쓰세요.",
-                    "print(17 // 5)\nprint(17 % 5)",
+                    "각 연산자를 사용한 계산식을 순서대로 출력해보세요.",
+                    "print(17 ____ 5)\nprint(17 ____ 5)",
                 ],
             },
             {
@@ -345,8 +350,8 @@ LEVELS = [
                 "reference_code": "print(7 > 10)",
                 "hints": [
                     "비교 연산자를 사용하면 결과가 True/False로 나옵니다.",
-                    "> 연산자로 두 숫자를 비교해보세요.",
-                    "print(7 > 10)",
+                    "'~보다 크다'를 뜻하는 연산자로 두 숫자를 비교해보세요.",
+                    "print(7 ____ 10)",
                 ],
             },
             {
@@ -358,8 +363,8 @@ LEVELS = [
                 "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 4 / 2",
                 "hints": [
                     "먼저 두 입력값을 int()로 변환해서 변수에 저장하세요.",
-                    'print("합:", a + b) 처럼 콤마로 이어서 출력하면 자동으로 띄어쓰기가 들어갑니다.',
-                    'a = int(input())\nb = int(input())\nprint("합:", a + b)\nprint("차:", a - b)\nprint("곱:", a * b)',
+                    "콤마로 라벨과 계산식을 함께 출력하면 자동으로 띄어쓰기가 들어갑니다.",
+                    'a = int(input())\nb = int(input())\nprint("합:", ____)\nprint("차:", ____)\nprint("곱:", ____)',
                 ],
             },
         ],
@@ -396,8 +401,8 @@ LEVELS = [
                 "reference_code": 'if 10 > 5:\n    print("10은 5보다 큽니다")',
                 "hints": [
                     "if 조건: 다음 줄을 들여쓰기해서 실행할 코드를 씁니다.",
-                    "if 10 > 5: 다음 줄에 print를 들여써서 넣어보세요.",
-                    'if 10 > 5:\n    print("10은 5보다 큽니다")',
+                    "조건이 참일 때 실행할 print문을 들여써서 넣어보세요.",
+                    'if 10 > 5:\n    print("____")',
                 ],
             },
             {
@@ -410,7 +415,7 @@ LEVELS = [
                 "hints": [
                     "짝수인지는 % 2 == 0으로 확인할 수 있습니다 (나머지가 0이면 짝수).",
                     "if로 짝수 조건을 검사하고, else로 나머지 경우를 처리하세요.",
-                    'n = int(input())\nif n % 2 == 0:\n    print("짝수입니다")\nelse:\n    print("홀수입니다")',
+                    'n = int(input())\nif n % 2 == 0:\n    print("____")\nelse:\n    print("____")',
                 ],
             },
             {
@@ -422,8 +427,8 @@ LEVELS = [
                 "input_hint": "나이를 입력해보세요. 예: 20",
                 "hints": [
                     "'19살 이상'은 >= 연산자로 표현합니다.",
-                    'if age >= 19: 조건이 참이면 성인, else면 미성년자를 출력하세요.',
-                    'age = int(input())\nif age >= 19:\n    print("성인입니다")\nelse:\n    print("미성년자입니다")',
+                    "if로 나이 조건을 검사하고, else로 나머지 경우를 처리하세요.",
+                    'age = int(input())\nif age >= 19:\n    print("____")\nelse:\n    print("____")',
                 ],
             },
             {
@@ -435,8 +440,8 @@ LEVELS = [
                 "input_hint": "점수를 입력해보세요. 예: 85",
                 "hints": [
                     "조건이 세 가지(90 이상 / 80 이상 / 그 외)이므로 elif가 필요합니다.",
-                    "if score >= 90, elif score >= 80, else 순서로 검사하세요. 순서가 중요합니다.",
-                    'score = int(input())\nif score >= 90:\n    print("A")\nelif score >= 80:\n    print("B")\nelse:\n    print("C")',
+                    "if, elif, else 순서로 점수 구간을 위에서부터 검사하세요. 순서가 중요합니다.",
+                    'score = int(input())\nif score >= 90:\n    print("____")\nelif score >= 80:\n    print("____")\nelse:\n    print("____")',
                 ],
             },
             {
@@ -449,7 +454,7 @@ LEVELS = [
                 "hints": [
                     "이름과 나이, 두 번 input()을 받아야 합니다. 나이는 숫자로 변환하세요.",
                     "문자열 이어붙이기(+)와 if/else를 함께 사용해보세요.",
-                    'name = input()\nage = int(input())\nif age >= 19:\n    print(name + "님은 성인입니다.")\nelse:\n    print(name + "님은 미성년자입니다.")',
+                    'name = input()\nage = int(input())\nif age >= 19:\n    print(____ + "님은 성인입니다.")\nelse:\n    print(____ + "님은 미성년자입니다.")',
                 ],
             },
         ],
@@ -486,8 +491,8 @@ LEVELS = [
                 "reference_code": "x = 7\nprint(x > 0 and x < 10)",
                 "hints": [
                     "두 조건을 모두 만족해야 True가 되는 연산자를 떠올려 보세요.",
-                    "x > 0 and x < 10 을 그대로 출력하면 됩니다.",
-                    "x = 7\nprint(x > 0 and x < 10)",
+                    "두 비교식을 그 연산자로 이어서 print에 넣어보세요.",
+                    "x = 7\nprint(x > 0 ____ x < 10)",
                 ],
             },
             {
@@ -497,8 +502,8 @@ LEVELS = [
                 "reference_code": "x = 15\nprint(x < 10 or x > 20)",
                 "hints": [
                     "둘 중 하나만 참이어도 True가 되는 연산자를 사용하세요.",
-                    "x < 10 or x > 20 을 출력해보세요.",
-                    "x = 15\nprint(x < 10 or x > 20)",
+                    "두 비교식을 그 연산자로 이어서 print에 넣어보세요.",
+                    "x = 15\nprint(x < 10 ____ x > 20)",
                 ],
             },
             {
@@ -508,8 +513,8 @@ LEVELS = [
                 "reference_code": 'fruits = ["사과", "바나나", "포도"]\nprint("포도" in fruits)',
                 "hints": [
                     "값 in 리스트 형태로 포함 여부를 확인할 수 있습니다.",
-                    '"포도" in fruits 를 출력해보세요.',
-                    'fruits = ["사과", "바나나", "포도"]\nprint("포도" in fruits)',
+                    "찾고 싶은 값과 리스트 사이에 그 연산자를 넣어보세요.",
+                    'fruits = ["사과", "바나나", "포도"]\nprint("포도" ____ fruits)',
                 ],
             },
             {
@@ -519,8 +524,8 @@ LEVELS = [
                 "reference_code": "nums = [1, 2, 3]\nprint(5 not in nums)",
                 "hints": [
                     "in의 반대는 not in입니다.",
-                    "5 not in nums 를 출력해보세요.",
-                    "nums = [1, 2, 3]\nprint(5 not in nums)",
+                    "찾는 값이 없는지 확인하는 연산자를 사용해보세요.",
+                    "nums = [1, 2, 3]\nprint(5 ____ nums)",
                 ],
             },
             {
@@ -530,8 +535,8 @@ LEVELS = [
                 "reference_code": 'n = 8\nprint("짝수" if n % 2 == 0 else "홀수")',
                 "hints": [
                     "값1 if 조건 else 값2 형태를 print() 안에 그대로 넣을 수 있습니다.",
-                    '"짝수" if n % 2 == 0 else "홀수" 를 출력해보세요.',
-                    'n = 8\nprint("짝수" if n % 2 == 0 else "홀수")',
+                    "조건 자리에는 짝수인지 확인하는 식을 넣으세요.",
+                    'n = 8\nprint("____" if n % 2 == 0 else "____")',
                 ],
             },
         ],
@@ -573,9 +578,9 @@ LEVELS = [
                 "prompt": '"Hi"를 5번, 한 줄에 하나씩 출력하세요.',
                 "reference_code": 'for _ in range(5):\n    print("Hi")',
                 "hints": [
-                    "range(5)는 0,1,2,3,4로 다섯 번 반복하게 해줍니다.",
-                    'for _ in range(5): 다음 줄에 print("Hi")를 들여써서 넣으세요.',
-                    'for _ in range(5):\n    print("Hi")',
+                    "range(n)은 n번 반복하게 해줍니다.",
+                    "5번 반복하려면 range 괄호 안에 어떤 숫자를 넣어야 할까요?",
+                    'for _ in range(____):\n    print("Hi")',
                 ],
             },
             {
@@ -584,9 +589,9 @@ LEVELS = [
                 "prompt": "1부터 5까지 숫자를 한 줄씩 출력하세요.",
                 "reference_code": "for i in range(1, 6):\n    print(i)",
                 "hints": [
-                    "1부터 5까지 포함하려면 range의 끝 숫자를 6으로 써야 합니다 (끝은 포함 안 됨).",
-                    "for i in range(1, 6): 다음 줄에 print(i)를 넣으세요.",
-                    "for i in range(1, 6):\n    print(i)",
+                    "range(시작, 끝)은 끝 숫자를 포함하지 않습니다.",
+                    "1부터 5까지 포함하려면 시작과 끝에 각각 어떤 숫자를 넣어야 할지 생각해보세요.",
+                    "for i in range(____, ____):\n    print(i)",
                 ],
             },
             {
@@ -596,8 +601,8 @@ LEVELS = [
                 "reference_code": "for i in range(1, 6):\n    print(i * 2)",
                 "hints": [
                     "1부터 5까지 반복하면서, 반복 변수를 그대로 계산에 써보세요.",
-                    "print(i * 2) 처럼 반복 변수 i에 2를 곱해서 출력하세요.",
-                    "for i in range(1, 6):\n    print(i * 2)",
+                    "반복 변수에 2를 곱하는 연산자를 사용해보세요.",
+                    "for i in range(1, 6):\n    print(i ____ 2)",
                 ],
             },
             {
@@ -606,9 +611,9 @@ LEVELS = [
                 "prompt": "1부터 5까지 반복하면서, 3일 때는 pass로 아무것도 하지 않고, 나머지 숫자만 출력하세요.",
                 "reference_code": "for i in range(1, 6):\n    if i == 3:\n        pass\n    else:\n        print(i)",
                 "hints": [
-                    "if 조건에서 아무 동작도 하지 않으려면 pass를 씁니다.",
-                    "3일 때는 pass, 그 외에는 else에서 print(i)를 실행하세요.",
-                    "for i in range(1, 6):\n    if i == 3:\n        pass\n    else:\n        print(i)",
+                    "if 조건에서 아무 동작도 하지 않으려면 이 레벨에서 배운 키워드를 씁니다.",
+                    "3일 때 실행할 블록을 비워두는 대신, 그 키워드로 채워보세요.",
+                    "for i in range(1, 6):\n    if i == 3:\n        ____\n    else:\n        print(i)",
                 ],
             },
             {
@@ -618,8 +623,8 @@ LEVELS = [
                 "reference_code": 'for n in range(2, 4):\n    for i in range(1, 10):\n        print(n, "x", i, "=", n * i)',
                 "hints": [
                     "for 안에 또 다른 for를 넣어서 '단'을 바꿔가며 반복할 수 있습니다 (반복문 중첩).",
-                    "바깥쪽 for n in range(2, 4)로 2단과 3단을 돌고, 안쪽 for i in range(1, 10)으로 각 단을 출력하세요.",
-                    'for n in range(2, 4):\n    for i in range(1, 10):\n        print(n, "x", i, "=", n * i)',
+                    "바깥쪽 for로 2단과 3단을 돌고, 안쪽 for로 1부터 9까지 각 단을 출력하세요.",
+                    'for n in range(2, 4):\n    for i in range(1, ____):\n        print(n, "x", i, "=", n * i)',
                 ],
             },
         ],
@@ -663,8 +668,8 @@ LEVELS = [
                 "reference_code": 'count = 0\nwhile count < 5:\n    print("카운트:", count)\n    count += 1',
                 "hints": [
                     "count를 0에서 시작해서, count < 5인 동안 반복하면 됩니다.",
-                    "반복할 때마다 출력하고 나서 count += 1로 값을 늘리는 걸 잊지 마세요.",
-                    'count = 0\nwhile count < 5:\n    print("카운트:", count)\n    count += 1',
+                    "반복할 때마다 출력하고 나서 count 값을 늘리는 걸 잊지 마세요.",
+                    'count = 0\nwhile count < 5:\n    print("카운트:", count)\n    count ____ 1',
                 ],
             },
             {
@@ -675,7 +680,7 @@ LEVELS = [
                 "hints": [
                     "n이 100 이하인 동안에는 계속 2를 곱하도록 while 조건을 만드세요.",
                     "반복문이 끝난 뒤에 n을 출력하면 됩니다 (반복 중에는 출력하지 않아도 돼요).",
-                    "n = 1\nwhile n <= 100:\n    n *= 2\nprint(n)",
+                    "n = 1\nwhile n ____ 100:\n    n *= 2\nprint(n)",
                 ],
             },
             {
@@ -684,9 +689,9 @@ LEVELS = [
                 "prompt": "1부터 순서대로 늘어나는 숫자를 한 줄씩 출력하다가, 7을 출력한 뒤에 멈추세요 (1~7 출력).",
                 "reference_code": "i = 1\nwhile True:\n    print(i)\n    if i == 7:\n        break\n    i += 1",
                 "hints": [
-                    "while True:로 무한히 반복하다가, 원하는 조건에서 break로 빠져나올 수 있습니다.",
-                    "i를 출력한 다음 i가 7인지 검사해서 break하고, 아니면 i를 1 늘리세요.",
-                    "i = 1\nwhile True:\n    print(i)\n    if i == 7:\n        break\n    i += 1",
+                    "while True:로 무한히 반복하다가, 원하는 조건에서 반복문을 빠져나올 수 있는 키워드가 있습니다.",
+                    "i를 출력한 다음 i가 7인지 검사해서 그 키워드를 쓰고, 아니면 i를 1 늘리세요.",
+                    "i = 1\nwhile True:\n    print(i)\n    if i == 7:\n        ____\n    i += 1",
                 ],
             },
             {
@@ -695,9 +700,9 @@ LEVELS = [
                 "prompt": "0부터 2까지 출력한 뒤, while문이 break 없이 끝까지 실행되면 while-else를 사용해서 \"완료\"를 출력하세요.",
                 "reference_code": 'n = 0\nwhile n < 3:\n    print(n)\n    n += 1\nelse:\n    print("완료")',
                 "hints": [
-                    "while문 뒤에도 else를 붙일 수 있습니다. break 없이 끝나면 실행됩니다.",
-                    "while n < 3: 블록이 끝난 뒤 else: 블록에서 \"완료\"를 출력하세요.",
-                    'n = 0\nwhile n < 3:\n    print(n)\n    n += 1\nelse:\n    print("완료")',
+                    "while문 뒤에도 이 레벨에서 배운 블록을 붙일 수 있습니다. break 없이 끝나면 실행됩니다.",
+                    "while 블록이 끝난 뒤 그 블록에서 \"완료\"를 출력하세요.",
+                    'n = 0\nwhile n < 3:\n    print(n)\n    n += 1\n____:\n    print("완료")',
                 ],
             },
             {
@@ -709,8 +714,8 @@ LEVELS = [
                 "input_hint": "여러 줄에 걸쳐 숫자를 입력해보세요. 예: 30 / 70 / 50",
                 "hints": [
                     "이전 문제에 조건을 하나 더 추가하는 것뿐입니다: 작을 때 / 클 때 / 같을 때.",
-                    "elif로 '더 큰 숫자입니다'와 '더 작은 숫자입니다' 두 경우를 구분하세요.",
-                    'answer = 50\nwhile True:\n    guess = int(input())\n    if guess == answer:\n        print("정답입니다!")\n        break\n    elif guess < answer:\n        print("더 큰 숫자입니다")\n    else:\n        print("더 작은 숫자입니다")',
+                    "elif 조건에는 추측값과 정답을 비교하는 식이 들어갑니다.",
+                    'answer = 50\nwhile True:\n    guess = int(input())\n    if guess == answer:\n        print("정답입니다!")\n        break\n    elif guess ____ answer:\n        print("더 큰 숫자입니다")\n    else:\n        print("더 작은 숫자입니다")',
                 ],
             },
         ],
@@ -747,8 +752,8 @@ LEVELS = [
                 "reference_code": 'fruits = ["사과", "바나나", "포도"]\nprint(fruits[1])',
                 "hints": [
                     "리스트의 순서(인덱스)는 0부터 시작합니다. 두 번째 항목의 인덱스는 몇일까요?",
-                    "fruits[1]로 두 번째 항목에 접근할 수 있습니다.",
-                    'fruits = ["사과", "바나나", "포도"]\nprint(fruits[1])',
+                    "그 인덱스 번호로 fruits에 접근해보세요.",
+                    "fruits = [\"사과\", \"바나나\", \"포도\"]\nprint(fruits[____])",
                 ],
             },
             {
@@ -757,9 +762,9 @@ LEVELS = [
                 "prompt": "[3, 1, 4, 1, 5] 리스트를 sort()로 오름차순 정렬해서 출력하세요.",
                 "reference_code": "nums = [3, 1, 4, 1, 5]\nnums.sort()\nprint(nums)",
                 "hints": [
-                    "리스트에는 .sort() 메서드가 있어서 바로 정렬할 수 있습니다.",
-                    "nums.sort()를 호출한 뒤 nums를 출력하세요.",
-                    "nums = [3, 1, 4, 1, 5]\nnums.sort()\nprint(nums)",
+                    "리스트에는 정렬해주는 메서드가 바로 붙어 있습니다.",
+                    "그 메서드를 호출한 뒤 nums를 다시 출력하세요.",
+                    "nums = [3, 1, 4, 1, 5]\nnums.____()\nprint(nums)",
                 ],
             },
             {
@@ -769,8 +774,8 @@ LEVELS = [
                 "reference_code": "nums = [1, 2, 2, 3, 2, 4]\nprint(nums.count(2))",
                 "hints": [
                     "리스트.count(값)으로 특정 값이 몇 번 나오는지 셀 수 있습니다.",
-                    "nums.count(2)를 출력해보세요.",
-                    "nums = [1, 2, 2, 3, 2, 4]\nprint(nums.count(2))",
+                    "찾고 싶은 값을 count() 괄호 안에 넣어보세요.",
+                    "nums = [1, 2, 2, 3, 2, 4]\nprint(nums.____(2))",
                 ],
             },
             {
@@ -780,8 +785,8 @@ LEVELS = [
                 "reference_code": "nums = [1, 2, 3, 4, 5]\nevens = [n for n in nums if n % 2 == 0]\nprint(evens)",
                 "hints": [
                     "[식 for 변수 in 리스트 if 조건] 형태로 조건을 추가할 수 있습니다.",
-                    "[n for n in nums if n % 2 == 0]을 출력해보세요.",
-                    "nums = [1, 2, 3, 4, 5]\nevens = [n for n in nums if n % 2 == 0]\nprint(evens)",
+                    "조건 자리에 짝수를 판별하는 식을 넣으세요.",
+                    "nums = [1, 2, 3, 4, 5]\nevens = [n for n in nums if n % 2 == ____]\nprint(evens)",
                 ],
             },
             {
@@ -791,8 +796,8 @@ LEVELS = [
                 "reference_code": "nums = [1, 2, 3, 4, 5]\nsquares = [n ** 2 for n in nums]\nprint(squares)",
                 "hints": [
                     "조건 없이 [식 for 변수 in 리스트] 만으로도 새 리스트를 만들 수 있습니다.",
-                    "[n ** 2 for n in nums]를 출력해보세요.",
-                    "nums = [1, 2, 3, 4, 5]\nsquares = [n ** 2 for n in nums]\nprint(squares)",
+                    "식 자리에 제곱을 계산하는 표현을 넣으세요.",
+                    "nums = [1, 2, 3, 4, 5]\nsquares = [n ____ 2 for n in nums]\nprint(squares)",
                 ],
             },
         ],
@@ -829,8 +834,8 @@ LEVELS = [
                 "reference_code": "point = (3, 4)\nprint(point[0])",
                 "hints": [
                     "튜플도 리스트처럼 인덱스로 값을 꺼낼 수 있습니다.",
-                    "point[0]을 출력해보세요.",
-                    "point = (3, 4)\nprint(point[0])",
+                    "첫 번째 값의 인덱스는 몇일까요?",
+                    "point = (3, 4)\nprint(point[____])",
                 ],
             },
             {
@@ -839,9 +844,9 @@ LEVELS = [
                 "prompt": "리스트 [1, 1, 2, 2, 3, 3]을 집합으로 만들어서 중복이 제거된 결과를 출력하세요.",
                 "reference_code": "nums = [1, 1, 2, 2, 3, 3]\nprint(set(nums))",
                 "hints": [
-                    "set(리스트)로 리스트를 집합으로 바꿀 수 있습니다.",
-                    "set(nums)를 출력해보세요.",
-                    "nums = [1, 1, 2, 2, 3, 3]\nprint(set(nums))",
+                    "리스트를 집합으로 바꿔주는 함수가 있습니다.",
+                    "그 함수로 nums를 감싸서 출력해보세요.",
+                    "nums = [1, 1, 2, 2, 3, 3]\nprint(____(nums))",
                 ],
             },
             {
@@ -851,8 +856,8 @@ LEVELS = [
                 "reference_code": "a = {1, 2, 3, 4}\nb = {3, 4, 5, 6}\nprint(a & b)",
                 "hints": [
                     "두 집합 모두에 있는 값만 남기는 연산자를 떠올려 보세요.",
-                    "a & b를 출력해보세요.",
-                    "a = {1, 2, 3, 4}\nb = {3, 4, 5, 6}\nprint(a & b)",
+                    "그 연산자로 a와 b를 이어서 출력해보세요.",
+                    "a = {1, 2, 3, 4}\nb = {3, 4, 5, 6}\nprint(a ____ b)",
                 ],
             },
             {
@@ -862,8 +867,8 @@ LEVELS = [
                 "reference_code": "a = {1, 2, 3}\nb = {3, 4, 5}\nprint(a | b)",
                 "hints": [
                     "두 집합의 모든 값을 합치는 연산자를 떠올려 보세요.",
-                    "a | b를 출력해보세요.",
-                    "a = {1, 2, 3}\nb = {3, 4, 5}\nprint(a | b)",
+                    "그 연산자로 a와 b를 이어서 출력해보세요.",
+                    "a = {1, 2, 3}\nb = {3, 4, 5}\nprint(a ____ b)",
                 ],
             },
             {
@@ -873,8 +878,8 @@ LEVELS = [
                 "reference_code": "a = {1, 2, 3, 4, 5}\nb = {2, 4}\nprint(a - b)",
                 "hints": [
                     "한 집합에서 다른 집합의 값을 제외하는 연산자를 떠올려 보세요.",
-                    "a - b를 출력해보세요.",
-                    "a = {1, 2, 3, 4, 5}\nb = {2, 4}\nprint(a - b)",
+                    "그 연산자로 a와 b를 이어서 출력해보세요.",
+                    "a = {1, 2, 3, 4, 5}\nb = {2, 4}\nprint(a ____ b)",
                 ],
             },
         ],
@@ -912,7 +917,7 @@ LEVELS = [
                 "hints": [
                     '딕셔너리 값은 person["키"] 형태로 꺼낼 수 있습니다.',
                     "age는 숫자라서 문자열과 이어붙이려면 str()로 문자열로 바꿔야 합니다.",
-                    'person = {"name": "파이코치", "age": 5}\nprint(person["name"] + "는 " + str(person["age"]) + "살입니다")',
+                    'person = {"name": "파이코치", "age": 5}\nprint(person[____] + "는 " + str(person[____]) + "살입니다")',
                 ],
             },
             {
@@ -922,8 +927,8 @@ LEVELS = [
                 "reference_code": 'prices = {"사과": 1000, "바나나": 1500}\nprint(prices.get("포도", "없음"))',
                 "hints": [
                     "get(키, 기본값)을 쓰면 키가 없을 때 오류 대신 기본값을 돌려받습니다.",
-                    'prices.get("포도", "없음")을 출력해보세요.',
-                    'prices = {"사과": 1000, "바나나": 1500}\nprint(prices.get("포도", "없음"))',
+                    "get()에 찾을 키와 기본값을 순서대로 넣어보세요.",
+                    'prices = {"사과": 1000, "바나나": 1500}\nprint(prices.____("포도", "없음"))',
                 ],
             },
             {
@@ -932,9 +937,9 @@ LEVELS = [
                 "prompt": '딕셔너리 {"a": 1, "b": 2, "c": 3}의 모든 key를 한 줄씩 출력하세요.',
                 "reference_code": 'd = {"a": 1, "b": 2, "c": 3}\nfor k in d.keys():\n    print(k)',
                 "hints": [
-                    "keys()는 딕셔너리의 모든 키를 순서대로 돌려줍니다.",
-                    "for k in d.keys(): 다음 줄에 print(k)를 넣으세요.",
-                    'd = {"a": 1, "b": 2, "c": 3}\nfor k in d.keys():\n    print(k)',
+                    "딕셔너리의 모든 키를 순서대로 돌려주는 메서드가 있습니다.",
+                    "그 메서드로 얻은 키들을 for로 반복하며 출력하세요.",
+                    'd = {"a": 1, "b": 2, "c": 3}\nfor k in d.____():\n    print(k)',
                 ],
             },
             {
@@ -943,9 +948,9 @@ LEVELS = [
                 "prompt": '딕셔너리 {"a": 1, "b": 2, "c": 3}의 모든 value의 합을 출력하세요.',
                 "reference_code": 'd = {"a": 1, "b": 2, "c": 3}\nprint(sum(d.values()))',
                 "hints": [
-                    "values()는 딕셔너리의 모든 값만 모아서 돌려줍니다.",
-                    "sum(d.values())를 출력해보세요.",
-                    'd = {"a": 1, "b": 2, "c": 3}\nprint(sum(d.values()))',
+                    "딕셔너리의 모든 값만 모아서 돌려주는 메서드가 있습니다.",
+                    "그 결과를 sum()으로 감싸서 출력해보세요.",
+                    'd = {"a": 1, "b": 2, "c": 3}\nprint(sum(d.____()))',
                 ],
             },
             {
@@ -954,9 +959,9 @@ LEVELS = [
                 "prompt": '딕셔너리 {"사과": 1000, "바나나": 1500, "포도": 3000}의 모든 key와 value를 "상품: 가격" 형식으로 한 줄씩 출력하세요 (items() 사용).',
                 "reference_code": 'prices = {"사과": 1000, "바나나": 1500, "포도": 3000}\nfor k, v in prices.items():\n    print(k + ": " + str(v))',
                 "hints": [
-                    "items()는 (키, 값) 쌍을 함께 돌려줘서 for k, v in d.items(): 형태로 동시에 꺼낼 수 있습니다.",
+                    "(키, 값) 쌍을 함께 돌려주는 메서드를 쓰면 for k, v in ...: 형태로 동시에 꺼낼 수 있습니다.",
                     "v는 숫자이니 문자열과 합치려면 str()로 바꿔야 합니다.",
-                    'prices = {"사과": 1000, "바나나": 1500, "포도": 3000}\nfor k, v in prices.items():\n    print(k + ": " + str(v))',
+                    'prices = {"사과": 1000, "바나나": 1500, "포도": 3000}\nfor k, v in prices.____():\n    print(k + ": " + str(v))',
                 ],
             },
         ],
@@ -1000,7 +1005,7 @@ LEVELS = [
                 "hints": [
                     "def 함수이름(): 다음 줄에 들여쓰기로 실행할 코드를 씁니다.",
                     "함수를 만든 뒤에는 함수이름() 으로 직접 호출해야 실행됩니다.",
-                    'def greet():\n    print("안녕하세요!")\n\ngreet()',
+                    'def greet():\n    print("____")\n\ngreet()',
                 ],
             },
             {
@@ -1010,8 +1015,8 @@ LEVELS = [
                 "reference_code": 'def welcome(name):\n    print(name + "님 환영합니다!")\n\nwelcome("파이코치")',
                 "hints": [
                     "함수 괄호 안에 매개변수 이름을 적으면 함수 안에서 그 값을 변수처럼 쓸 수 있습니다.",
-                    'welcome("파이코치")처럼 호출할 때 괄호 안에 실제 값을 넣습니다.',
-                    'def welcome(name):\n    print(name + "님 환영합니다!")\n\nwelcome("파이코치")',
+                    "매개변수와 고정 문구를 + 로 이어 붙여서 출력해보세요.",
+                    'def welcome(name):\n    print(name + "____")\n\nwelcome("파이코치")',
                 ],
             },
             {
@@ -1020,9 +1025,9 @@ LEVELS = [
                 "prompt": "두 수를 더해서 돌려주는 add(a, b) 함수를 만들고, add(3, 4)의 결과를 출력하세요.",
                 "reference_code": "def add(a, b):\n    return a + b\n\nprint(add(3, 4))",
                 "hints": [
-                    "함수 안에서 print 대신 return을 쓰면 값을 함수 밖으로 돌려줄 수 있습니다.",
-                    "add(3, 4)의 결과를 print()로 감싸서 출력하세요.",
-                    "def add(a, b):\n    return a + b\n\nprint(add(3, 4))",
+                    "함수 안에서 print 대신 값을 함수 밖으로 돌려주는 키워드가 있습니다.",
+                    "그 키워드 다음에 두 매개변수를 더한 식을 쓰세요.",
+                    "def add(a, b):\n    ____ a + b\n\nprint(add(3, 4))",
                 ],
             },
             {
@@ -1032,8 +1037,8 @@ LEVELS = [
                 "reference_code": 'message = "안녕"\ndef show_message():\n    print(message)\n\nshow_message()',
                 "hints": [
                     "함수 밖에서 만든 변수는 함수 안에서도 읽을 수 있습니다.",
-                    "함수 안에서 message를 새로 만들지 말고, 그냥 print(message)만 하면 됩니다.",
-                    'message = "안녕"\ndef show_message():\n    print(message)\n\nshow_message()',
+                    "함수 안에서 새로운 변수를 만들 필요 없이, 그 전역변수를 그대로 출력하면 됩니다.",
+                    'message = "안녕"\ndef show_message():\n    print(____)\n\nshow_message()',
                 ],
             },
             {
@@ -1046,7 +1051,7 @@ LEVELS = [
                 "hints": [
                     "세 함수 모두 두 개의 매개변수를 받아 계산 결과를 return하는 형태로 만드세요.",
                     "함수를 다 만든 뒤, input()으로 받은 두 값을 각 함수에 넘겨서 결과를 출력하세요.",
-                    'def add(a, b):\n    return a + b\n\ndef subtract(a, b):\n    return a - b\n\ndef multiply(a, b):\n    return a * b\n\nx = int(input())\ny = int(input())\nprint("합:", add(x, y))\nprint("차:", subtract(x, y))\nprint("곱:", multiply(x, y))',
+                    'def add(a, b):\n    return a + b\n\ndef subtract(a, b):\n    return a - b\n\ndef multiply(a, b):\n    return a * b\n\nx = int(input())\ny = int(input())\nprint("합:", ____(x, y))\nprint("차:", ____(x, y))\nprint("곱:", ____(x, y))',
                 ],
             },
         ],
@@ -1083,8 +1088,8 @@ LEVELS = [
                 "reference_code": 'def greet(name="손님"):\n    print(name + "님 안녕하세요")\n\ngreet()\ngreet("파이코치")',
                 "hints": [
                     "매개변수에 = 기본값을 붙이면 호출할 때 생략할 수 있습니다.",
-                    "greet()는 기본값 손님을, greet(\"파이코치\")는 파이코치를 사용합니다.",
-                    'def greet(name="손님"):\n    print(name + "님 안녕하세요")\n\ngreet()\ngreet("파이코치")',
+                    "기본값 자리에 어떤 문자열을 넣어야 할지 문제를 다시 읽어보세요.",
+                    'def greet(name=____):\n    print(name + "님 안녕하세요")\n\ngreet()\ngreet("파이코치")',
                 ],
             },
             {
@@ -1094,8 +1099,8 @@ LEVELS = [
                 "reference_code": "def total(*args):\n    return sum(args)\n\nprint(total(1, 2, 3, 4))",
                 "hints": [
                     "매개변수 앞에 *를 붙이면 여러 개의 인자를 튜플 하나로 받을 수 있습니다.",
-                    "sum(args)로 튜플 안의 모든 값을 더할 수 있습니다.",
-                    "def total(*args):\n    return sum(args)\n\nprint(total(1, 2, 3, 4))",
+                    "가변 인자로 받은 값들의 합을 구하는 내장 함수를 사용해보세요.",
+                    "def total(____):\n    return sum(args)\n\nprint(total(1, 2, 3, 4))",
                 ],
             },
             {
@@ -1105,8 +1110,8 @@ LEVELS = [
                 "reference_code": "square = lambda x: x ** 2\nprint(square(6))",
                 "hints": [
                     "lambda 매개변수: 결과식 형태로 한 줄 함수를 만들 수 있습니다.",
-                    "square = lambda x: x ** 2 처럼 변수에 저장해서 함수처럼 호출하세요.",
-                    "square = lambda x: x ** 2\nprint(square(6))",
+                    "결과식 자리에 제곱을 계산하는 식을 넣어보세요.",
+                    "square = lambda x: x ____ 2\nprint(square(6))",
                 ],
             },
             {
@@ -1116,8 +1121,8 @@ LEVELS = [
                 "reference_code": "bigger = lambda a, b: a if a > b else b\nprint(bigger(3, 8))",
                 "hints": [
                     "람다 안에서도 삼항 표현식(값1 if 조건 else 값2)을 쓸 수 있습니다.",
-                    "lambda a, b: a if a > b else b 를 만들어보세요.",
-                    "bigger = lambda a, b: a if a > b else b\nprint(bigger(3, 8))",
+                    "조건 자리에 두 매개변수를 비교하는 식을 넣어보세요.",
+                    "bigger = lambda a, b: a if a ____ b else b\nprint(bigger(3, 8))",
                 ],
             },
             {
@@ -1127,8 +1132,8 @@ LEVELS = [
                 "reference_code": "def total_price(discount=0, *prices):\n    return sum(prices) * (1 - discount)\n\nprint(total_price(0, 1000, 2000, 3000))\nprint(total_price(0.1, 1000, 2000, 3000))",
                 "hints": [
                     "기본값 파라미터와 *args를 함께 쓸 수 있습니다. 기본값 파라미터를 먼저 적으세요.",
-                    "sum(prices)로 전체 합을 구한 뒤 (1 - discount)를 곱하면 할인이 적용됩니다.",
-                    "def total_price(discount=0, *prices):\n    return sum(prices) * (1 - discount)\n\nprint(total_price(0, 1000, 2000, 3000))\nprint(total_price(0.1, 1000, 2000, 3000))",
+                    "sum(prices)로 전체 합을 구한 뒤, 할인율을 반영하는 식을 곱하세요.",
+                    "def total_price(discount=0, *prices):\n    return sum(prices) * (1 - ____)\n\nprint(total_price(0, 1000, 2000, 3000))\nprint(total_price(0.1, 1000, 2000, 3000))",
                 ],
             },
         ],
@@ -1165,8 +1170,8 @@ LEVELS = [
                 "reference_code": 'try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print("0으로 나눌 수 없어요")',
                 "hints": [
                     "0으로 나누면 어떤 종류의 오류(Error)가 나는지 떠올려 보세요.",
-                    "try 블록 안에 문제가 되는 코드를, except ZeroDivisionError: 안에 대체 코드를 넣으세요.",
-                    'try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print("0으로 나눌 수 없어요")',
+                    "그 오류 이름을 except 뒤에 그대로 적어주면 됩니다.",
+                    'try:\n    print(10 / 0)\nexcept ____:\n    print("0으로 나눌 수 없어요")',
                 ],
             },
             {
@@ -1176,8 +1181,8 @@ LEVELS = [
                 "reference_code": 'try:\n    print(int("abc"))\nexcept ValueError:\n    print("숫자로 변환할 수 없어요")',
                 "hints": [
                     "숫자로 바꿀 수 없는 문자열을 int()에 넣으면 어떤 오류가 날지 떠올려 보세요.",
-                    "except ValueError: 블록에 대체 메시지를 출력하세요.",
-                    'try:\n    print(int("abc"))\nexcept ValueError:\n    print("숫자로 변환할 수 없어요")',
+                    "그 오류 이름을 except 뒤에 그대로 적어주면 됩니다.",
+                    'try:\n    print(int("abc"))\nexcept ____:\n    print("숫자로 변환할 수 없어요")',
                 ],
             },
             {
@@ -1186,9 +1191,9 @@ LEVELS = [
                 "prompt": "리스트 [1, 2, 3]에서 인덱스 10을 조회하는 코드를 try/except로 감싸서, IndexError가 나면 \"범위를 벗어났어요\"를 출력하세요.",
                 "reference_code": 'nums = [1, 2, 3]\ntry:\n    print(nums[10])\nexcept IndexError:\n    print("범위를 벗어났어요")',
                 "hints": [
-                    "리스트 범위를 벗어난 인덱스로 접근하면 IndexError가 발생합니다.",
-                    "try 블록에 nums[10]을, except IndexError: 블록에 대체 메시지를 넣으세요.",
-                    'nums = [1, 2, 3]\ntry:\n    print(nums[10])\nexcept IndexError:\n    print("범위를 벗어났어요")',
+                    "리스트 범위를 벗어난 인덱스로 접근하면 오류가 발생합니다. 어떤 이름의 오류일지 생각해보세요.",
+                    "그 오류 이름을 except 뒤에 그대로 적어주면 됩니다.",
+                    'nums = [1, 2, 3]\ntry:\n    print(nums[10])\nexcept ____:\n    print("범위를 벗어났어요")',
                 ],
             },
             {
@@ -1197,9 +1202,9 @@ LEVELS = [
                 "prompt": 'try 블록에서 정상적으로 5를 출력한 뒤, finally 블록에서 "완료"를 항상 출력하세요.',
                 "reference_code": 'try:\n    print(5)\nfinally:\n    print("완료")',
                 "hints": [
-                    "예외가 없어도 finally 블록은 항상 실행됩니다.",
-                    "try: 안에 print(5), finally: 안에 완료 메시지를 넣으세요.",
-                    'try:\n    print(5)\nfinally:\n    print("완료")',
+                    "예외가 있든 없든 항상 실행되는 블록이 있습니다. 이 레벨의 개념 이름을 떠올려 보세요.",
+                    "try 블록 뒤에 그 블록을 붙이고 안에 완료 메시지를 넣으세요.",
+                    'try:\n    print(5)\n____:\n    print("완료")',
                 ],
             },
             {
@@ -1209,8 +1214,8 @@ LEVELS = [
                 "reference_code": 'values = ["10", "abc", "20"]\nfor v in values:\n    try:\n        print(int(v))\n    except ValueError:\n        print(v + "는 숫자가 아닙니다")',
                 "hints": [
                     "for로 리스트를 순회하면서, 각 값마다 try/except를 적용하세요.",
-                    "변환에 실패하면 except 블록에서 v를 그대로 활용해 메시지를 만드세요.",
-                    'values = ["10", "abc", "20"]\nfor v in values:\n    try:\n        print(int(v))\n    except ValueError:\n        print(v + "는 숫자가 아닙니다")',
+                    "변환에 실패하면 그 오류의 except 블록에서 v를 그대로 활용해 메시지를 만드세요.",
+                    'values = ["10", "abc", "20"]\nfor v in values:\n    try:\n        print(int(v))\n    except ____:\n        print(v + "는 숫자가 아닙니다")',
                 ],
             },
         ],
@@ -1246,9 +1251,9 @@ LEVELS = [
                 "prompt": '이름을 속성으로 갖는 Dog 클래스를 만드세요. __init__(self, name)에서 self.name에 저장하고, Dog("초코")로 인스턴스를 만들어 name을 출력하세요.',
                 "reference_code": 'class Dog:\n    def __init__(self, name):\n        self.name = name\n\nmy_dog = Dog("초코")\nprint(my_dog.name)',
                 "hints": [
-                    "__init__(self, name) 안에서 self.name = name으로 저장하세요.",
-                    'Dog("초코")로 인스턴스를 만든 뒤 my_dog.name을 출력하세요.',
-                    'class Dog:\n    def __init__(self, name):\n        self.name = name\n\nmy_dog = Dog("초코")\nprint(my_dog.name)',
+                    "__init__ 안에서 전달받은 값을 self의 속성으로 저장해보세요.",
+                    "속성 이름은 매개변수 이름과 똑같이 지어도 됩니다: self.속성 = 매개변수",
+                    'class Dog:\n    def __init__(self, name):\n        self.____ = name\n\nmy_dog = Dog("초코")\nprint(my_dog.name)',
                 ],
             },
             {
@@ -1257,9 +1262,9 @@ LEVELS = [
                 "prompt": '이름과 나이를 속성으로 갖는 Person 클래스를 만드세요. introduce(self) 메서드가 "파이코치는 5살입니다" 형식으로 출력하도록 만들고, Person("파이코치", 5)를 만들어 introduce()를 호출하세요.',
                 "reference_code": 'class Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def introduce(self):\n        print(self.name + "는 " + str(self.age) + "살입니다")\n\np = Person("파이코치", 5)\np.introduce()',
                 "hints": [
-                    "__init__에서 name과 age를 각각 self.name, self.age에 저장하세요.",
-                    "introduce(self) 메서드 안에서는 self.name, self.age로 속성에 접근합니다.",
-                    'class Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def introduce(self):\n        print(self.name + "는 " + str(self.age) + "살입니다")\n\np = Person("파이코치", 5)\np.introduce()',
+                    "생성자에서 전달받은 두 값을 각각 self의 속성으로 저장하세요.",
+                    "introduce(self) 메서드 안에서는 self.속성이름으로 값에 접근합니다.",
+                    'class Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def introduce(self):\n        print(self.____ + "는 " + str(self.____) + "살입니다")\n\np = Person("파이코치", 5)\np.introduce()',
                 ],
             },
             {
@@ -1268,9 +1273,9 @@ LEVELS = [
                 "prompt": "count를 0으로 초기화하는 Counter 클래스를 만드세요. increase(self) 메서드를 호출할 때마다 count가 1씩 늘어나게 만들고, increase()를 세 번 호출한 뒤 count를 출력하세요.",
                 "reference_code": "class Counter:\n    def __init__(self):\n        self.count = 0\n\n    def increase(self):\n        self.count += 1\n\nc = Counter()\nc.increase()\nc.increase()\nc.increase()\nprint(c.count)",
                 "hints": [
-                    "__init__(self)에서 self.count = 0으로 시작하세요.",
-                    "increase(self) 안에서 self.count += 1을 실행하세요.",
-                    "class Counter:\n    def __init__(self):\n        self.count = 0\n\n    def increase(self):\n        self.count += 1\n\nc = Counter()\nc.increase()\nc.increase()\nc.increase()\nprint(c.count)",
+                    "생성자에서 count를 나타낼 속성을 0으로 초기화하세요.",
+                    "increase 메서드 안에서 그 속성을 1 늘리는 연산을 사용하세요.",
+                    "class Counter:\n    def __init__(self):\n        self.count = 0\n\n    def increase(self):\n        self.count ____ 1\n\nc = Counter()\nc.increase()\nc.increase()\nc.increase()\nprint(c.count)",
                 ],
             },
             {
@@ -1279,9 +1284,9 @@ LEVELS = [
                 "prompt": "반지름을 속성으로 갖는 Circle 클래스를 만드세요. area(self) 메서드가 반지름 * 반지름 * 3.14를 돌려주도록 만들고, Circle(5)의 넓이를 출력하세요.",
                 "reference_code": "class Circle:\n    def __init__(self, radius):\n        self.radius = radius\n\n    def area(self):\n        return self.radius * self.radius * 3.14\n\nc = Circle(5)\nprint(c.area())",
                 "hints": [
-                    "__init__에서 radius를 self.radius에 저장하세요.",
-                    "area(self)는 print가 아니라 return으로 값을 돌려줘야, 밖에서 print(c.area())로 출력할 수 있습니다.",
-                    "class Circle:\n    def __init__(self, radius):\n        self.radius = radius\n\n    def area(self):\n        return self.radius * self.radius * 3.14\n\nc = Circle(5)\nprint(c.area())",
+                    "생성자에서 전달받은 반지름을 self 속성으로 저장하세요.",
+                    "area(self)는 계산한 값을 함수 밖으로 돌려주는 키워드를 사용해야, 밖에서 print(c.area())로 출력할 수 있습니다.",
+                    "class Circle:\n    def __init__(self, radius):\n        self.radius = radius\n\n    def area(self):\n        ____ self.radius * self.radius * 3.14\n\nc = Circle(5)\nprint(c.area())",
                 ],
             },
             {
@@ -1290,9 +1295,9 @@ LEVELS = [
                 "prompt": "잔액을 속성으로 갖는 Account 클래스를 만드세요. deposit(self, amount)로 입금하면 잔액이 늘고, withdraw(self, amount)로 출금하면 잔액이 줄어듭니다. 잔액 1000으로 시작해서 500 입금, 300 출금한 뒤 최종 잔액을 출력하세요.",
                 "reference_code": "class Account:\n    def __init__(self, balance):\n        self.balance = balance\n\n    def deposit(self, amount):\n        self.balance += amount\n\n    def withdraw(self, amount):\n        self.balance -= amount\n\naccount = Account(1000)\naccount.deposit(500)\naccount.withdraw(300)\nprint(account.balance)",
                 "hints": [
-                    "__init__(self, balance)에서 self.balance = balance로 시작 잔액을 저장하세요.",
-                    "deposit은 self.balance += amount, withdraw는 self.balance -= amount 입니다.",
-                    "class Account:\n    def __init__(self, balance):\n        self.balance = balance\n\n    def deposit(self, amount):\n        self.balance += amount\n\n    def withdraw(self, amount):\n        self.balance -= amount\n\naccount = Account(1000)\naccount.deposit(500)\naccount.withdraw(300)\nprint(account.balance)",
+                    "생성자에서 전달받은 잔액을 self 속성으로 저장하세요.",
+                    "입금은 잔액을 늘리는 연산, 출금은 잔액을 줄이는 연산을 사용하세요.",
+                    "class Account:\n    def __init__(self, balance):\n        self.balance = balance\n\n    def deposit(self, amount):\n        self.balance ____ amount\n\n    def withdraw(self, amount):\n        self.balance ____ amount\n\naccount = Account(1000)\naccount.deposit(500)\naccount.withdraw(300)\nprint(account.balance)",
                 ],
             },
         ],
@@ -1328,9 +1333,9 @@ LEVELS = [
                 "prompt": 'memo.txt 파일에 "오늘의 다짐: 꾸준히 하자"를 저장한 뒤, 파일을 다시 읽어서 내용을 출력하세요.',
                 "reference_code": 'with open("memo.txt", "w") as f:\n    f.write("오늘의 다짐: 꾸준히 하자")\n\nwith open("memo.txt") as f:\n    print(f.read())',
                 "hints": [
-                    'with open("memo.txt", "w") as f: 다음 줄에서 f.write(...)로 저장합니다.',
-                    '저장한 뒤에는 open("memo.txt")로 다시 열어서 f.read()로 내용을 가져와 출력하세요.',
-                    'with open("memo.txt", "w") as f:\n    f.write("오늘의 다짐: 꾸준히 하자")\n\nwith open("memo.txt") as f:\n    print(f.read())',
+                    "open()을 쓰기 모드로 연 뒤, 파일에 내용을 저장하는 메서드를 사용하세요.",
+                    "저장한 뒤에는 파일을 다시 열어서, 전체 내용을 가져오는 메서드로 읽어 출력하세요.",
+                    'with open("memo.txt", "w") as f:\n    f.____("오늘의 다짐: 꾸준히 하자")\n\nwith open("memo.txt") as f:\n    print(f.____())',
                 ],
             },
             {
@@ -1339,9 +1344,9 @@ LEVELS = [
                 "prompt": 'todo.txt 파일에 "숙제"와 "운동"을 줄바꿈으로 구분해서 저장한 뒤, 파일을 읽어서 그대로 출력하세요.',
                 "reference_code": 'with open("todo.txt", "w") as f:\n    f.write("숙제\\n운동")\n\nwith open("todo.txt") as f:\n    print(f.read())',
                 "hints": [
-                    "문자열 안에 \\n을 넣으면 파일 안에서도 줄이 바뀝니다.",
-                    'f.write("숙제\\n운동") 처럼 한 번에 두 줄을 저장할 수 있습니다.',
-                    'with open("todo.txt", "w") as f:\n    f.write("숙제\\n운동")\n\nwith open("todo.txt") as f:\n    print(f.read())',
+                    "문자열 안에 줄바꿈을 뜻하는 이스케이프 문자를 넣으면 파일 안에서도 줄이 바뀝니다.",
+                    "그 문자를 두 단어 사이에 넣어서 한 번에 저장하세요.",
+                    'with open("todo.txt", "w") as f:\n    f.write("숙제____운동")\n\nwith open("todo.txt") as f:\n    print(f.read())',
                 ],
             },
             {
@@ -1351,8 +1356,8 @@ LEVELS = [
                 "reference_code": "import math\nprint(math.sqrt(16))",
                 "hints": [
                     "가장 먼저 import math로 모듈을 가져와야 합니다.",
-                    "제곱근 함수는 math.sqrt(숫자) 형태로 사용합니다.",
-                    "import math\nprint(math.sqrt(16))",
+                    "제곱근을 구하는 함수 이름을 math 모듈에서 찾아보세요.",
+                    "import math\nprint(math.____(16))",
                 ],
             },
             {
@@ -1361,9 +1366,9 @@ LEVELS = [
                 "prompt": "math 모듈의 floor 함수를 사용해서 7.8을 내림한 값을 출력하세요.",
                 "reference_code": "import math\nprint(math.floor(7.8))",
                 "hints": [
-                    "내림(소수점 버리기) 함수는 math 모듈 안에 있습니다.",
-                    "math.floor(숫자) 형태로 사용해보세요.",
-                    "import math\nprint(math.floor(7.8))",
+                    "내림(소수점 버리기)을 뜻하는 함수는 math 모듈 안에 있습니다.",
+                    "문제에 이미 함수 이름이 나와 있어요, math. 뒤에 그대로 이어 쓰면 됩니다.",
+                    "import math\nprint(math.____(7.8))",
                 ],
             },
             {
@@ -1375,8 +1380,8 @@ LEVELS = [
                 "input_hint": "메모로 남길 문장을 입력해보세요. 예: 오늘도 화이팅",
                 "hints": [
                     "input()으로 받은 값을 변수에 저장한 뒤, 그 변수를 파일에 write하세요.",
-                    "저장 후 파일을 다시 열어 read()로 읽은 값을 saved 같은 변수에 담아 출력하세요.",
-                    'memo = input()\nwith open("notes.txt", "w") as f:\n    f.write(memo)\n\nwith open("notes.txt") as f:\n    saved = f.read()\nprint("저장된 메모: " + saved)',
+                    "저장 후 파일을 다시 열어 read()로 읽은 값을 변수에 담아 출력하세요.",
+                    'memo = input()\nwith open("notes.txt", "w") as f:\n    f.write(memo)\n\nwith open("notes.txt") as f:\n    saved = f.read()\nprint("저장된 메모: " + ____)',
                 ],
             },
         ],

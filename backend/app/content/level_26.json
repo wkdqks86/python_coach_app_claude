@@ -34,8 +34,8 @@
       "expected_stdout": "0    0\n1    1\n2    0\n3    1\nName: 성별_encoded, dtype: int64",
       "hints": [
         "map()에 {\"원래값\": 바꿀값} 형태의 딕셔너리를 넘기면 됩니다.",
-        "df[\"성별\"].map({\"남\": 0, \"여\": 1})을 새 컬럼에 저장한 뒤 출력하세요.",
-        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"남\", \"여\"]})\ndf[\"성별_encoded\"] = df[\"성별\"].map({\"남\": 0, \"여\": 1})\nprint(df[\"성별_encoded\"])"
+        "원하는 컬럼에 map()을 적용한 결과를 새 컬럼 이름으로 저장한 뒤 출력하세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"남\", \"여\"]})\ndf[\"성별_encoded\"] = df[\"성별\"].map({\"남\": ____, \"여\": ____})\nprint(df[\"성별_encoded\"])"
       ]
     },
     {
@@ -47,7 +47,7 @@
       "hints": [
         "df[\"나이\"] >= 19는 각 값이 조건을 만족하는지 True/False로 알려줍니다.",
         ".astype(int)를 붙이면 True/False가 1/0으로 바뀝니다.",
-        "import pandas as pd\ndf = pd.DataFrame({\"나이\": [15, 22, 17, 30]})\ndf[\"성인여부\"] = (df[\"나이\"] >= 19).astype(int)\nprint(df[\"성인여부\"])"
+        "import pandas as pd\ndf = pd.DataFrame({\"나이\": [15, 22, 17, 30]})\ndf[\"성인여부\"] = (df[\"나이\"] >= ____).astype(int)\nprint(df[\"성인여부\"])"
       ]
     },
     {
@@ -59,7 +59,7 @@
       "hints": [
         "pd.cut(컬럼, bins=구간경계리스트, labels=라벨리스트) 형태로 사용합니다.",
         "bins=[0, 18, 40, 100]은 0~18, 18~40, 40~100 세 구간을 의미합니다.",
-        "import pandas as pd\ndf = pd.DataFrame({\"나이\": [5, 25, 45, 70]})\ndf[\"연령대\"] = pd.cut(df[\"나이\"], bins=[0, 18, 40, 100], labels=[\"소아\", \"성인\", \"중년\"])\nprint(df[\"연령대\"])"
+        "import pandas as pd\ndf = pd.DataFrame({\"나이\": [5, 25, 45, 70]})\ndf[\"연령대\"] = pd.cut(df[\"나이\"], bins=[0, 18, 40, 100], labels=[____, ____, ____])\nprint(df[\"연령대\"])"
       ]
     },
     {
@@ -70,8 +70,8 @@
       "expected_stdout": "0    0.000000\n1    0.333333\n2    0.666667\n3    1.000000\nName: 나이_scaled, dtype: float64",
       "hints": [
         "공식은 (값 - 최솟값) / (최댓값 - 최솟값) 입니다.",
-        "df[\"나이\"].min()과 df[\"나이\"].max()를 그대로 공식에 대입하세요.",
-        "import pandas as pd\ndf = pd.DataFrame({\"나이\": [10, 20, 30, 40]})\ndf[\"나이_scaled\"] = (df[\"나이\"] - df[\"나이\"].min()) / (df[\"나이\"].max() - df[\"나이\"].min())\nprint(df[\"나이_scaled\"])"
+        "최솟값과 최댓값을 구하는 메서드를 공식의 각 자리에 대입하세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"나이\": [10, 20, 30, 40]})\ndf[\"나이_scaled\"] = (df[\"나이\"] - df[\"나이\"].____()) / (df[\"나이\"].____() - df[\"나이\"].____())\nprint(df[\"나이_scaled\"])"
       ]
     },
     {
@@ -82,8 +82,8 @@
       "expected_stdout": "  성별    나이  성별_encoded\n0  남  15.0           0\n1  여  25.0           1\n2  남  25.0           0\n3  남  35.0           0",
       "hints": [
         "결측치 채우기(fillna) 두 번, 그다음 인코딩(map) 순서로 진행하면 됩니다.",
-        "나이는 fillna(평균), 성별은 fillna(\"남\")으로 각각 채운 뒤 마지막에 인코딩 컬럼을 추가하세요.",
-        "import pandas as pd\ndata = pd.DataFrame({\"성별\": [\"남\", \"여\", \"남\", None], \"나이\": [15, 25, None, 35]})\ndata[\"나이\"] = data[\"나이\"].fillna(data[\"나이\"].mean())\ndata[\"성별\"] = data[\"성별\"].fillna(\"남\")\ndata[\"성별_encoded\"] = data[\"성별\"].map({\"남\": 0, \"여\": 1})\nprint(data)"
+        "나이는 그 컬럼의 평균으로, 성별은 문제에서 정한 값으로 각각 채운 뒤 마지막에 인코딩 컬럼을 추가하세요.",
+        "import pandas as pd\ndata = pd.DataFrame({\"성별\": [\"남\", \"여\", \"남\", None], \"나이\": [15, 25, None, 35]})\ndata[\"나이\"] = data[\"나이\"].fillna(data[\"나이\"].mean())\ndata[\"성별\"] = data[\"성별\"].fillna(\"____\")\ndata[\"성별_encoded\"] = data[\"성별\"].map({\"남\": ____, \"여\": ____})\nprint(data)"
       ]
     }
   ]

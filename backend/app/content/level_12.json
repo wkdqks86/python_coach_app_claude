@@ -42,7 +42,7 @@
       "hints": [
         "def 함수이름(): 다음 줄에 들여쓰기로 실행할 코드를 씁니다.",
         "함수를 만든 뒤에는 함수이름() 으로 직접 호출해야 실행됩니다.",
-        "def greet():\n    print(\"안녕하세요!\")\n\ngreet()"
+        "def greet():\n    print(\"____\")\n\ngreet()"
       ]
     },
     {
@@ -53,8 +53,8 @@
       "expected_stdout": "파이코치님 환영합니다!",
       "hints": [
         "함수 괄호 안에 매개변수 이름을 적으면 함수 안에서 그 값을 변수처럼 쓸 수 있습니다.",
-        "welcome(\"파이코치\")처럼 호출할 때 괄호 안에 실제 값을 넣습니다.",
-        "def welcome(name):\n    print(name + \"님 환영합니다!\")\n\nwelcome(\"파이코치\")"
+        "매개변수와 고정 문구를 + 로 이어 붙여서 출력해보세요.",
+        "def welcome(name):\n    print(name + \"____\")\n\nwelcome(\"파이코치\")"
       ]
     },
     {
@@ -64,9 +64,9 @@
       "starter_code": "",
       "expected_stdout": "7",
       "hints": [
-        "함수 안에서 print 대신 return을 쓰면 값을 함수 밖으로 돌려줄 수 있습니다.",
-        "add(3, 4)의 결과를 print()로 감싸서 출력하세요.",
-        "def add(a, b):\n    return a + b\n\nprint(add(3, 4))"
+        "함수 안에서 print 대신 값을 함수 밖으로 돌려주는 키워드가 있습니다.",
+        "그 키워드 다음에 두 매개변수를 더한 식을 쓰세요.",
+        "def add(a, b):\n    ____ a + b\n\nprint(add(3, 4))"
       ]
     },
     {
@@ -77,8 +77,8 @@
       "expected_stdout": "안녕",
       "hints": [
         "함수 밖에서 만든 변수는 함수 안에서도 읽을 수 있습니다.",
-        "함수 안에서 message를 새로 만들지 말고, 그냥 print(message)만 하면 됩니다.",
-        "message = \"안녕\"\ndef show_message():\n    print(message)\n\nshow_message()"
+        "함수 안에서 새로운 변수를 만들 필요 없이, 그 전역변수를 그대로 출력하면 됩니다.",
+        "message = \"안녕\"\ndef show_message():\n    print(____)\n\nshow_message()"
       ]
     },
     {
@@ -90,7 +90,7 @@
       "hints": [
         "세 함수 모두 두 개의 매개변수를 받아 계산 결과를 return하는 형태로 만드세요.",
         "함수를 다 만든 뒤, input()으로 받은 두 값을 각 함수에 넘겨서 결과를 출력하세요.",
-        "def add(a, b):\n    return a + b\n\ndef subtract(a, b):\n    return a - b\n\ndef multiply(a, b):\n    return a * b\n\nx = int(input())\ny = int(input())\nprint(\"합:\", add(x, y))\nprint(\"차:\", subtract(x, y))\nprint(\"곱:\", multiply(x, y))"
+        "def add(a, b):\n    return a + b\n\ndef subtract(a, b):\n    return a - b\n\ndef multiply(a, b):\n    return a * b\n\nx = int(input())\ny = int(input())\nprint(\"합:\", ____(x, y))\nprint(\"차:\", ____(x, y))\nprint(\"곱:\", ____(x, y))"
       ],
       "stdin": "6\n2\n",
       "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 6 / 2"

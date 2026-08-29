@@ -41,8 +41,8 @@
       "expected_stdout": "카운트: 0\n카운트: 1\n카운트: 2\n카운트: 3\n카운트: 4",
       "hints": [
         "count를 0에서 시작해서, count < 5인 동안 반복하면 됩니다.",
-        "반복할 때마다 출력하고 나서 count += 1로 값을 늘리는 걸 잊지 마세요.",
-        "count = 0\nwhile count < 5:\n    print(\"카운트:\", count)\n    count += 1"
+        "반복할 때마다 출력하고 나서 count 값을 늘리는 걸 잊지 마세요.",
+        "count = 0\nwhile count < 5:\n    print(\"카운트:\", count)\n    count ____ 1"
       ]
     },
     {
@@ -54,7 +54,7 @@
       "hints": [
         "n이 100 이하인 동안에는 계속 2를 곱하도록 while 조건을 만드세요.",
         "반복문이 끝난 뒤에 n을 출력하면 됩니다 (반복 중에는 출력하지 않아도 돼요).",
-        "n = 1\nwhile n <= 100:\n    n *= 2\nprint(n)"
+        "n = 1\nwhile n ____ 100:\n    n *= 2\nprint(n)"
       ]
     },
     {
@@ -64,9 +64,9 @@
       "starter_code": "",
       "expected_stdout": "1\n2\n3\n4\n5\n6\n7",
       "hints": [
-        "while True:로 무한히 반복하다가, 원하는 조건에서 break로 빠져나올 수 있습니다.",
-        "i를 출력한 다음 i가 7인지 검사해서 break하고, 아니면 i를 1 늘리세요.",
-        "i = 1\nwhile True:\n    print(i)\n    if i == 7:\n        break\n    i += 1"
+        "while True:로 무한히 반복하다가, 원하는 조건에서 반복문을 빠져나올 수 있는 키워드가 있습니다.",
+        "i를 출력한 다음 i가 7인지 검사해서 그 키워드를 쓰고, 아니면 i를 1 늘리세요.",
+        "i = 1\nwhile True:\n    print(i)\n    if i == 7:\n        ____\n    i += 1"
       ]
     },
     {
@@ -76,9 +76,9 @@
       "starter_code": "",
       "expected_stdout": "0\n1\n2\n완료",
       "hints": [
-        "while문 뒤에도 else를 붙일 수 있습니다. break 없이 끝나면 실행됩니다.",
-        "while n < 3: 블록이 끝난 뒤 else: 블록에서 \"완료\"를 출력하세요.",
-        "n = 0\nwhile n < 3:\n    print(n)\n    n += 1\nelse:\n    print(\"완료\")"
+        "while문 뒤에도 이 레벨에서 배운 블록을 붙일 수 있습니다. break 없이 끝나면 실행됩니다.",
+        "while 블록이 끝난 뒤 그 블록에서 \"완료\"를 출력하세요.",
+        "n = 0\nwhile n < 3:\n    print(n)\n    n += 1\n____:\n    print(\"완료\")"
       ]
     },
     {
@@ -89,8 +89,8 @@
       "expected_stdout": "더 큰 숫자입니다\n더 작은 숫자입니다\n정답입니다!",
       "hints": [
         "이전 문제에 조건을 하나 더 추가하는 것뿐입니다: 작을 때 / 클 때 / 같을 때.",
-        "elif로 '더 큰 숫자입니다'와 '더 작은 숫자입니다' 두 경우를 구분하세요.",
-        "answer = 50\nwhile True:\n    guess = int(input())\n    if guess == answer:\n        print(\"정답입니다!\")\n        break\n    elif guess < answer:\n        print(\"더 큰 숫자입니다\")\n    else:\n        print(\"더 작은 숫자입니다\")"
+        "elif 조건에는 추측값과 정답을 비교하는 식이 들어갑니다.",
+        "answer = 50\nwhile True:\n    guess = int(input())\n    if guess == answer:\n        print(\"정답입니다!\")\n        break\n    elif guess ____ answer:\n        print(\"더 큰 숫자입니다\")\n    else:\n        print(\"더 작은 숫자입니다\")"
       ],
       "stdin": "30\n70\n50\n",
       "input_hint": "여러 줄에 걸쳐 숫자를 입력해보세요. 예: 30 / 70 / 50"

@@ -1,4 +1,9 @@
-"""Phase 3 — Kaggle 경진대회 준비 (레벨 24~28)."""
+"""Phase 3 — Kaggle 경진대회 준비 (레벨 24~28).
+
+힌트 정책: 힌트 1은 개념적인 방향만, 힌트 2는 접근법을 알려주되 정답
+코드 그대로는 주지 않고, 힌트 3(마지막)은 코드 구조를 보여주되 핵심
+토큰을 "____"로 비운 스켈레톤으로 제공한다.
+"""
 
 LEVELS = [
     {
@@ -32,9 +37,9 @@ LEVELS = [
                 "prompt": "id [1, 2, 3]과 score [90, 85, 70]로 DataFrame을 만들어 data.csv로 저장한 뒤, 다시 읽어서 출력하세요.",
                 "reference_code": 'import pandas as pd\ndf = pd.DataFrame({"id": [1, 2, 3], "score": [90, 85, 70]})\ndf.to_csv("data.csv", index=False)\nprint(pd.read_csv("data.csv"))',
                 "hints": [
-                    "to_csv(\"data.csv\", index=False)로 저장하세요. index=False를 빼먹지 마세요.",
-                    "저장한 뒤 pd.read_csv(\"data.csv\")로 다시 읽어서 출력하세요.",
-                    'import pandas as pd\ndf = pd.DataFrame({"id": [1, 2, 3], "score": [90, 85, 70]})\ndf.to_csv("data.csv", index=False)\nprint(pd.read_csv("data.csv"))',
+                    "DataFrame을 CSV로 저장하는 메서드가 있습니다. 인덱스 컬럼이 함께 저장되지 않도록 하는 옵션도 챙기세요.",
+                    "저장한 뒤에는 CSV를 다시 불러오는 함수로 읽어서 출력하세요.",
+                    'import pandas as pd\ndf = pd.DataFrame({"id": [1, 2, 3], "score": [90, 85, 70]})\ndf.____("data.csv", index=____)\nprint(pd.____("data.csv"))',
                 ],
             },
             {
@@ -44,8 +49,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndf = pd.DataFrame({"id": [1, 2, 3], "score": [90, 85, 70]})\ndf.to_csv("data.csv", index=False)\nloaded = pd.read_csv("data.csv")\nprint(loaded.shape)',
                 "hints": [
                     "DataFrame에는 shape라는 속성이 바로 붙어 있습니다 (괄호 없이 씁니다).",
-                    "loaded.shape를 출력해보세요.",
-                    'import pandas as pd\ndf = pd.DataFrame({"id": [1, 2, 3], "score": [90, 85, 70]})\ndf.to_csv("data.csv", index=False)\nloaded = pd.read_csv("data.csv")\nprint(loaded.shape)',
+                    "만든 데이터를 저장하고 다시 불러온 변수 뒤에 그 속성을 이어 붙여 출력해보세요.",
+                    'import pandas as pd\ndf = pd.DataFrame({"id": [1, 2, 3], "score": [90, 85, 70]})\ndf.to_csv("data.csv", index=False)\nloaded = pd.read_csv("data.csv")\nprint(loaded.____)',
                 ],
             },
             {
@@ -55,8 +60,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndf = pd.DataFrame({"id": [1, 2, 3], "score": [90, 85, 70]})\ndf.to_csv("data.csv", index=False)\nloaded = pd.read_csv("data.csv")\nprint(loaded.head(2))',
                 "hints": [
                     "head(n)에 원하는 개수를 넣으면 처음 n개 행만 볼 수 있습니다.",
-                    "loaded.head(2)를 출력해보세요.",
-                    'import pandas as pd\ndf = pd.DataFrame({"id": [1, 2, 3], "score": [90, 85, 70]})\ndf.to_csv("data.csv", index=False)\nloaded = pd.read_csv("data.csv")\nprint(loaded.head(2))',
+                    "원하는 행 개수를 head()의 괄호 안에 넣어보세요.",
+                    'import pandas as pd\ndf = pd.DataFrame({"id": [1, 2, 3], "score": [90, 85, 70]})\ndf.to_csv("data.csv", index=False)\nloaded = pd.read_csv("data.csv")\nprint(loaded.head(____))',
                 ],
             },
             {
@@ -67,7 +72,7 @@ LEVELS = [
                 "hints": [
                     "제출 파일은 보통 id 컬럼과 예측값 컬럼(여기서는 target) 두 개로 구성됩니다.",
                     "DataFrame을 만들어 to_csv로 저장한 뒤 다시 읽어서 출력하세요.",
-                    'import pandas as pd\nsub = pd.DataFrame({"id": [101, 102, 103], "target": [0, 0, 0]})\nsub.to_csv("submission.csv", index=False)\nprint(pd.read_csv("submission.csv"))',
+                    'import pandas as pd\nsub = pd.DataFrame({"id": [101, 102, 103], "target": [____, ____, ____]})\nsub.to_csv("submission.csv", index=False)\nprint(pd.read_csv("submission.csv"))',
                 ],
             },
             {
@@ -92,9 +97,9 @@ LEVELS = [
                     (
                         'import pandas as pd\n'
                         'train_target = [1, 0, 1, 0]\n'
-                        'mean_target = sum(train_target) / len(train_target)\n'
+                        'mean_target = sum(train_target) / ____(train_target)\n'
                         'test_ids = [5, 6, 7]\n'
-                        'sub = pd.DataFrame({"id": test_ids, "target": [mean_target] * len(test_ids)})\n'
+                        'sub = pd.DataFrame({"id": test_ids, "target": [mean_target] * ____(test_ids)})\n'
                         'sub.to_csv("submission.csv", index=False)\n'
                         'print(pd.read_csv("submission.csv"))'
                     ),
@@ -135,7 +140,7 @@ LEVELS = [
                 "hints": [
                     "df.isnull()은 각 칸이 비어있는지 True/False로 알려줍니다.",
                     ".sum()을 이어 붙이면 컬럼별로 True(결측치)의 개수를 셀 수 있습니다.",
-                    'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "여", "남", "여"], "나이": [22, 38, 26, None, 35], "생존": [0, 1, 1, 0, 1]})\nprint(df.isnull().sum())',
+                    'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "여", "남", "여"], "나이": [22, 38, 26, None, 35], "생존": [0, 1, 1, 0, 1]})\nprint(df.isnull().____())',
                 ],
             },
             {
@@ -145,8 +150,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "여", "남", "여"], "나이": [22, 38, 26, None, 35], "생존": [0, 1, 1, 0, 1]})\nprint(df["나이"].isnull().sum())',
                 "hints": [
                     "전체가 아니라 나이 컬럼 하나만 골라서 확인하면 됩니다.",
-                    "df[\"나이\"].isnull().sum()을 출력해보세요.",
-                    'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "여", "남", "여"], "나이": [22, 38, 26, None, 35], "생존": [0, 1, 1, 0, 1]})\nprint(df["나이"].isnull().sum())',
+                    "원하는 컬럼을 먼저 선택한 뒤, 이전 문제와 같은 방법을 이어 붙이세요.",
+                    'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "여", "남", "여"], "나이": [22, 38, 26, None, 35], "생존": [0, 1, 1, 0, 1]})\nprint(df[____].isnull().sum())',
                 ],
             },
             {
@@ -156,8 +161,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "여", "남", "여"], "나이": [22, 38, 26, None, 35], "생존": [0, 1, 1, 0, 1]})\nprint(df["나이"].describe())',
                 "hints": [
                     "describe()는 결측치를 자동으로 제외하고 통계를 계산합니다.",
-                    "df[\"나이\"].describe()를 출력해보세요.",
-                    'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "여", "남", "여"], "나이": [22, 38, 26, None, 35], "생존": [0, 1, 1, 0, 1]})\nprint(df["나이"].describe())',
+                    "원하는 컬럼을 선택한 뒤 describe()를 이어 붙이세요.",
+                    'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "여", "남", "여"], "나이": [22, 38, 26, None, 35], "생존": [0, 1, 1, 0, 1]})\nprint(df[____].describe())',
                 ],
             },
             {
@@ -167,8 +172,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "여", "남", "여"], "나이": [22, 38, 26, None, 35], "생존": [0, 1, 1, 0, 1]})\nprint(df.groupby("성별")["생존"].mean())',
                 "hints": [
                     "groupby(\"성별\")로 같은 성별끼리 묶을 수 있습니다.",
-                    "묶은 뒤 [\"생존\"].mean()을 이어 붙이면 성별별 생존율이 나옵니다.",
-                    'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "여", "남", "여"], "나이": [22, 38, 26, None, 35], "생존": [0, 1, 1, 0, 1]})\nprint(df.groupby("성별")["생존"].mean())',
+                    "묶은 뒤 원하는 컬럼을 선택하고, 평균을 구하는 메서드를 이어 붙이세요.",
+                    'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "여", "남", "여"], "나이": [22, 38, 26, None, 35], "생존": [0, 1, 1, 0, 1]})\nprint(df.groupby("성별")["생존"].____())',
                 ],
             },
             {
@@ -183,12 +188,12 @@ LEVELS = [
                     'print(df.groupby("성별")["생존"].mean())'
                 ),
                 "hints": [
-                    "fillna(df[\"나이\"].mean())로 결측치를 평균값으로 채울 수 있습니다.",
+                    "결측치를 그 컬럼 자체의 평균값으로 채우는 방법을 앞에서 배웠습니다.",
                     "채운 결과를 다시 df[\"나이\"]에 저장한 뒤, 나이 컬럼과 성별별 생존율을 순서대로 출력하세요.",
                     (
                         'import pandas as pd\n'
                         'df = pd.DataFrame({"성별": ["남", "여", "여", "남", "여"], "나이": [22, 38, 26, None, 35], "생존": [0, 1, 1, 0, 1]})\n'
-                        'df["나이"] = df["나이"].fillna(df["나이"].mean())\n'
+                        'df["나이"] = df["나이"].fillna(df["나이"].____())\n'
                         'print(df["나이"])\n'
                         'print(df.groupby("성별")["생존"].mean())'
                     ),
@@ -228,8 +233,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "남", "여"]})\ndf["성별_encoded"] = df["성별"].map({"남": 0, "여": 1})\nprint(df["성별_encoded"])',
                 "hints": [
                     "map()에 {\"원래값\": 바꿀값} 형태의 딕셔너리를 넘기면 됩니다.",
-                    "df[\"성별\"].map({\"남\": 0, \"여\": 1})을 새 컬럼에 저장한 뒤 출력하세요.",
-                    'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "남", "여"]})\ndf["성별_encoded"] = df["성별"].map({"남": 0, "여": 1})\nprint(df["성별_encoded"])',
+                    "원하는 컬럼에 map()을 적용한 결과를 새 컬럼 이름으로 저장한 뒤 출력하세요.",
+                    'import pandas as pd\ndf = pd.DataFrame({"성별": ["남", "여", "남", "여"]})\ndf["성별_encoded"] = df["성별"].map({"남": ____, "여": ____})\nprint(df["성별_encoded"])',
                 ],
             },
             {
@@ -240,7 +245,7 @@ LEVELS = [
                 "hints": [
                     "df[\"나이\"] >= 19는 각 값이 조건을 만족하는지 True/False로 알려줍니다.",
                     ".astype(int)를 붙이면 True/False가 1/0으로 바뀝니다.",
-                    'import pandas as pd\ndf = pd.DataFrame({"나이": [15, 22, 17, 30]})\ndf["성인여부"] = (df["나이"] >= 19).astype(int)\nprint(df["성인여부"])',
+                    'import pandas as pd\ndf = pd.DataFrame({"나이": [15, 22, 17, 30]})\ndf["성인여부"] = (df["나이"] >= ____).astype(int)\nprint(df["성인여부"])',
                 ],
             },
             {
@@ -251,7 +256,7 @@ LEVELS = [
                 "hints": [
                     "pd.cut(컬럼, bins=구간경계리스트, labels=라벨리스트) 형태로 사용합니다.",
                     "bins=[0, 18, 40, 100]은 0~18, 18~40, 40~100 세 구간을 의미합니다.",
-                    'import pandas as pd\ndf = pd.DataFrame({"나이": [5, 25, 45, 70]})\ndf["연령대"] = pd.cut(df["나이"], bins=[0, 18, 40, 100], labels=["소아", "성인", "중년"])\nprint(df["연령대"])',
+                    'import pandas as pd\ndf = pd.DataFrame({"나이": [5, 25, 45, 70]})\ndf["연령대"] = pd.cut(df["나이"], bins=[0, 18, 40, 100], labels=[____, ____, ____])\nprint(df["연령대"])',
                 ],
             },
             {
@@ -261,8 +266,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndf = pd.DataFrame({"나이": [10, 20, 30, 40]})\ndf["나이_scaled"] = (df["나이"] - df["나이"].min()) / (df["나이"].max() - df["나이"].min())\nprint(df["나이_scaled"])',
                 "hints": [
                     "공식은 (값 - 최솟값) / (최댓값 - 최솟값) 입니다.",
-                    "df[\"나이\"].min()과 df[\"나이\"].max()를 그대로 공식에 대입하세요.",
-                    'import pandas as pd\ndf = pd.DataFrame({"나이": [10, 20, 30, 40]})\ndf["나이_scaled"] = (df["나이"] - df["나이"].min()) / (df["나이"].max() - df["나이"].min())\nprint(df["나이_scaled"])',
+                    "최솟값과 최댓값을 구하는 메서드를 공식의 각 자리에 대입하세요.",
+                    'import pandas as pd\ndf = pd.DataFrame({"나이": [10, 20, 30, 40]})\ndf["나이_scaled"] = (df["나이"] - df["나이"].____()) / (df["나이"].____() - df["나이"].____())\nprint(df["나이_scaled"])',
                 ],
             },
             {
@@ -283,13 +288,13 @@ LEVELS = [
                 ),
                 "hints": [
                     "결측치 채우기(fillna) 두 번, 그다음 인코딩(map) 순서로 진행하면 됩니다.",
-                    "나이는 fillna(평균), 성별은 fillna(\"남\")으로 각각 채운 뒤 마지막에 인코딩 컬럼을 추가하세요.",
+                    "나이는 그 컬럼의 평균으로, 성별은 문제에서 정한 값으로 각각 채운 뒤 마지막에 인코딩 컬럼을 추가하세요.",
                     (
                         'import pandas as pd\n'
                         'data = pd.DataFrame({"성별": ["남", "여", "남", None], "나이": [15, 25, None, 35]})\n'
                         'data["나이"] = data["나이"].fillna(data["나이"].mean())\n'
-                        'data["성별"] = data["성별"].fillna("남")\n'
-                        'data["성별_encoded"] = data["성별"].map({"남": 0, "여": 1})\n'
+                        'data["성별"] = data["성별"].fillna("____")\n'
+                        'data["성별_encoded"] = data["성별"].map({"남": ____, "여": ____})\n'
                         'print(data)'
                     ),
                 ],
@@ -333,13 +338,13 @@ LEVELS = [
                     'print(len(X_train), len(X_test))'
                 ),
                 "hints": [
-                    "train_test_split(X, y, test_size=0.2, random_state=42)로 나눌 수 있습니다.",
+                    "데이터를 학습용/검증용으로 나눠주는 함수가 sklearn.model_selection에 있습니다.",
                     "결과로 X_train, X_test, y_train, y_test 네 개가 순서대로 나옵니다. len()으로 각 크기를 출력하세요.",
                     (
                         'from sklearn.model_selection import train_test_split\n'
                         'X = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]\n'
                         'y = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]\n'
-                        'X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n'
+                        'X_train, X_test, y_train, y_test = ____(X, y, test_size=0.2, random_state=42)\n'
                         'print(len(X_train), len(X_test))'
                     ),
                 ],
@@ -357,15 +362,15 @@ LEVELS = [
                     'print(model.predict([[5]]))'
                 ),
                 "hints": [
-                    "model = LogisticRegression() 으로 모델을 만들고 model.fit(X_train, y_train)으로 학습시키세요.",
-                    "model.predict([[5]])처럼 새로운 값을 리스트 안의 리스트로 넘겨서 예측하세요.",
+                    "모델 객체를 만든 뒤, 데이터를 넣어 학습시키는 메서드를 호출해야 합니다.",
+                    "학습이 끝난 모델에 새 값을 예측시키는 메서드를 사용해보세요. 입력은 리스트 안의 리스트 형태여야 합니다.",
                     (
                         'from sklearn.linear_model import LogisticRegression\n'
                         'X_train = [[1], [2], [3], [8], [9], [10]]\n'
                         'y_train = [0, 0, 0, 1, 1, 1]\n'
                         'model = LogisticRegression()\n'
-                        'model.fit(X_train, y_train)\n'
-                        'print(model.predict([[5]]))'
+                        'model.____(X_train, y_train)\n'
+                        'print(model.____([[5]]))'
                     ),
                 ],
             },
@@ -381,12 +386,12 @@ LEVELS = [
                 ),
                 "hints": [
                     "accuracy_score(정답, 예측) 형태로 순서에 주의해서 넘기세요.",
-                    "print(accuracy_score(y_true, y_pred))를 그대로 써보세요.",
+                    "정답과 예측값 변수를 그 함수에 순서대로 넣어 출력해보세요.",
                     (
                         'from sklearn.metrics import accuracy_score\n'
                         'y_true = [0, 1, 1, 0, 1]\n'
                         'y_pred = [0, 1, 0, 0, 1]\n'
-                        'print(accuracy_score(y_true, y_pred))'
+                        'print(____(y_true, y_pred))'
                     ),
                 ],
             },
@@ -414,8 +419,8 @@ LEVELS = [
                         'y_train = [0, 0, 0, 1, 1, 1]\n'
                         'model = LogisticRegression()\n'
                         'model.fit(X_train, y_train)\n'
-                        'pred = model.predict(X_train)\n'
-                        'print(accuracy_score(y_train, pred))'
+                        'pred = model.predict(____)\n'
+                        'print(accuracy_score(y_train, ____))'
                     ),
                 ],
             },
@@ -450,8 +455,8 @@ LEVELS = [
                         'X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)\n'
                         'model = LogisticRegression()\n'
                         'model.fit(X_train, y_train)\n'
-                        'pred = model.predict(X_test)\n'
-                        'print("정확도:", accuracy_score(y_test, pred))'
+                        'pred = model.predict(____)\n'
+                        'print("정확도:", accuracy_score(____, pred))'
                     ),
                 ],
             },
@@ -527,10 +532,10 @@ LEVELS = [
                         'y_train = [0, 0, 0, 1, 1, 1]\n'
                         'X_test = [[2], [9]]\n'
                         'y_test = [0, 1]\n'
-                        'model_a = LogisticRegression(C=0.1)\n'
+                        'model_a = LogisticRegression(C=____)\n'
                         'model_a.fit(X_train, y_train)\n'
                         'acc_a = accuracy_score(y_test, model_a.predict(X_test))\n'
-                        'model_b = LogisticRegression(C=10)\n'
+                        'model_b = LogisticRegression(C=____)\n'
                         'model_b.fit(X_train, y_train)\n'
                         'acc_b = accuracy_score(y_test, model_b.predict(X_test))\n'
                         'print("C=0.1:", acc_a)\n'
@@ -546,7 +551,7 @@ LEVELS = [
                 "hints": [
                     "max(딕셔너리, key=딕셔너리.get)을 쓰면 값이 가장 큰 키를 찾을 수 있습니다.",
                     "찾은 키(best)와 그 값(results[best])을 함께 출력하세요.",
-                    'results = {"C=0.1": 0.8, "C=10": 0.9, "C=1": 0.85}\nbest = max(results, key=results.get)\nprint(best, results[best])',
+                    'results = {"C=0.1": 0.8, "C=10": 0.9, "C=1": 0.85}\nbest = max(results, key=results.____)\nprint(best, results[best])',
                 ],
             },
             {
@@ -567,8 +572,8 @@ LEVELS = [
                         'import pandas as pd\n'
                         'sub = pd.DataFrame({"id": [1, 2, 3], "target": [0, 1, 0]})\n'
                         'has_correct_columns = list(sub.columns) == ["id", "target"]\n'
-                        'has_correct_rows = len(sub) == 3\n'
-                        'print(has_correct_columns and has_correct_rows)'
+                        'has_correct_rows = len(sub) == ____\n'
+                        'print(has_correct_columns ____ has_correct_rows)'
                     ),
                 ],
             },
@@ -589,7 +594,7 @@ LEVELS = [
                     (
                         'scores = [0.75, 0.82, 0.79, 0.85]\n'
                         'best_score = max(scores)\n'
-                        'best_index = scores.index(best_score) + 1\n'
+                        'best_index = scores.index(best_score) + ____\n'
                         'print("최고 점수:", best_score)\n'
                         'print(str(best_index) + "번째 실험")'
                     ),
@@ -635,7 +640,7 @@ LEVELS = [
                         'X_test = [[1], [2], [8], [9], [10]]\n'
                         'model = LogisticRegression()\n'
                         'model.fit(X_train, y_train)\n'
-                        'model_acc = accuracy_score(y_test, model.predict(X_test))\n'
+                        'model_acc = accuracy_score(y_test, model.____(X_test))\n'
                         '\n'
                         'print("베이스라인 정확도:", baseline_acc)\n'
                         'print("모델 정확도:", model_acc)'

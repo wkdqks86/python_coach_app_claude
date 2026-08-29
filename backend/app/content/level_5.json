@@ -34,8 +34,8 @@
       "expected_stdout": "10은 5보다 큽니다",
       "hints": [
         "if 조건: 다음 줄을 들여쓰기해서 실행할 코드를 씁니다.",
-        "if 10 > 5: 다음 줄에 print를 들여써서 넣어보세요.",
-        "if 10 > 5:\n    print(\"10은 5보다 큽니다\")"
+        "조건이 참일 때 실행할 print문을 들여써서 넣어보세요.",
+        "if 10 > 5:\n    print(\"____\")"
       ]
     },
     {
@@ -47,7 +47,7 @@
       "hints": [
         "짝수인지는 % 2 == 0으로 확인할 수 있습니다 (나머지가 0이면 짝수).",
         "if로 짝수 조건을 검사하고, else로 나머지 경우를 처리하세요.",
-        "n = int(input())\nif n % 2 == 0:\n    print(\"짝수입니다\")\nelse:\n    print(\"홀수입니다\")"
+        "n = int(input())\nif n % 2 == 0:\n    print(\"____\")\nelse:\n    print(\"____\")"
       ],
       "stdin": "4\n",
       "input_hint": "숫자를 입력해보세요. 예: 4"
@@ -60,8 +60,8 @@
       "expected_stdout": "성인입니다",
       "hints": [
         "'19살 이상'은 >= 연산자로 표현합니다.",
-        "if age >= 19: 조건이 참이면 성인, else면 미성년자를 출력하세요.",
-        "age = int(input())\nif age >= 19:\n    print(\"성인입니다\")\nelse:\n    print(\"미성년자입니다\")"
+        "if로 나이 조건을 검사하고, else로 나머지 경우를 처리하세요.",
+        "age = int(input())\nif age >= 19:\n    print(\"____\")\nelse:\n    print(\"____\")"
       ],
       "stdin": "20\n",
       "input_hint": "나이를 입력해보세요. 예: 20"
@@ -74,8 +74,8 @@
       "expected_stdout": "B",
       "hints": [
         "조건이 세 가지(90 이상 / 80 이상 / 그 외)이므로 elif가 필요합니다.",
-        "if score >= 90, elif score >= 80, else 순서로 검사하세요. 순서가 중요합니다.",
-        "score = int(input())\nif score >= 90:\n    print(\"A\")\nelif score >= 80:\n    print(\"B\")\nelse:\n    print(\"C\")"
+        "if, elif, else 순서로 점수 구간을 위에서부터 검사하세요. 순서가 중요합니다.",
+        "score = int(input())\nif score >= 90:\n    print(\"____\")\nelif score >= 80:\n    print(\"____\")\nelse:\n    print(\"____\")"
       ],
       "stdin": "85\n",
       "input_hint": "점수를 입력해보세요. 예: 85"
@@ -89,7 +89,7 @@
       "hints": [
         "이름과 나이, 두 번 input()을 받아야 합니다. 나이는 숫자로 변환하세요.",
         "문자열 이어붙이기(+)와 if/else를 함께 사용해보세요.",
-        "name = input()\nage = int(input())\nif age >= 19:\n    print(name + \"님은 성인입니다.\")\nelse:\n    print(name + \"님은 미성년자입니다.\")"
+        "name = input()\nage = int(input())\nif age >= 19:\n    print(____ + \"님은 성인입니다.\")\nelse:\n    print(____ + \"님은 미성년자입니다.\")"
       ],
       "stdin": "파이코치\n17\n",
       "input_hint": "첫 줄에 이름, 둘째 줄에 나이를 입력해보세요. 예: 홍길동 / 17"

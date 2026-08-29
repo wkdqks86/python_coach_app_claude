@@ -33,9 +33,9 @@
       "starter_code": "",
       "expected_stdout": "초코",
       "hints": [
-        "__init__(self, name) 안에서 self.name = name으로 저장하세요.",
-        "Dog(\"초코\")로 인스턴스를 만든 뒤 my_dog.name을 출력하세요.",
-        "class Dog:\n    def __init__(self, name):\n        self.name = name\n\nmy_dog = Dog(\"초코\")\nprint(my_dog.name)"
+        "__init__ 안에서 전달받은 값을 self의 속성으로 저장해보세요.",
+        "속성 이름은 매개변수 이름과 똑같이 지어도 됩니다: self.속성 = 매개변수",
+        "class Dog:\n    def __init__(self, name):\n        self.____ = name\n\nmy_dog = Dog(\"초코\")\nprint(my_dog.name)"
       ]
     },
     {
@@ -45,9 +45,9 @@
       "starter_code": "",
       "expected_stdout": "파이코치는 5살입니다",
       "hints": [
-        "__init__에서 name과 age를 각각 self.name, self.age에 저장하세요.",
-        "introduce(self) 메서드 안에서는 self.name, self.age로 속성에 접근합니다.",
-        "class Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def introduce(self):\n        print(self.name + \"는 \" + str(self.age) + \"살입니다\")\n\np = Person(\"파이코치\", 5)\np.introduce()"
+        "생성자에서 전달받은 두 값을 각각 self의 속성으로 저장하세요.",
+        "introduce(self) 메서드 안에서는 self.속성이름으로 값에 접근합니다.",
+        "class Person:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n\n    def introduce(self):\n        print(self.____ + \"는 \" + str(self.____) + \"살입니다\")\n\np = Person(\"파이코치\", 5)\np.introduce()"
       ]
     },
     {
@@ -57,9 +57,9 @@
       "starter_code": "",
       "expected_stdout": "3",
       "hints": [
-        "__init__(self)에서 self.count = 0으로 시작하세요.",
-        "increase(self) 안에서 self.count += 1을 실행하세요.",
-        "class Counter:\n    def __init__(self):\n        self.count = 0\n\n    def increase(self):\n        self.count += 1\n\nc = Counter()\nc.increase()\nc.increase()\nc.increase()\nprint(c.count)"
+        "생성자에서 count를 나타낼 속성을 0으로 초기화하세요.",
+        "increase 메서드 안에서 그 속성을 1 늘리는 연산을 사용하세요.",
+        "class Counter:\n    def __init__(self):\n        self.count = 0\n\n    def increase(self):\n        self.count ____ 1\n\nc = Counter()\nc.increase()\nc.increase()\nc.increase()\nprint(c.count)"
       ]
     },
     {
@@ -69,9 +69,9 @@
       "starter_code": "",
       "expected_stdout": "78.5",
       "hints": [
-        "__init__에서 radius를 self.radius에 저장하세요.",
-        "area(self)는 print가 아니라 return으로 값을 돌려줘야, 밖에서 print(c.area())로 출력할 수 있습니다.",
-        "class Circle:\n    def __init__(self, radius):\n        self.radius = radius\n\n    def area(self):\n        return self.radius * self.radius * 3.14\n\nc = Circle(5)\nprint(c.area())"
+        "생성자에서 전달받은 반지름을 self 속성으로 저장하세요.",
+        "area(self)는 계산한 값을 함수 밖으로 돌려주는 키워드를 사용해야, 밖에서 print(c.area())로 출력할 수 있습니다.",
+        "class Circle:\n    def __init__(self, radius):\n        self.radius = radius\n\n    def area(self):\n        ____ self.radius * self.radius * 3.14\n\nc = Circle(5)\nprint(c.area())"
       ]
     },
     {
@@ -81,9 +81,9 @@
       "starter_code": "",
       "expected_stdout": "1200",
       "hints": [
-        "__init__(self, balance)에서 self.balance = balance로 시작 잔액을 저장하세요.",
-        "deposit은 self.balance += amount, withdraw는 self.balance -= amount 입니다.",
-        "class Account:\n    def __init__(self, balance):\n        self.balance = balance\n\n    def deposit(self, amount):\n        self.balance += amount\n\n    def withdraw(self, amount):\n        self.balance -= amount\n\naccount = Account(1000)\naccount.deposit(500)\naccount.withdraw(300)\nprint(account.balance)"
+        "생성자에서 전달받은 잔액을 self 속성으로 저장하세요.",
+        "입금은 잔액을 늘리는 연산, 출금은 잔액을 줄이는 연산을 사용하세요.",
+        "class Account:\n    def __init__(self, balance):\n        self.balance = balance\n\n    def deposit(self, amount):\n        self.balance ____ amount\n\n    def withdraw(self, amount):\n        self.balance ____ amount\n\naccount = Account(1000)\naccount.deposit(500)\naccount.withdraw(300)\nprint(account.balance)"
       ]
     }
   ]

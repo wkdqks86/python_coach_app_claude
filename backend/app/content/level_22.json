@@ -41,8 +41,8 @@
       "expected_stdout": "1",
       "hints": [
         "isna()는 각 값이 비어있는지 True/False로 알려줍니다.",
-        "isna().sum()을 이어서 쓰면 True(비어있음)의 개수를 셀 수 있습니다.",
-        "import pandas as pd\nscores = pd.Series([90, None, 95])\nprint(scores.isna().sum())"
+        "True는 1로 취급되기 때문에, 그 개수를 세는 함수를 이어 붙이면 결측치 개수를 알 수 있습니다.",
+        "import pandas as pd\nscores = pd.Series([90, None, 95])\nprint(scores.isna().____())"
       ]
     },
     {
@@ -53,8 +53,8 @@
       "expected_stdout": "0    90.0\n1     0.0\n2    95.0\ndtype: float64",
       "hints": [
         "fillna(값)으로 빈 자리를 원하는 값으로 채울 수 있습니다.",
-        "scores = scores.fillna(0) 처럼 결과를 다시 저장한 뒤 출력하세요.",
-        "import pandas as pd\nscores = pd.Series([90, None, 95])\nscores = scores.fillna(0)\nprint(scores)"
+        "채운 결과를 다시 같은 변수에 저장한 뒤 출력하세요.",
+        "import pandas as pd\nscores = pd.Series([90, None, 95])\nscores = scores.fillna(____)\nprint(scores)"
       ]
     },
     {
@@ -65,8 +65,8 @@
       "expected_stdout": "분류\n과일    30\n채소     5\nName: 수량, dtype: int64",
       "hints": [
         "groupby(\"분류\")로 같은 분류끼리 묶을 수 있습니다.",
-        "묶은 뒤 [\"수량\"].sum()을 이어 붙이면 분류별 합계가 나옵니다.",
-        "import pandas as pd\ndata = {\"분류\": [\"과일\", \"과일\", \"채소\"], \"수량\": [10, 20, 5]}\ndf = pd.DataFrame(data)\nprint(df.groupby(\"분류\")[\"수량\"].sum())"
+        "묶은 뒤 원하는 컬럼을 선택하고, 합계를 구하는 메서드를 이어 붙이세요.",
+        "import pandas as pd\ndata = {\"분류\": [\"과일\", \"과일\", \"채소\"], \"수량\": [10, 20, 5]}\ndf = pd.DataFrame(data)\nprint(df.groupby(\"분류\")[\"수량\"].____())"
       ]
     },
     {
@@ -77,8 +77,8 @@
       "expected_stdout": "1    영희\n2    민수\n0    철수\nName: 이름, dtype: str",
       "hints": [
         "sort_values(\"점수\", ascending=False)로 점수를 내림차순 정렬할 수 있습니다.",
-        "정렬한 결과를 변수에 저장한 뒤, 그 결과에서 [\"이름\"]을 출력하세요.",
-        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [70, 95, 85]}\ndf = pd.DataFrame(data)\nsorted_df = df.sort_values(\"점수\", ascending=False)\nprint(sorted_df[\"이름\"])"
+        "정렬한 결과를 변수에 저장한 뒤, 그 결과에서 원하는 컬럼만 출력하세요.",
+        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [70, 95, 85]}\ndf = pd.DataFrame(data)\nsorted_df = df.sort_values(\"점수\", ascending=____)\nprint(sorted_df[\"이름\"])"
       ]
     },
     {
@@ -89,8 +89,8 @@
       "expected_stdout": "   과일\n0  사과\n2  포도",
       "hints": [
         "컬럼.isin([값1, 값2])로 목록에 포함된 값인지 한 번에 확인할 수 있습니다.",
-        "df[df[\"과일\"].isin([\"사과\", \"포도\"])] 형태로 필터링하세요.",
-        "import pandas as pd\ndf = pd.DataFrame({\"과일\": [\"사과\", \"바나나\", \"포도\", \"오렌지\"]})\nmask = df[\"과일\"].isin([\"사과\", \"포도\"])\nprint(df[mask])"
+        "isin()으로 만든 조건을 df[ ] 안에 그대로 넣어서 필터링하세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"과일\": [\"사과\", \"바나나\", \"포도\", \"오렌지\"]})\nmask = df[\"과일\"].isin([____, ____])\nprint(df[mask])"
       ]
     }
   ]

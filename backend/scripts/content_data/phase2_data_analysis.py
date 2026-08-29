@@ -3,6 +3,10 @@
 실제 수강한 데이터 분석 강의(course_Data_Analysis)를 참고해서, 기존
 콘텐츠에 빠져 있던 2차원 배열과 pandas .loc/.iloc 인덱싱을 새 레벨로
 추가했다.
+
+힌트 정책: 힌트 1은 개념적인 방향만, 힌트 2는 접근법을 알려주되 정답
+코드 그대로는 주지 않고, 힌트 3(마지막)은 코드 구조를 보여주되 핵심
+토큰을 "____"로 비운 스켈레톤으로 제공한다.
 """
 
 LEVELS = [
@@ -39,7 +43,7 @@ LEVELS = [
                 "hints": [
                     "먼저 import numpy as np로 numpy를 가져와야 합니다.",
                     "np.array(리스트) 형태로 배열을 만들 수 있습니다.",
-                    "import numpy as np\narr = np.array([10, 20, 30, 40, 50])\nprint(arr)",
+                    "import numpy as np\narr = np.array([____])\nprint(arr)",
                 ],
             },
             {
@@ -49,8 +53,8 @@ LEVELS = [
                 "reference_code": "import numpy as np\narr = np.array([10, 20, 30, 40, 50])\nprint(arr[2])",
                 "hints": [
                     "리스트와 마찬가지로 인덱스는 0부터 시작합니다.",
-                    "arr[2]가 세 번째 값입니다.",
-                    "import numpy as np\narr = np.array([10, 20, 30, 40, 50])\nprint(arr[2])",
+                    "세 번째 값의 인덱스가 몇인지 생각해서 접근해보세요.",
+                    "import numpy as np\narr = np.array([10, 20, 30, 40, 50])\nprint(arr[____])",
                 ],
             },
             {
@@ -60,8 +64,8 @@ LEVELS = [
                 "reference_code": "import numpy as np\narr = np.array([10, 20, 30, 40, 50])\nprint(arr[:3])",
                 "hints": [
                     "슬라이싱 arr[:n]은 처음부터 n개를 잘라냅니다.",
-                    "arr[:3]을 출력해보세요.",
-                    "import numpy as np\narr = np.array([10, 20, 30, 40, 50])\nprint(arr[:3])",
+                    "몇 개까지 자를지 슬라이싱 끝 인덱스에 넣어보세요.",
+                    "import numpy as np\narr = np.array([10, 20, 30, 40, 50])\nprint(arr[:____])",
                 ],
             },
             {
@@ -71,8 +75,8 @@ LEVELS = [
                 "reference_code": 'import numpy as np\nscores = np.array([80, 90, 70, 100, 85])\nprint("합계:", scores.sum())\nprint("평균:", scores.mean())',
                 "hints": [
                     "배열에는 sum()과 mean() 메서드가 바로 붙어 있습니다.",
-                    "scores.sum(), scores.mean()을 각각 출력하세요.",
-                    'import numpy as np\nscores = np.array([80, 90, 70, 100, 85])\nprint("합계:", scores.sum())\nprint("평균:", scores.mean())',
+                    "라벨과 함께 콤마로 이어서 출력하면 자동으로 띄어쓰기가 들어갑니다.",
+                    'import numpy as np\nscores = np.array([80, 90, 70, 100, 85])\nprint("합계:", scores.____())\nprint("평균:", scores.____())',
                 ],
             },
             {
@@ -82,8 +86,8 @@ LEVELS = [
                 "reference_code": 'import numpy as np\nscores = np.array([80, 90, 70, 100, 85])\nprint("최고점:", scores.max())\nprint("최저점:", scores.min())',
                 "hints": [
                     "max()와 min()으로 배열의 최댓값과 최솟값을 구할 수 있습니다.",
-                    "scores.max(), scores.min()을 각각 출력하세요.",
-                    'import numpy as np\nscores = np.array([80, 90, 70, 100, 85])\nprint("최고점:", scores.max())\nprint("최저점:", scores.min())',
+                    "가장 큰 값과 가장 작은 값을 구하는 메서드 이름을 각각 떠올려 보세요.",
+                    'import numpy as np\nscores = np.array([80, 90, 70, 100, 85])\nprint("최고점:", scores.____())\nprint("최저점:", scores.____())',
                 ],
             },
         ],
@@ -120,8 +124,8 @@ LEVELS = [
                 "reference_code": "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr.shape)",
                 "hints": [
                     "리스트 안에 리스트를 넣으면 2차원 배열이 만들어집니다.",
-                    "arr.shape를 출력해보세요.",
-                    "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr.shape)",
+                    "배열의 모양(행, 열)을 알려주는 속성 이름을 떠올려 보세요.",
+                    "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr.____)",
                 ],
             },
             {
@@ -131,8 +135,8 @@ LEVELS = [
                 "reference_code": "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr[0, 1])",
                 "hints": [
                     "2차원 배열은 arr[행, 열] 형태로 콤마를 사용해 접근합니다.",
-                    "arr[0, 1]을 출력해보세요.",
-                    "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr[0, 1])",
+                    "몇 번째 행, 몇 번째 열인지 각각의 인덱스를 순서대로 넣어보세요.",
+                    "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr[____, ____])",
                 ],
             },
             {
@@ -142,8 +146,8 @@ LEVELS = [
                 "reference_code": "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr[0, :])",
                 "hints": [
                     "행은 그대로 두고 열 자리에 : 을 쓰면 그 행 전체를 가져옵니다.",
-                    "arr[0, :]을 출력해보세요.",
-                    "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr[0, :])",
+                    "원하는 행 번호를 넣고, 열 자리는 전체를 뜻하는 기호로 남겨두세요.",
+                    "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr[____, :])",
                 ],
             },
             {
@@ -153,8 +157,8 @@ LEVELS = [
                 "reference_code": "import numpy as np\nprint(np.zeros((2, 3)))",
                 "hints": [
                     "np.zeros((행, 열)) 형태로 크기를 튜플로 넘깁니다.",
-                    "np.zeros((2, 3))을 출력해보세요.",
-                    "import numpy as np\nprint(np.zeros((2, 3)))",
+                    "원하는 행과 열의 개수를 튜플로 넣어보세요.",
+                    "import numpy as np\nprint(np.zeros((____, ____)))",
                 ],
             },
             {
@@ -163,9 +167,9 @@ LEVELS = [
                 "prompt": "3x3 단위행렬(대각선만 1)을 np.eye()로 만들어 출력하세요.",
                 "reference_code": "import numpy as np\nprint(np.eye(3))",
                 "hints": [
-                    "단위행렬을 만드는 함수 이름을 떠올려 보세요 (eye).",
-                    "np.eye(3)을 출력해보세요.",
-                    "import numpy as np\nprint(np.eye(3))",
+                    "대각선만 1이고 나머지는 0인 배열을 만드는 numpy 함수가 있습니다.",
+                    "그 함수에 원하는 크기(한 변의 길이)를 넣어보세요.",
+                    "import numpy as np\nprint(np.____(3))",
                 ],
             },
         ],
@@ -208,8 +212,8 @@ LEVELS = [
                 "reference_code": "import numpy as np\narr = np.array([1, 2, 3, 4, 5])\nprint(arr + 10)",
                 "hints": [
                     "반복문 없이 arr + 10처럼 배열에 바로 숫자를 더할 수 있습니다.",
-                    "print(arr + 10)을 그대로 써보세요.",
-                    "import numpy as np\narr = np.array([1, 2, 3, 4, 5])\nprint(arr + 10)",
+                    "배열 전체에 더하고 싶은 숫자를 + 뒤에 넣어보세요.",
+                    "import numpy as np\narr = np.array([1, 2, 3, 4, 5])\nprint(arr + ____)",
                 ],
             },
             {
@@ -219,8 +223,8 @@ LEVELS = [
                 "reference_code": "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([10, 20, 30])\nprint(a + b)",
                 "hints": [
                     "두 배열의 크기가 같으면 같은 위치끼리 더해집니다.",
-                    "a + b를 출력해보세요.",
-                    "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([10, 20, 30])\nprint(a + b)",
+                    "두 배열 이름을 + 로 이어서 계산해보세요.",
+                    "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([10, 20, 30])\nprint(a ____ b)",
                 ],
             },
             {
@@ -230,8 +234,8 @@ LEVELS = [
                 "reference_code": "import numpy as np\narr = np.array([3, 8, 1, 9, 4, 6])\nprint(arr[arr > 5])",
                 "hints": [
                     "arr > 5는 각 값이 조건을 만족하는지 True/False 배열을 만들어줍니다.",
-                    "arr[arr > 5] 처럼 배열 안에 조건을 그대로 넣으면 걸러낼 수 있습니다.",
-                    "import numpy as np\narr = np.array([3, 8, 1, 9, 4, 6])\nprint(arr[arr > 5])",
+                    "배열[조건] 형태로 대괄호 안에 비교식을 그대로 넣으면 걸러낼 수 있습니다.",
+                    "import numpy as np\narr = np.array([3, 8, 1, 9, 4, 6])\nprint(arr[arr ____ 5])",
                 ],
             },
             {
@@ -241,8 +245,8 @@ LEVELS = [
                 "reference_code": "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr.sum(axis=0))\nprint(arr.sum(axis=1))",
                 "hints": [
                     "axis=0은 세로(열) 방향, axis=1은 가로(행) 방향으로 계산합니다.",
-                    "arr.sum(axis=0)과 arr.sum(axis=1)을 순서대로 출력하세요.",
-                    "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr.sum(axis=0))\nprint(arr.sum(axis=1))",
+                    "합계를 구하는 메서드에 axis 값을 바꿔가며 순서대로 호출해보세요.",
+                    "import numpy as np\narr = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr.sum(axis=____))\nprint(arr.sum(axis=____))",
                 ],
             },
             {
@@ -253,7 +257,7 @@ LEVELS = [
                 "hints": [
                     "먼저 브로드캐스팅으로 전체 값에 30을 더한 새 배열을 만드세요.",
                     "그 다음 조건 필터링으로 255 이하인 값만 골라내세요.",
-                    "import numpy as np\npixels = np.array([200, 220, 240, 260, 280])\nbrightened = pixels + 30\nprint(brightened[brightened <= 255])",
+                    "import numpy as np\npixels = np.array([200, 220, 240, 260, 280])\nbrightened = pixels + ____\nprint(brightened[brightened <= ____])",
                 ],
             },
         ],
@@ -291,7 +295,7 @@ LEVELS = [
                 "hints": [
                     "import pandas as pd로 pandas를 가져오세요.",
                     "pd.Series(리스트)로 Series를 만들 수 있습니다.",
-                    "import pandas as pd\ns = pd.Series([10, 20, 30])\nprint(s)",
+                    "import pandas as pd\ns = pd.Series([____])\nprint(s)",
                 ],
             },
             {
@@ -301,8 +305,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndata = {"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df["점수"])',
                 "hints": [
                     '딕셔너리 {"컬럼명": [값들]} 형태로 pd.DataFrame()에 전달하세요.',
-                    'df["점수"]로 점수 컬럼만 꺼낼 수 있습니다.',
-                    'import pandas as pd\ndata = {"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df["점수"])',
+                    "원하는 컬럼 이름을 대괄호 안에 문자열로 넣으면 그 열만 꺼낼 수 있습니다.",
+                    'import pandas as pd\ndata = {"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df[____])',
                 ],
             },
             {
@@ -312,8 +316,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndata = {"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df["이름"][0])',
                 "hints": [
                     '먼저 df["이름"]으로 이름 컬럼(Series)을 꺼내세요.',
-                    "그 뒤에 [0]을 붙이면 첫 번째 값에 접근할 수 있습니다.",
-                    'import pandas as pd\ndata = {"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df["이름"][0])',
+                    "그 뒤에 대괄호로 첫 번째 값의 인덱스를 붙이면 접근할 수 있습니다.",
+                    'import pandas as pd\ndata = {"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df["이름"][____])',
                 ],
             },
             {
@@ -324,7 +328,7 @@ LEVELS = [
                 "hints": [
                     'df["점수"] >= 90은 각 행이 조건을 만족하는지 알려주는 True/False 목록입니다.',
                     "df[조건] 형태로 감싸면 조건을 만족하는 행만 남습니다.",
-                    'import pandas as pd\ndata = {"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df[df["점수"] >= 90])',
+                    'import pandas as pd\ndata = {"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df[df["점수"] ____ 90])',
                 ],
             },
             {
@@ -342,12 +346,12 @@ LEVELS = [
                 ),
                 "hints": [
                     '먼저 조건으로 행을 필터링한 뒤, 그 결과에서 다시 ["상품"] 컬럼만 꺼내면 됩니다.',
-                    'df[df["수량"] >= 6]["상품"] 처럼 대괄호를 두 번 이어서 쓸 수 있습니다.',
+                    "필터링한 결과 뒤에 대괄호를 한 번 더 이어서 원하는 컬럼 이름을 넣어보세요.",
                     (
                         'import pandas as pd\n'
                         'data = {"상품": ["사과", "바나나", "포도"], "수량": [10, 5, 8]}\n'
                         'df = pd.DataFrame(data)\n'
-                        'print(df[df["수량"] >= 6]["상품"])'
+                        'print(df[df["수량"] >= ____]["상품"])'
                     ),
                 ],
             },
@@ -390,8 +394,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndf = pd.DataFrame({"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]})\nprint(df.iloc[1])',
                 "hints": [
                     "iloc는 순서(정수 위치)로 행을 선택합니다. 인덱스는 0부터 시작합니다.",
-                    "df.iloc[1]을 출력해보세요.",
-                    'import pandas as pd\ndf = pd.DataFrame({"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]})\nprint(df.iloc[1])',
+                    "두 번째 행의 정수 위치가 몇인지 생각해서 iloc에 넣어보세요.",
+                    'import pandas as pd\ndf = pd.DataFrame({"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]})\nprint(df.iloc[____])',
                 ],
             },
             {
@@ -401,8 +405,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndf = pd.DataFrame({"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]})\nprint(df.loc[0, "이름"])',
                 "hints": [
                     "loc[행라벨, 컬럼이름] 형태로 특정 칸을 콕 집어 선택할 수 있습니다.",
-                    'df.loc[0, "이름"]을 출력해보세요.',
-                    'import pandas as pd\ndf = pd.DataFrame({"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]})\nprint(df.loc[0, "이름"])',
+                    "원하는 행 번호와 컬럼 이름을 콤마로 구분해서 순서대로 넣어보세요.",
+                    'import pandas as pd\ndf = pd.DataFrame({"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]})\nprint(df.loc[____, "____"])',
                 ],
             },
             {
@@ -412,8 +416,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndf = pd.DataFrame({"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]})\nprint(df.iloc[:2, :1])',
                 "hints": [
                     "iloc도 슬라이싱을 지원합니다: df.iloc[행범위, 열범위].",
-                    "df.iloc[:2, :1]을 출력해보세요.",
-                    'import pandas as pd\ndf = pd.DataFrame({"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]})\nprint(df.iloc[:2, :1])',
+                    "몇 개까지 자를지 행과 열 각각의 슬라이스 끝 값을 생각해보세요.",
+                    'import pandas as pd\ndf = pd.DataFrame({"이름": ["철수", "영희", "민수"], "점수": [90, 85, 95]})\nprint(df.iloc[:____, :____])',
                 ],
             },
             {
@@ -432,7 +436,7 @@ LEVELS = [
                     (
                         'import pandas as pd\n'
                         'df = pd.DataFrame({"점수": [90, 85, 95, 70], "나이": [22, 35, 28, 40]})\n'
-                        'mask = (df["점수"] >= 80) & (df["나이"] < 30)\n'
+                        'mask = (df["점수"] >= 80) ____ (df["나이"] < 30)\n'
                         'print(df[mask])'
                     ),
                 ],
@@ -449,11 +453,11 @@ LEVELS = [
                 ),
                 "hints": [
                     "둘 중 하나만 만족해도 되니 |(or)를 사용하세요.",
-                    "(df[\"점수\"] < 80) | (df[\"나이\"] >= 35) 형태로 작성하세요.",
+                    "각 조건을 괄호로 감싸고, 그 사이를 or를 뜻하는 연산자로 이어보세요.",
                     (
                         'import pandas as pd\n'
                         'df = pd.DataFrame({"점수": [90, 85, 95, 70], "나이": [22, 35, 28, 40]})\n'
-                        'mask = (df["점수"] < 80) | (df["나이"] >= 35)\n'
+                        'mask = (df["점수"] < 80) ____ (df["나이"] >= 35)\n'
                         'print(df[mask])'
                     ),
                 ],
@@ -498,8 +502,8 @@ LEVELS = [
                 "reference_code": "import pandas as pd\nscores = pd.Series([90, None, 95])\nprint(scores.isna().sum())",
                 "hints": [
                     "isna()는 각 값이 비어있는지 True/False로 알려줍니다.",
-                    "isna().sum()을 이어서 쓰면 True(비어있음)의 개수를 셀 수 있습니다.",
-                    "import pandas as pd\nscores = pd.Series([90, None, 95])\nprint(scores.isna().sum())",
+                    "True는 1로 취급되기 때문에, 그 개수를 세는 함수를 이어 붙이면 결측치 개수를 알 수 있습니다.",
+                    "import pandas as pd\nscores = pd.Series([90, None, 95])\nprint(scores.isna().____())",
                 ],
             },
             {
@@ -509,8 +513,8 @@ LEVELS = [
                 "reference_code": "import pandas as pd\nscores = pd.Series([90, None, 95])\nscores = scores.fillna(0)\nprint(scores)",
                 "hints": [
                     "fillna(값)으로 빈 자리를 원하는 값으로 채울 수 있습니다.",
-                    "scores = scores.fillna(0) 처럼 결과를 다시 저장한 뒤 출력하세요.",
-                    "import pandas as pd\nscores = pd.Series([90, None, 95])\nscores = scores.fillna(0)\nprint(scores)",
+                    "채운 결과를 다시 같은 변수에 저장한 뒤 출력하세요.",
+                    "import pandas as pd\nscores = pd.Series([90, None, 95])\nscores = scores.fillna(____)\nprint(scores)",
                 ],
             },
             {
@@ -520,8 +524,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndata = {"분류": ["과일", "과일", "채소"], "수량": [10, 20, 5]}\ndf = pd.DataFrame(data)\nprint(df.groupby("분류")["수량"].sum())',
                 "hints": [
                     'groupby("분류")로 같은 분류끼리 묶을 수 있습니다.',
-                    '묶은 뒤 ["수량"].sum()을 이어 붙이면 분류별 합계가 나옵니다.',
-                    'import pandas as pd\ndata = {"분류": ["과일", "과일", "채소"], "수량": [10, 20, 5]}\ndf = pd.DataFrame(data)\nprint(df.groupby("분류")["수량"].sum())',
+                    "묶은 뒤 원하는 컬럼을 선택하고, 합계를 구하는 메서드를 이어 붙이세요.",
+                    'import pandas as pd\ndata = {"분류": ["과일", "과일", "채소"], "수량": [10, 20, 5]}\ndf = pd.DataFrame(data)\nprint(df.groupby("분류")["수량"].____())',
                 ],
             },
             {
@@ -531,8 +535,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndata = {"이름": ["철수", "영희", "민수"], "점수": [70, 95, 85]}\ndf = pd.DataFrame(data)\nsorted_df = df.sort_values("점수", ascending=False)\nprint(sorted_df["이름"])',
                 "hints": [
                     'sort_values("점수", ascending=False)로 점수를 내림차순 정렬할 수 있습니다.',
-                    '정렬한 결과를 변수에 저장한 뒤, 그 결과에서 ["이름"]을 출력하세요.',
-                    'import pandas as pd\ndata = {"이름": ["철수", "영희", "민수"], "점수": [70, 95, 85]}\ndf = pd.DataFrame(data)\nsorted_df = df.sort_values("점수", ascending=False)\nprint(sorted_df["이름"])',
+                    "정렬한 결과를 변수에 저장한 뒤, 그 결과에서 원하는 컬럼만 출력하세요.",
+                    'import pandas as pd\ndata = {"이름": ["철수", "영희", "민수"], "점수": [70, 95, 85]}\ndf = pd.DataFrame(data)\nsorted_df = df.sort_values("점수", ascending=____)\nprint(sorted_df["이름"])',
                 ],
             },
             {
@@ -542,8 +546,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ndf = pd.DataFrame({"과일": ["사과", "바나나", "포도", "오렌지"]})\nmask = df["과일"].isin(["사과", "포도"])\nprint(df[mask])',
                 "hints": [
                     '컬럼.isin([값1, 값2])로 목록에 포함된 값인지 한 번에 확인할 수 있습니다.',
-                    'df[df["과일"].isin(["사과", "포도"])] 형태로 필터링하세요.',
-                    'import pandas as pd\ndf = pd.DataFrame({"과일": ["사과", "바나나", "포도", "오렌지"]})\nmask = df["과일"].isin(["사과", "포도"])\nprint(df[mask])',
+                    "isin()으로 만든 조건을 df[ ] 안에 그대로 넣어서 필터링하세요.",
+                    'import pandas as pd\ndf = pd.DataFrame({"과일": ["사과", "바나나", "포도", "오렌지"]})\nmask = df["과일"].isin([____, ____])\nprint(df[mask])',
                 ],
             },
         ],
@@ -580,8 +584,8 @@ LEVELS = [
                 "reference_code": "import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95])\nprint(s.describe())",
                 "hints": [
                     "Series를 만든 뒤 describe() 메서드를 바로 이어서 부를 수 있습니다.",
-                    "print(s.describe())를 써보세요.",
-                    "import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95])\nprint(s.describe())",
+                    "만든 Series 뒤에 그 메서드를 이어 붙여 출력해보세요.",
+                    "import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95])\nprint(s.____())",
                 ],
             },
             {
@@ -590,9 +594,9 @@ LEVELS = [
                 "prompt": "위와 같은 점수 Series의 describe() 결과에서 평균(mean)만 출력하세요.",
                 "reference_code": 'import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95])\nprint(s.describe()["mean"])',
                 "hints": [
-                    'describe()의 결과도 Series라서 ["mean"]처럼 이름으로 값을 꺼낼 수 있습니다.',
-                    's.describe()["mean"]을 출력해보세요.',
-                    'import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95])\nprint(s.describe()["mean"])',
+                    'describe()의 결과도 Series라서 ["이름"]처럼 이름으로 값을 꺼낼 수 있습니다.',
+                    "describe() 결과 뒤에 원하는 통계 이름을 대괄호로 붙여보세요.",
+                    'import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95])\nprint(s.describe()[____])',
                 ],
             },
             {
@@ -601,9 +605,9 @@ LEVELS = [
                 "prompt": '과일 목록 ["사과", "바나나", "사과", "포도", "바나나", "사과"]에서 각 과일이 몇 번 나오는지 세어 출력하세요.',
                 "reference_code": 'import pandas as pd\nfruits = pd.Series(["사과", "바나나", "사과", "포도", "바나나", "사과"])\nprint(fruits.value_counts())',
                 "hints": [
-                    "리스트를 Series로 만든 뒤 value_counts()를 이어서 부르세요.",
-                    "print(fruits.value_counts())를 써보세요.",
-                    'import pandas as pd\nfruits = pd.Series(["사과", "바나나", "사과", "포도", "바나나", "사과"])\nprint(fruits.value_counts())',
+                    "리스트를 Series로 만든 뒤 값별 개수를 세어주는 메서드를 이어서 부르세요.",
+                    "만든 Series 뒤에 그 메서드를 이어 붙여 출력해보세요.",
+                    'import pandas as pd\nfruits = pd.Series(["사과", "바나나", "사과", "포도", "바나나", "사과"])\nprint(fruits.____())',
                 ],
             },
             {
@@ -612,9 +616,9 @@ LEVELS = [
                 "prompt": "위와 같은 과일 데이터에서 가장 많이 나온 과일 이름만 출력하세요.",
                 "reference_code": 'import pandas as pd\nfruits = pd.Series(["사과", "바나나", "사과", "포도", "바나나", "사과"])\nprint(fruits.value_counts().idxmax())',
                 "hints": [
-                    "value_counts()의 결과에서 idxmax()를 쓰면 가장 큰 값의 이름(인덱스)을 알 수 있습니다.",
-                    "fruits.value_counts().idxmax()를 출력해보세요.",
-                    'import pandas as pd\nfruits = pd.Series(["사과", "바나나", "사과", "포도", "바나나", "사과"])\nprint(fruits.value_counts().idxmax())',
+                    "value_counts()의 결과에서 가장 큰 값의 이름(인덱스)을 알려주는 메서드가 있습니다.",
+                    "value_counts() 결과 뒤에 그 메서드를 이어 붙여보세요.",
+                    'import pandas as pd\nfruits = pd.Series(["사과", "바나나", "사과", "포도", "바나나", "사과"])\nprint(fruits.value_counts().____())',
                 ],
             },
             {
@@ -624,8 +628,8 @@ LEVELS = [
                 "reference_code": 'import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95, 100])\nprint(s.agg(["mean", "max", "min"]))',
                 "hints": [
                     "agg()에 원하는 통계 함수 이름을 문자열 리스트로 넘기면 한 번에 계산됩니다.",
-                    's.agg(["mean", "max", "min"])을 출력해보세요.',
-                    'import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95, 100])\nprint(s.agg(["mean", "max", "min"]))',
+                    "원하는 통계 함수 이름들을 문자열 리스트로 만들어 agg()에 넘겨보세요.",
+                    'import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95, 100])\nprint(s.agg([____, ____, ____]))',
                 ],
             },
         ],

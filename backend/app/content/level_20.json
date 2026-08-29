@@ -35,7 +35,7 @@
       "hints": [
         "import pandas as pd로 pandas를 가져오세요.",
         "pd.Series(리스트)로 Series를 만들 수 있습니다.",
-        "import pandas as pd\ns = pd.Series([10, 20, 30])\nprint(s)"
+        "import pandas as pd\ns = pd.Series([____])\nprint(s)"
       ]
     },
     {
@@ -46,8 +46,8 @@
       "expected_stdout": "0    90\n1    85\n2    95\nName: 점수, dtype: int64",
       "hints": [
         "딕셔너리 {\"컬럼명\": [값들]} 형태로 pd.DataFrame()에 전달하세요.",
-        "df[\"점수\"]로 점수 컬럼만 꺼낼 수 있습니다.",
-        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df[\"점수\"])"
+        "원하는 컬럼 이름을 대괄호 안에 문자열로 넣으면 그 열만 꺼낼 수 있습니다.",
+        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df[____])"
       ]
     },
     {
@@ -58,8 +58,8 @@
       "expected_stdout": "철수",
       "hints": [
         "먼저 df[\"이름\"]으로 이름 컬럼(Series)을 꺼내세요.",
-        "그 뒤에 [0]을 붙이면 첫 번째 값에 접근할 수 있습니다.",
-        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df[\"이름\"][0])"
+        "그 뒤에 대괄호로 첫 번째 값의 인덱스를 붙이면 접근할 수 있습니다.",
+        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df[\"이름\"][____])"
       ]
     },
     {
@@ -71,7 +71,7 @@
       "hints": [
         "df[\"점수\"] >= 90은 각 행이 조건을 만족하는지 알려주는 True/False 목록입니다.",
         "df[조건] 형태로 감싸면 조건을 만족하는 행만 남습니다.",
-        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df[df[\"점수\"] >= 90])"
+        "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [90, 85, 95]}\ndf = pd.DataFrame(data)\nprint(df[df[\"점수\"] ____ 90])"
       ]
     },
     {
@@ -82,8 +82,8 @@
       "expected_stdout": "0    사과\n2    포도\nName: 상품, dtype: str",
       "hints": [
         "먼저 조건으로 행을 필터링한 뒤, 그 결과에서 다시 [\"상품\"] 컬럼만 꺼내면 됩니다.",
-        "df[df[\"수량\"] >= 6][\"상품\"] 처럼 대괄호를 두 번 이어서 쓸 수 있습니다.",
-        "import pandas as pd\ndata = {\"상품\": [\"사과\", \"바나나\", \"포도\"], \"수량\": [10, 5, 8]}\ndf = pd.DataFrame(data)\nprint(df[df[\"수량\"] >= 6][\"상품\"])"
+        "필터링한 결과 뒤에 대괄호를 한 번 더 이어서 원하는 컬럼 이름을 넣어보세요.",
+        "import pandas as pd\ndata = {\"상품\": [\"사과\", \"바나나\", \"포도\"], \"수량\": [10, 5, 8]}\ndf = pd.DataFrame(data)\nprint(df[df[\"수량\"] >= ____][\"상품\"])"
       ]
     }
   ]

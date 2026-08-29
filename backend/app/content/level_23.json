@@ -34,8 +34,8 @@
       "expected_stdout": "count     5.00000\nmean     80.00000\nstd      14.57738\nmin      60.00000\n25%      70.00000\n50%      85.00000\n75%      90.00000\nmax      95.00000\ndtype: float64",
       "hints": [
         "Series를 만든 뒤 describe() 메서드를 바로 이어서 부를 수 있습니다.",
-        "print(s.describe())를 써보세요.",
-        "import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95])\nprint(s.describe())"
+        "만든 Series 뒤에 그 메서드를 이어 붙여 출력해보세요.",
+        "import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95])\nprint(s.____())"
       ]
     },
     {
@@ -45,9 +45,9 @@
       "starter_code": "",
       "expected_stdout": "80.0",
       "hints": [
-        "describe()의 결과도 Series라서 [\"mean\"]처럼 이름으로 값을 꺼낼 수 있습니다.",
-        "s.describe()[\"mean\"]을 출력해보세요.",
-        "import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95])\nprint(s.describe()[\"mean\"])"
+        "describe()의 결과도 Series라서 [\"이름\"]처럼 이름으로 값을 꺼낼 수 있습니다.",
+        "describe() 결과 뒤에 원하는 통계 이름을 대괄호로 붙여보세요.",
+        "import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95])\nprint(s.describe()[____])"
       ]
     },
     {
@@ -57,9 +57,9 @@
       "starter_code": "",
       "expected_stdout": "사과     3\n바나나    2\n포도     1\nName: count, dtype: int64",
       "hints": [
-        "리스트를 Series로 만든 뒤 value_counts()를 이어서 부르세요.",
-        "print(fruits.value_counts())를 써보세요.",
-        "import pandas as pd\nfruits = pd.Series([\"사과\", \"바나나\", \"사과\", \"포도\", \"바나나\", \"사과\"])\nprint(fruits.value_counts())"
+        "리스트를 Series로 만든 뒤 값별 개수를 세어주는 메서드를 이어서 부르세요.",
+        "만든 Series 뒤에 그 메서드를 이어 붙여 출력해보세요.",
+        "import pandas as pd\nfruits = pd.Series([\"사과\", \"바나나\", \"사과\", \"포도\", \"바나나\", \"사과\"])\nprint(fruits.____())"
       ]
     },
     {
@@ -69,9 +69,9 @@
       "starter_code": "",
       "expected_stdout": "사과",
       "hints": [
-        "value_counts()의 결과에서 idxmax()를 쓰면 가장 큰 값의 이름(인덱스)을 알 수 있습니다.",
-        "fruits.value_counts().idxmax()를 출력해보세요.",
-        "import pandas as pd\nfruits = pd.Series([\"사과\", \"바나나\", \"사과\", \"포도\", \"바나나\", \"사과\"])\nprint(fruits.value_counts().idxmax())"
+        "value_counts()의 결과에서 가장 큰 값의 이름(인덱스)을 알려주는 메서드가 있습니다.",
+        "value_counts() 결과 뒤에 그 메서드를 이어 붙여보세요.",
+        "import pandas as pd\nfruits = pd.Series([\"사과\", \"바나나\", \"사과\", \"포도\", \"바나나\", \"사과\"])\nprint(fruits.value_counts().____())"
       ]
     },
     {
@@ -82,8 +82,8 @@
       "expected_stdout": "mean     83.333333\nmax     100.000000\nmin      60.000000\ndtype: float64",
       "hints": [
         "agg()에 원하는 통계 함수 이름을 문자열 리스트로 넘기면 한 번에 계산됩니다.",
-        "s.agg([\"mean\", \"max\", \"min\"])을 출력해보세요.",
-        "import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95, 100])\nprint(s.agg([\"mean\", \"max\", \"min\"]))"
+        "원하는 통계 함수 이름들을 문자열 리스트로 만들어 agg()에 넘겨보세요.",
+        "import pandas as pd\ns = pd.Series([70, 85, 90, 60, 95, 100])\nprint(s.agg([____, ____, ____]))"
       ]
     }
   ]

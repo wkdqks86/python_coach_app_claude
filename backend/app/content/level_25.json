@@ -35,7 +35,7 @@
       "hints": [
         "df.isnull()은 각 칸이 비어있는지 True/False로 알려줍니다.",
         ".sum()을 이어 붙이면 컬럼별로 True(결측치)의 개수를 셀 수 있습니다.",
-        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\nprint(df.isnull().sum())"
+        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\nprint(df.isnull().____())"
       ]
     },
     {
@@ -46,8 +46,8 @@
       "expected_stdout": "1",
       "hints": [
         "전체가 아니라 나이 컬럼 하나만 골라서 확인하면 됩니다.",
-        "df[\"나이\"].isnull().sum()을 출력해보세요.",
-        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\nprint(df[\"나이\"].isnull().sum())"
+        "원하는 컬럼을 먼저 선택한 뒤, 이전 문제와 같은 방법을 이어 붙이세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\nprint(df[____].isnull().sum())"
       ]
     },
     {
@@ -58,8 +58,8 @@
       "expected_stdout": "count     4.00\nmean     30.25\nstd       7.50\nmin      22.00\n25%      25.00\n50%      30.50\n75%      35.75\nmax      38.00\nName: 나이, dtype: float64",
       "hints": [
         "describe()는 결측치를 자동으로 제외하고 통계를 계산합니다.",
-        "df[\"나이\"].describe()를 출력해보세요.",
-        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\nprint(df[\"나이\"].describe())"
+        "원하는 컬럼을 선택한 뒤 describe()를 이어 붙이세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\nprint(df[____].describe())"
       ]
     },
     {
@@ -70,8 +70,8 @@
       "expected_stdout": "성별\n남    0.0\n여    1.0\nName: 생존, dtype: float64",
       "hints": [
         "groupby(\"성별\")로 같은 성별끼리 묶을 수 있습니다.",
-        "묶은 뒤 [\"생존\"].mean()을 이어 붙이면 성별별 생존율이 나옵니다.",
-        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\nprint(df.groupby(\"성별\")[\"생존\"].mean())"
+        "묶은 뒤 원하는 컬럼을 선택하고, 평균을 구하는 메서드를 이어 붙이세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\nprint(df.groupby(\"성별\")[\"생존\"].____())"
       ]
     },
     {
@@ -81,9 +81,9 @@
       "starter_code": "",
       "expected_stdout": "0    22.00\n1    38.00\n2    26.00\n3    30.25\n4    35.00\nName: 나이, dtype: float64\n성별\n남    0.0\n여    1.0\nName: 생존, dtype: float64",
       "hints": [
-        "fillna(df[\"나이\"].mean())로 결측치를 평균값으로 채울 수 있습니다.",
+        "결측치를 그 컬럼 자체의 평균값으로 채우는 방법을 앞에서 배웠습니다.",
         "채운 결과를 다시 df[\"나이\"]에 저장한 뒤, 나이 컬럼과 성별별 생존율을 순서대로 출력하세요.",
-        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\ndf[\"나이\"] = df[\"나이\"].fillna(df[\"나이\"].mean())\nprint(df[\"나이\"])\nprint(df.groupby(\"성별\")[\"생존\"].mean())"
+        "import pandas as pd\ndf = pd.DataFrame({\"성별\": [\"남\", \"여\", \"여\", \"남\", \"여\"], \"나이\": [22, 38, 26, None, 35], \"생존\": [0, 1, 1, 0, 1]})\ndf[\"나이\"] = df[\"나이\"].fillna(df[\"나이\"].____())\nprint(df[\"나이\"])\nprint(df.groupby(\"성별\")[\"생존\"].mean())"
       ]
     }
   ]

@@ -33,9 +33,9 @@
       "starter_code": "",
       "expected_stdout": "   id  score\n0   1     90\n1   2     85\n2   3     70",
       "hints": [
-        "to_csv(\"data.csv\", index=False)로 저장하세요. index=False를 빼먹지 마세요.",
-        "저장한 뒤 pd.read_csv(\"data.csv\")로 다시 읽어서 출력하세요.",
-        "import pandas as pd\ndf = pd.DataFrame({\"id\": [1, 2, 3], \"score\": [90, 85, 70]})\ndf.to_csv(\"data.csv\", index=False)\nprint(pd.read_csv(\"data.csv\"))"
+        "DataFrame을 CSV로 저장하는 메서드가 있습니다. 인덱스 컬럼이 함께 저장되지 않도록 하는 옵션도 챙기세요.",
+        "저장한 뒤에는 CSV를 다시 불러오는 함수로 읽어서 출력하세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"id\": [1, 2, 3], \"score\": [90, 85, 70]})\ndf.____(\"data.csv\", index=____)\nprint(pd.____(\"data.csv\"))"
       ]
     },
     {
@@ -46,8 +46,8 @@
       "expected_stdout": "(3, 2)",
       "hints": [
         "DataFrame에는 shape라는 속성이 바로 붙어 있습니다 (괄호 없이 씁니다).",
-        "loaded.shape를 출력해보세요.",
-        "import pandas as pd\ndf = pd.DataFrame({\"id\": [1, 2, 3], \"score\": [90, 85, 70]})\ndf.to_csv(\"data.csv\", index=False)\nloaded = pd.read_csv(\"data.csv\")\nprint(loaded.shape)"
+        "만든 데이터를 저장하고 다시 불러온 변수 뒤에 그 속성을 이어 붙여 출력해보세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"id\": [1, 2, 3], \"score\": [90, 85, 70]})\ndf.to_csv(\"data.csv\", index=False)\nloaded = pd.read_csv(\"data.csv\")\nprint(loaded.____)"
       ]
     },
     {
@@ -58,8 +58,8 @@
       "expected_stdout": "   id  score\n0   1     90\n1   2     85",
       "hints": [
         "head(n)에 원하는 개수를 넣으면 처음 n개 행만 볼 수 있습니다.",
-        "loaded.head(2)를 출력해보세요.",
-        "import pandas as pd\ndf = pd.DataFrame({\"id\": [1, 2, 3], \"score\": [90, 85, 70]})\ndf.to_csv(\"data.csv\", index=False)\nloaded = pd.read_csv(\"data.csv\")\nprint(loaded.head(2))"
+        "원하는 행 개수를 head()의 괄호 안에 넣어보세요.",
+        "import pandas as pd\ndf = pd.DataFrame({\"id\": [1, 2, 3], \"score\": [90, 85, 70]})\ndf.to_csv(\"data.csv\", index=False)\nloaded = pd.read_csv(\"data.csv\")\nprint(loaded.head(____))"
       ]
     },
     {
@@ -71,7 +71,7 @@
       "hints": [
         "제출 파일은 보통 id 컬럼과 예측값 컬럼(여기서는 target) 두 개로 구성됩니다.",
         "DataFrame을 만들어 to_csv로 저장한 뒤 다시 읽어서 출력하세요.",
-        "import pandas as pd\nsub = pd.DataFrame({\"id\": [101, 102, 103], \"target\": [0, 0, 0]})\nsub.to_csv(\"submission.csv\", index=False)\nprint(pd.read_csv(\"submission.csv\"))"
+        "import pandas as pd\nsub = pd.DataFrame({\"id\": [101, 102, 103], \"target\": [____, ____, ____]})\nsub.to_csv(\"submission.csv\", index=False)\nprint(pd.read_csv(\"submission.csv\"))"
       ]
     },
     {
@@ -83,7 +83,7 @@
       "hints": [
         "가장 간단한 베이스라인은 정답값을 몰라도, 학습 데이터의 평균으로 전부 똑같이 예측하는 것입니다.",
         "평균을 구한 뒤, test id 개수만큼 그 값을 리스트로 반복해서 채우세요 ([값] * 개수).",
-        "import pandas as pd\ntrain_target = [1, 0, 1, 0]\nmean_target = sum(train_target) / len(train_target)\ntest_ids = [5, 6, 7]\nsub = pd.DataFrame({\"id\": test_ids, \"target\": [mean_target] * len(test_ids)})\nsub.to_csv(\"submission.csv\", index=False)\nprint(pd.read_csv(\"submission.csv\"))"
+        "import pandas as pd\ntrain_target = [1, 0, 1, 0]\nmean_target = sum(train_target) / ____(train_target)\ntest_ids = [5, 6, 7]\nsub = pd.DataFrame({\"id\": test_ids, \"target\": [mean_target] * ____(test_ids)})\nsub.to_csv(\"submission.csv\", index=False)\nprint(pd.read_csv(\"submission.csv\"))"
       ]
     }
   ]

@@ -35,7 +35,7 @@
       "hints": [
         "먼저 import numpy as np로 numpy를 가져와야 합니다.",
         "np.array(리스트) 형태로 배열을 만들 수 있습니다.",
-        "import numpy as np\narr = np.array([10, 20, 30, 40, 50])\nprint(arr)"
+        "import numpy as np\narr = np.array([____])\nprint(arr)"
       ]
     },
     {
@@ -46,8 +46,8 @@
       "expected_stdout": "30",
       "hints": [
         "리스트와 마찬가지로 인덱스는 0부터 시작합니다.",
-        "arr[2]가 세 번째 값입니다.",
-        "import numpy as np\narr = np.array([10, 20, 30, 40, 50])\nprint(arr[2])"
+        "세 번째 값의 인덱스가 몇인지 생각해서 접근해보세요.",
+        "import numpy as np\narr = np.array([10, 20, 30, 40, 50])\nprint(arr[____])"
       ]
     },
     {
@@ -58,8 +58,8 @@
       "expected_stdout": "[10 20 30]",
       "hints": [
         "슬라이싱 arr[:n]은 처음부터 n개를 잘라냅니다.",
-        "arr[:3]을 출력해보세요.",
-        "import numpy as np\narr = np.array([10, 20, 30, 40, 50])\nprint(arr[:3])"
+        "몇 개까지 자를지 슬라이싱 끝 인덱스에 넣어보세요.",
+        "import numpy as np\narr = np.array([10, 20, 30, 40, 50])\nprint(arr[:____])"
       ]
     },
     {
@@ -70,8 +70,8 @@
       "expected_stdout": "합계: 425\n평균: 85.0",
       "hints": [
         "배열에는 sum()과 mean() 메서드가 바로 붙어 있습니다.",
-        "scores.sum(), scores.mean()을 각각 출력하세요.",
-        "import numpy as np\nscores = np.array([80, 90, 70, 100, 85])\nprint(\"합계:\", scores.sum())\nprint(\"평균:\", scores.mean())"
+        "라벨과 함께 콤마로 이어서 출력하면 자동으로 띄어쓰기가 들어갑니다.",
+        "import numpy as np\nscores = np.array([80, 90, 70, 100, 85])\nprint(\"합계:\", scores.____())\nprint(\"평균:\", scores.____())"
       ]
     },
     {
@@ -82,8 +82,8 @@
       "expected_stdout": "최고점: 100\n최저점: 70",
       "hints": [
         "max()와 min()으로 배열의 최댓값과 최솟값을 구할 수 있습니다.",
-        "scores.max(), scores.min()을 각각 출력하세요.",
-        "import numpy as np\nscores = np.array([80, 90, 70, 100, 85])\nprint(\"최고점:\", scores.max())\nprint(\"최저점:\", scores.min())"
+        "가장 큰 값과 가장 작은 값을 구하는 메서드 이름을 각각 떠올려 보세요.",
+        "import numpy as np\nscores = np.array([80, 90, 70, 100, 85])\nprint(\"최고점:\", scores.____())\nprint(\"최저점:\", scores.____())"
       ]
     }
   ]

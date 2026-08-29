@@ -40,9 +40,9 @@
       "starter_code": "",
       "expected_stdout": "Hi\nHi\nHi\nHi\nHi",
       "hints": [
-        "range(5)는 0,1,2,3,4로 다섯 번 반복하게 해줍니다.",
-        "for _ in range(5): 다음 줄에 print(\"Hi\")를 들여써서 넣으세요.",
-        "for _ in range(5):\n    print(\"Hi\")"
+        "range(n)은 n번 반복하게 해줍니다.",
+        "5번 반복하려면 range 괄호 안에 어떤 숫자를 넣어야 할까요?",
+        "for _ in range(____):\n    print(\"Hi\")"
       ]
     },
     {
@@ -52,9 +52,9 @@
       "starter_code": "",
       "expected_stdout": "1\n2\n3\n4\n5",
       "hints": [
-        "1부터 5까지 포함하려면 range의 끝 숫자를 6으로 써야 합니다 (끝은 포함 안 됨).",
-        "for i in range(1, 6): 다음 줄에 print(i)를 넣으세요.",
-        "for i in range(1, 6):\n    print(i)"
+        "range(시작, 끝)은 끝 숫자를 포함하지 않습니다.",
+        "1부터 5까지 포함하려면 시작과 끝에 각각 어떤 숫자를 넣어야 할지 생각해보세요.",
+        "for i in range(____, ____):\n    print(i)"
       ]
     },
     {
@@ -65,8 +65,8 @@
       "expected_stdout": "2\n4\n6\n8\n10",
       "hints": [
         "1부터 5까지 반복하면서, 반복 변수를 그대로 계산에 써보세요.",
-        "print(i * 2) 처럼 반복 변수 i에 2를 곱해서 출력하세요.",
-        "for i in range(1, 6):\n    print(i * 2)"
+        "반복 변수에 2를 곱하는 연산자를 사용해보세요.",
+        "for i in range(1, 6):\n    print(i ____ 2)"
       ]
     },
     {
@@ -76,9 +76,9 @@
       "starter_code": "",
       "expected_stdout": "1\n2\n4\n5",
       "hints": [
-        "if 조건에서 아무 동작도 하지 않으려면 pass를 씁니다.",
-        "3일 때는 pass, 그 외에는 else에서 print(i)를 실행하세요.",
-        "for i in range(1, 6):\n    if i == 3:\n        pass\n    else:\n        print(i)"
+        "if 조건에서 아무 동작도 하지 않으려면 이 레벨에서 배운 키워드를 씁니다.",
+        "3일 때 실행할 블록을 비워두는 대신, 그 키워드로 채워보세요.",
+        "for i in range(1, 6):\n    if i == 3:\n        ____\n    else:\n        print(i)"
       ]
     },
     {
@@ -89,8 +89,8 @@
       "expected_stdout": "2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6\n2 x 4 = 8\n2 x 5 = 10\n2 x 6 = 12\n2 x 7 = 14\n2 x 8 = 16\n2 x 9 = 18\n3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15\n3 x 6 = 18\n3 x 7 = 21\n3 x 8 = 24\n3 x 9 = 27",
       "hints": [
         "for 안에 또 다른 for를 넣어서 '단'을 바꿔가며 반복할 수 있습니다 (반복문 중첩).",
-        "바깥쪽 for n in range(2, 4)로 2단과 3단을 돌고, 안쪽 for i in range(1, 10)으로 각 단을 출력하세요.",
-        "for n in range(2, 4):\n    for i in range(1, 10):\n        print(n, \"x\", i, \"=\", n * i)"
+        "바깥쪽 for로 2단과 3단을 돌고, 안쪽 for로 1부터 9까지 각 단을 출력하세요.",
+        "for n in range(2, 4):\n    for i in range(1, ____):\n        print(n, \"x\", i, \"=\", n * i)"
       ]
     }
   ]

@@ -33,9 +33,9 @@
       "starter_code": "",
       "expected_stdout": "8 2",
       "hints": [
-        "train_test_split(X, y, test_size=0.2, random_state=42)로 나눌 수 있습니다.",
+        "데이터를 학습용/검증용으로 나눠주는 함수가 sklearn.model_selection에 있습니다.",
         "결과로 X_train, X_test, y_train, y_test 네 개가 순서대로 나옵니다. len()으로 각 크기를 출력하세요.",
-        "from sklearn.model_selection import train_test_split\nX = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]\ny = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\nprint(len(X_train), len(X_test))"
+        "from sklearn.model_selection import train_test_split\nX = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]\ny = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]\nX_train, X_test, y_train, y_test = ____(X, y, test_size=0.2, random_state=42)\nprint(len(X_train), len(X_test))"
       ]
     },
     {
@@ -45,9 +45,9 @@
       "starter_code": "",
       "expected_stdout": "[0]",
       "hints": [
-        "model = LogisticRegression() 으로 모델을 만들고 model.fit(X_train, y_train)으로 학습시키세요.",
-        "model.predict([[5]])처럼 새로운 값을 리스트 안의 리스트로 넘겨서 예측하세요.",
-        "from sklearn.linear_model import LogisticRegression\nX_train = [[1], [2], [3], [8], [9], [10]]\ny_train = [0, 0, 0, 1, 1, 1]\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\nprint(model.predict([[5]]))"
+        "모델 객체를 만든 뒤, 데이터를 넣어 학습시키는 메서드를 호출해야 합니다.",
+        "학습이 끝난 모델에 새 값을 예측시키는 메서드를 사용해보세요. 입력은 리스트 안의 리스트 형태여야 합니다.",
+        "from sklearn.linear_model import LogisticRegression\nX_train = [[1], [2], [3], [8], [9], [10]]\ny_train = [0, 0, 0, 1, 1, 1]\nmodel = LogisticRegression()\nmodel.____(X_train, y_train)\nprint(model.____([[5]]))"
       ]
     },
     {
@@ -58,8 +58,8 @@
       "expected_stdout": "0.8",
       "hints": [
         "accuracy_score(정답, 예측) 형태로 순서에 주의해서 넘기세요.",
-        "print(accuracy_score(y_true, y_pred))를 그대로 써보세요.",
-        "from sklearn.metrics import accuracy_score\ny_true = [0, 1, 1, 0, 1]\ny_pred = [0, 1, 0, 0, 1]\nprint(accuracy_score(y_true, y_pred))"
+        "정답과 예측값 변수를 그 함수에 순서대로 넣어 출력해보세요.",
+        "from sklearn.metrics import accuracy_score\ny_true = [0, 1, 1, 0, 1]\ny_pred = [0, 1, 0, 0, 1]\nprint(____(y_true, y_pred))"
       ]
     },
     {
@@ -71,7 +71,7 @@
       "hints": [
         "학습에 쓴 X_train을 그대로 predict()에 다시 넣어보세요.",
         "예측 결과와 y_train을 accuracy_score로 비교하세요.",
-        "from sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score\nX_train = [[1], [2], [3], [8], [9], [10]]\ny_train = [0, 0, 0, 1, 1, 1]\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\npred = model.predict(X_train)\nprint(accuracy_score(y_train, pred))"
+        "from sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score\nX_train = [[1], [2], [3], [8], [9], [10]]\ny_train = [0, 0, 0, 1, 1, 1]\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\npred = model.predict(____)\nprint(accuracy_score(y_train, ____))"
       ]
     },
     {
@@ -83,7 +83,7 @@
       "hints": [
         "지금까지 배운 세 단계(나누기 → 학습 → 평가)를 순서대로 이어 붙이면 됩니다.",
         "검증에는 X_test/y_test를 쓴다는 점에 주의하세요 — 학습에 쓴 데이터로 평가하면 안 됩니다.",
-        "from sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score\nX = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]\ny = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\npred = model.predict(X_test)\nprint(\"정확도:\", accuracy_score(y_test, pred))"
+        "from sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score\nX = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]\ny = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\npred = model.predict(____)\nprint(\"정확도:\", accuracy_score(____, pred))"
       ]
     }
   ]

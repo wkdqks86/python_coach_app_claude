@@ -34,8 +34,8 @@
       "expected_stdout": "0으로 나눌 수 없어요",
       "hints": [
         "0으로 나누면 어떤 종류의 오류(Error)가 나는지 떠올려 보세요.",
-        "try 블록 안에 문제가 되는 코드를, except ZeroDivisionError: 안에 대체 코드를 넣으세요.",
-        "try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print(\"0으로 나눌 수 없어요\")"
+        "그 오류 이름을 except 뒤에 그대로 적어주면 됩니다.",
+        "try:\n    print(10 / 0)\nexcept ____:\n    print(\"0으로 나눌 수 없어요\")"
       ]
     },
     {
@@ -46,8 +46,8 @@
       "expected_stdout": "숫자로 변환할 수 없어요",
       "hints": [
         "숫자로 바꿀 수 없는 문자열을 int()에 넣으면 어떤 오류가 날지 떠올려 보세요.",
-        "except ValueError: 블록에 대체 메시지를 출력하세요.",
-        "try:\n    print(int(\"abc\"))\nexcept ValueError:\n    print(\"숫자로 변환할 수 없어요\")"
+        "그 오류 이름을 except 뒤에 그대로 적어주면 됩니다.",
+        "try:\n    print(int(\"abc\"))\nexcept ____:\n    print(\"숫자로 변환할 수 없어요\")"
       ]
     },
     {
@@ -57,9 +57,9 @@
       "starter_code": "",
       "expected_stdout": "범위를 벗어났어요",
       "hints": [
-        "리스트 범위를 벗어난 인덱스로 접근하면 IndexError가 발생합니다.",
-        "try 블록에 nums[10]을, except IndexError: 블록에 대체 메시지를 넣으세요.",
-        "nums = [1, 2, 3]\ntry:\n    print(nums[10])\nexcept IndexError:\n    print(\"범위를 벗어났어요\")"
+        "리스트 범위를 벗어난 인덱스로 접근하면 오류가 발생합니다. 어떤 이름의 오류일지 생각해보세요.",
+        "그 오류 이름을 except 뒤에 그대로 적어주면 됩니다.",
+        "nums = [1, 2, 3]\ntry:\n    print(nums[10])\nexcept ____:\n    print(\"범위를 벗어났어요\")"
       ]
     },
     {
@@ -69,9 +69,9 @@
       "starter_code": "",
       "expected_stdout": "5\n완료",
       "hints": [
-        "예외가 없어도 finally 블록은 항상 실행됩니다.",
-        "try: 안에 print(5), finally: 안에 완료 메시지를 넣으세요.",
-        "try:\n    print(5)\nfinally:\n    print(\"완료\")"
+        "예외가 있든 없든 항상 실행되는 블록이 있습니다. 이 레벨의 개념 이름을 떠올려 보세요.",
+        "try 블록 뒤에 그 블록을 붙이고 안에 완료 메시지를 넣으세요.",
+        "try:\n    print(5)\n____:\n    print(\"완료\")"
       ]
     },
     {
@@ -82,8 +82,8 @@
       "expected_stdout": "10\nabc는 숫자가 아닙니다\n20",
       "hints": [
         "for로 리스트를 순회하면서, 각 값마다 try/except를 적용하세요.",
-        "변환에 실패하면 except 블록에서 v를 그대로 활용해 메시지를 만드세요.",
-        "values = [\"10\", \"abc\", \"20\"]\nfor v in values:\n    try:\n        print(int(v))\n    except ValueError:\n        print(v + \"는 숫자가 아닙니다\")"
+        "변환에 실패하면 그 오류의 except 블록에서 v를 그대로 활용해 메시지를 만드세요.",
+        "values = [\"10\", \"abc\", \"20\"]\nfor v in values:\n    try:\n        print(int(v))\n    except ____:\n        print(v + \"는 숫자가 아닙니다\")"
       ]
     }
   ]
