@@ -417,6 +417,7 @@ button.primary:hover:not(:disabled) {
 
 .next-btn {
   margin-top: 1.2rem;
+  margin-left: 0.75rem;
 }
 
 @keyframes fade-in {
