@@ -88,6 +88,9 @@ export default function ProblemPanel({
         onChange={(e) => setCode(e.target.value)}
         onKeyDown={handleCodeKeyDown}
         spellCheck={false}
+        autoCapitalize="off"
+        autoCorrect="off"
+        autoComplete="off"
         rows={6}
       />
 
@@ -99,6 +102,10 @@ export default function ProblemPanel({
             value={stdin}
             onChange={(e) => setStdin(e.target.value)}
             placeholder="input()에 전달할 값을 한 줄씩 입력 (실행 미리보기용)"
+            spellCheck={false}
+            autoCapitalize="off"
+            autoCorrect="off"
+            autoComplete="off"
             rows={2}
           />
         </>
