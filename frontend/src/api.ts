@@ -15,11 +15,11 @@ async function handle<T>(res: Response): Promise<T> {
 }
 
 export function getLevels(): Promise<LevelSummary[]> {
-  return fetch('/api/levels').then(handle)
+  return fetch('/api/levels').then(handle<LevelSummary[]>)
 }
 
 export function getLevel(id: number): Promise<Level> {
-  return fetch(`/api/levels/${id}`).then(handle)
+  return fetch(`/api/levels/${id}`).then(handle<Level>)
 }
 
 export function runCode(
@@ -30,7 +30,7 @@ export function runCode(
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ code, stdin }),
-  }).then(handle)
+  }).then(handle<{ stdout: string; stderr: string; timed_out: boolean }>)
 }
 
 export function submitCode(problemId: string, code: string): Promise<SubmitResult> {
@@ -38,19 +38,19 @@ export function submitCode(problemId: string, code: string): Promise<SubmitResul
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ problem_id: problemId, code }),
-  }).then(handle)
+  }).then(handle<SubmitResult>)
 }
 
 export function getReview(): Promise<ReviewItem[]> {
-  return fetch('/api/review').then(handle)
+  return fetch('/api/review').then(handle<ReviewItem[]>)
 }
 
 export function getDueReviews(): Promise<DueReview[]> {
-  return fetch('/api/review/due').then(handle)
+  return fetch('/api/review/due').then(handle<DueReview[]>)
 }
 
 export function getProgress(): Promise<ProgressSummary> {
-  return fetch('/api/progress').then(handle)
+  return fetch('/api/progress').then(handle<ProgressSummary>)
 }
 
 export function getSolvedProblemIds(): Promise<string[]> {
@@ -60,7 +60,7 @@ export function getSolvedProblemIds(): Promise<string[]> {
 }
 
 export function getReport(): Promise<LearningReport> {
-  return fetch('/api/report').then(handle)
+  return fetch('/api/report').then(handle<LearningReport>)
 }
 
 export function askCoach(problemId: string, code: string, question: string): Promise<CoachResponse> {
@@ -68,5 +68,5 @@ export function askCoach(problemId: string, code: string, question: string): Pro
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ problem_id: problemId, code, question }),
-  }).then(handle)
+  }).then(handle<CoachResponse>)
 }
