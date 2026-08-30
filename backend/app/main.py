@@ -20,7 +20,12 @@ app = FastAPI(title="PyCoach API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:5190"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:5190",
+        "https://python-coach-app-claude.vercel.app",
+    ],
+    allow_origin_regex=r"https://python-coach-app-claude.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
