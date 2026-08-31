@@ -369,6 +369,37 @@ button.primary:hover:not(:disabled) {
   margin: -0.6rem 0 0.8rem;
 }
 
+.code-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+  padding: 0.35rem 0.5rem;
+}
+
+.indent-btn {
+  border: 1px solid transparent;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.indent-btn:hover {
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.indent-btn:active {
+  transform: translateY(1px);
+}
+
 .code-editor {
   width: 100%;
   box-sizing: border-box;
@@ -377,6 +408,8 @@ button.primary:hover:not(:disabled) {
   line-height: 1.55;
   padding: 0.85rem 1rem;
   border-radius: var(--radius-md);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   border: 1px solid var(--border);
   background: var(--surface);
   resize: vertical;

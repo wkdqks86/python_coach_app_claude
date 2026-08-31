@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
 import { runCode, submitCode } from '../api'
 import type { Problem, SubmitResult } from '../types'
@@ -29,6 +29,7 @@ export default function ProblemPanel({
   const [result, setResult] = useState<SubmitResult | null>(null)
   const [hintsShown, setHintsShown] = useState(0)
   const [busy, setBusy] = useState(false)
+  const codeEditorRef = useRef<HTMLTextAreaElement>(null)
 
   async function handleRun() {
     setBusy(true)
@@ -52,16 +53,24 @@ export default function ProblemPanel({
     }
   }
 
-  function handleCodeKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
-    if (e.key !== 'Tab') return
-    e.preventDefault()
-    const target = e.currentTarget
+  function insertIndent(target: HTMLTextAreaElement) {
     const start = target.selectionStart
     const end = target.selectionEnd
     setCode(code.slice(0, start) + '    ' + code.slice(end))
     requestAnimationFrame(() => {
       target.selectionStart = target.selectionEnd = start + 4
+      target.focus()
     })
+  }
+
+  function handleCodeKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
+    if (e.key !== 'Tab') return
+    e.preventDefault()
+    insertIndent(e.currentTarget)
+  }
+
+  function handleIndentButton() {
+    if (codeEditorRef.current) insertIndent(codeEditorRef.current)
   }
 
   const hasProgress = typeof index === 'number' && typeof total === 'number'
@@ -82,7 +91,20 @@ export default function ProblemPanel({
       )}
       <p className="prompt">{problem.prompt}</p>
 
+      <div className="code-toolbar">
+        <button
+          type="button"
+          className="indent-btn"
+          onPointerDown={(e) => {
+            e.preventDefault()
+            handleIndentButton()
+          }}
+        >
+          ⇥ 들여쓰기
+        </button>
+      </div>
       <textarea
+        ref={codeEditorRef}
         className="code-editor"
         value={code}
         onChange={(e) => setCode(e.target.value)}
