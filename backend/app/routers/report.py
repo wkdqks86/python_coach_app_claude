@@ -1,8 +1,9 @@
 from datetime import date, timedelta
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 from app import content_loader, db
+from app.deps import require_nickname
 from app.routers.progress import _compute_streak
 from app.schemas import LearningReport, WeakConcept
 
@@ -25,16 +26,16 @@ def _highlight_message(problems_solved: int, active_days: int, reviews_advanced:
 
 
 @router.get("/report", response_model=LearningReport)
-def report():
+def report(nickname: str = Depends(require_nickname)):
     end = date.today()
     start = end - timedelta(days=REPORT_WINDOW_DAYS - 1)
     start_s, end_s = start.isoformat(), end.isoformat()
 
-    active_dates_period = db.get_active_dates_in_range(start_s, end_s)
-    total_attempts, passed_attempts = db.get_attempt_stats_in_range(start_s, end_s)
-    newly_solved = db.get_newly_solved_problem_ids(start_s, end_s)
-    review_counts = db.get_review_event_counts_in_range(start_s, end_s)
-    fail_counts = db.get_fail_counts_in_range(start_s, end_s)
+    active_dates_period = db.get_active_dates_in_range(nickname, start_s, end_s)
+    total_attempts, passed_attempts = db.get_attempt_stats_in_range(nickname, start_s, end_s)
+    newly_solved = db.get_newly_solved_problem_ids(nickname, start_s, end_s)
+    review_counts = db.get_review_event_counts_in_range(nickname, start_s, end_s)
+    fail_counts = db.get_fail_counts_in_range(nickname, start_s, end_s)
 
     new_concepts = {
         content_loader.get_problem_concept(pid)
@@ -79,6 +80,6 @@ def report():
         reviews_graduated=reviews_graduated,
         reviews_missed=reviews_missed,
         weak_concepts=weak_concepts,
-        streak_days=_compute_streak(db.get_active_dates()),
+        streak_days=_compute_streak(db.get_active_dates(nickname)),
         highlight_message=_highlight_message(len(newly_solved), len(active_dates_period), reviews_advanced),
     )

@@ -1,8 +1,9 @@
 from datetime import date, timedelta
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 from app import content_loader, db
+from app.deps import require_nickname
 from app.schemas import LevelProgress, ProgressSummary, SolvedProblems, WeakConcept
 
 router = APIRouter(prefix="/api", tags=["progress"])
@@ -30,16 +31,16 @@ def _compute_streak(active_dates: list[str]) -> int:
 
 
 @router.get("/solved", response_model=SolvedProblems)
-def solved():
-    return SolvedProblems(problem_ids=sorted(db.get_solved_problem_ids()))
+def solved(nickname: str = Depends(require_nickname)):
+    return SolvedProblems(problem_ids=sorted(db.get_solved_problem_ids(nickname)))
 
 
 @router.get("/progress", response_model=ProgressSummary)
-def progress():
-    solved_ids = db.get_solved_problem_ids()
-    fail_counts = db.get_fail_counts_by_problem()
-    total_attempts, passed_attempts = db.get_attempt_stats()
-    active_dates = db.get_active_dates()
+def progress(nickname: str = Depends(require_nickname)):
+    solved_ids = db.get_solved_problem_ids(nickname)
+    fail_counts = db.get_fail_counts_by_problem(nickname)
+    total_attempts, passed_attempts = db.get_attempt_stats(nickname)
+    active_dates = db.get_active_dates(nickname)
 
     levels: list[LevelProgress] = []
     total_problems = 0

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import { clearNickname, getNickname } from './api'
+import NicknameGate from './components/NicknameGate'
 import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
 import LevelView from './pages/LevelView'
@@ -14,40 +16,56 @@ type View =
   | { name: 'level'; levelId: number }
 
 function App() {
+  const [nickname, setNicknameState] = useState<string | null>(() => getNickname())
   const [view, setView] = useState<View>({ name: 'home' })
+
+  if (!nickname) {
+    return <NicknameGate onReady={setNicknameState} />
+  }
+
+  function handleSwitchProfile() {
+    clearNickname()
+    setNicknameState(null)
+    setView({ name: 'home' })
+  }
 
   return (
     <>
       <nav className="nav">
         <span className="nav-brand">PyCoach</span>
-        <div className="nav-links">
-          <button
-            type="button"
-            className={view.name === 'home' ? 'nav-link active' : 'nav-link'}
-            onClick={() => setView({ name: 'home' })}
-          >
-            오늘의 학습
-          </button>
-          <button
-            type="button"
-            className={view.name === 'review' ? 'nav-link active' : 'nav-link'}
-            onClick={() => setView({ name: 'review' })}
-          >
-            오답노트
-          </button>
-          <button
-            type="button"
-            className={view.name === 'progress' ? 'nav-link active' : 'nav-link'}
-            onClick={() => setView({ name: 'progress' })}
-          >
-            진도율
-          </button>
-          <button
-            type="button"
-            className={view.name === 'report' ? 'nav-link active' : 'nav-link'}
-            onClick={() => setView({ name: 'report' })}
-          >
-            리포트
+        <div className="nav-right">
+          <div className="nav-links">
+            <button
+              type="button"
+              className={view.name === 'home' ? 'nav-link active' : 'nav-link'}
+              onClick={() => setView({ name: 'home' })}
+            >
+              오늘의 학습
+            </button>
+            <button
+              type="button"
+              className={view.name === 'review' ? 'nav-link active' : 'nav-link'}
+              onClick={() => setView({ name: 'review' })}
+            >
+              오답노트
+            </button>
+            <button
+              type="button"
+              className={view.name === 'progress' ? 'nav-link active' : 'nav-link'}
+              onClick={() => setView({ name: 'progress' })}
+            >
+              진도율
+            </button>
+            <button
+              type="button"
+              className={view.name === 'report' ? 'nav-link active' : 'nav-link'}
+              onClick={() => setView({ name: 'report' })}
+            >
+              리포트
+            </button>
+          </div>
+          <button type="button" className="nav-profile" onClick={handleSwitchProfile}>
+            {nickname} ▾
           </button>
         </div>
       </nav>

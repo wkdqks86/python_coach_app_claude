@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 
 from app import db
-from app.routers import coach, levels, practice, progress, report, review
+from app.routers import coach, levels, practice, profile, progress, report, review
 
 
 @asynccontextmanager
@@ -37,6 +37,7 @@ app.include_router(review.router)
 app.include_router(progress.router)
 app.include_router(coach.router)
 app.include_router(report.router)
+app.include_router(profile.router)
 
 
 @app.get("/api/hello")

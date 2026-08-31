@@ -21,15 +21,42 @@
   flex-shrink: 0;
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
 .nav-links {
   display: flex;
   gap: 0.25rem;
+  min-width: 0;
   overflow-x: auto;
   scrollbar-width: none;
 }
 
 .nav-links::-webkit-scrollbar {
   display: none;
+}
+
+.nav-profile {
+  border: none;
+  background: none;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.nav-profile:hover {
+  color: var(--text);
+  background: var(--surface-alt);
 }
 
 .nav-link {
@@ -58,6 +85,11 @@
   .nav-link {
     padding: 0.35rem 0.5rem;
     font-size: 0.82rem;
+  }
+
+  .nav-profile {
+    font-size: 0.76rem;
+    padding: 0.3rem 0.4rem;
   }
 }
 
@@ -657,4 +689,96 @@ button.primary:hover:not(:disabled) {
   border-radius: var(--radius-md);
   padding: 0.7rem 1rem;
   margin: 0.5rem 0;
+}
+
+/* Nickname gate */
+.nickname-gate {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.nickname-gate-card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 2rem 1.75rem;
+  text-align: center;
+}
+
+.nickname-gate-card h1 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.nickname-gate-intro {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.nickname-gate-tabs {
+  display: flex;
+  gap: 0.4rem;
+  background: var(--surface-alt);
+  border-radius: 999px;
+  padding: 0.25rem;
+  margin-bottom: 1.2rem;
+}
+
+.nickname-gate-tabs button {
+  flex: 1;
+  border: none;
+  background: none;
+  border-radius: 999px;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-faint);
+  cursor: pointer;
+}
+
+.nickname-gate-tabs button.active {
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.nickname-gate-input {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0.95rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  text-align: center;
+}
+
+.nickname-gate-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.nickname-gate-submit {
+  width: 100%;
+  margin-top: 0.7rem;
+}
+
+.nickname-gate-error {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-top: 0.9rem;
+}
+
+.nickname-gate-hint {
+  color: var(--text-faint);
+  font-size: 0.8rem;
+  margin-top: 1rem;
 }

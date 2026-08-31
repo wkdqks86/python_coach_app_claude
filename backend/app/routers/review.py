@@ -1,16 +1,17 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 from app import content_loader, db
+from app.deps import require_nickname
 from app.schemas import DueReview, ReviewItem
 
 router = APIRouter(prefix="/api", tags=["review"])
 
 
 @router.get("/review/due", response_model=list[DueReview])
-def review_due():
+def review_due(nickname: str = Depends(require_nickname)):
     """Problems whose spaced-repetition schedule says they're due today."""
     due = []
-    for problem_id in db.get_due_review_problem_ids():
+    for problem_id in db.get_due_review_problem_ids(nickname):
         level_id = content_loader.get_problem_level(problem_id)
         if level_id is None:
             continue
@@ -19,9 +20,9 @@ def review_due():
 
 
 @router.get("/review", response_model=list[ReviewItem])
-def review():
+def review(nickname: str = Depends(require_nickname)):
     items = []
-    for raw in db.get_review_items():
+    for raw in db.get_review_items(nickname):
         level_id = content_loader.get_problem_level(raw["problem_id"])
         if level_id is None:
             continue

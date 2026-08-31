@@ -1,6 +1,7 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 
 from app import content_loader, db
+from app.deps import require_nickname
 from app.execution import run_python
 from app.schemas import RunRequest, RunResult, SubmitRequest, SubmitResult
 
@@ -37,7 +38,7 @@ def run(req: RunRequest):
 
 
 @router.post("/submit", response_model=SubmitResult)
-def submit(req: SubmitRequest):
+def submit(req: SubmitRequest, nickname: str = Depends(require_nickname)):
     expected = content_loader.get_expected_stdout(req.problem_id)
     if expected is None:
         raise HTTPException(status_code=404, detail="문제를 찾을 수 없습니다.")
@@ -48,8 +49,8 @@ def submit(req: SubmitRequest):
     stdout, stderr, timed_out = run_python(req.code, stdin)
     passed = not timed_out and _outputs_match(stdout, expected)
 
-    db.save_attempt(req.problem_id, req.code, passed)
-    db.record_review_outcome(req.problem_id, passed)
+    db.save_attempt(nickname, req.problem_id, req.code, passed)
+    db.record_review_outcome(nickname, req.problem_id, passed)
 
     if passed:
         feedback = "정확합니다! 다음 문제로 넘어가도 좋아요."
