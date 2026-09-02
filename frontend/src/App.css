@@ -733,6 +733,23 @@ button.primary:hover:not(:disabled) {
   margin: 0;
 }
 
+.phase-progress-group {
+  margin: 1.4rem 0;
+}
+
+.phase-progress-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.phase-progress-heading .phase-title {
+  font-size: 0.88rem;
+}
+
 .level-progress {
   margin: 1rem 0;
 }

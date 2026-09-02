@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getProgress } from '../api'
+import { PHASES } from '../phases'
 import type { ProgressSummary } from '../types'
 
 function pct(rate: number): string {
@@ -37,20 +38,38 @@ export default function Dashboard() {
       </div>
 
       <h2>레벨별 진도</h2>
-      {summary.levels.map((level) => (
-        <div key={level.level_id} className="level-progress">
-          <div className="level-progress-header">
-            <span>레벨 {level.level_id}. {level.title}</span>
-            <span className="muted">{level.solved_problems} / {level.total_problems}</span>
+      {PHASES.map((phase) => {
+        const phaseLevels = summary.levels.filter(
+          (l) => l.level_id >= phase.minLevel && l.level_id <= phase.maxLevel,
+        )
+        if (phaseLevels.length === 0) return null
+
+        const solved = phaseLevels.reduce((sum, l) => sum + l.solved_problems, 0)
+        const total = phaseLevels.reduce((sum, l) => sum + l.total_problems, 0)
+
+        return (
+          <div key={phase.id} className="phase-progress-group">
+            <div className="phase-progress-heading">
+              <span className="phase-title">{phase.label}</span>
+              <span className="muted">{solved} / {total}</span>
+            </div>
+            {phaseLevels.map((level) => (
+              <div key={level.level_id} className="level-progress">
+                <div className="level-progress-header">
+                  <span>레벨 {level.level_id}. {level.title}</span>
+                  <span className="muted">{level.solved_problems} / {level.total_problems}</span>
+                </div>
+                <div className="progress-bar">
+                  <div
+                    className="progress-bar-fill"
+                    style={{ width: pct(level.completion_rate) }}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="progress-bar">
-            <div
-              className="progress-bar-fill"
-              style={{ width: pct(level.completion_rate) }}
-            />
-          </div>
-        </div>
-      ))}
+        )
+      })}
 
       <h2>자주 막힌 개념</h2>
       {summary.weak_concepts.length === 0 ? (
