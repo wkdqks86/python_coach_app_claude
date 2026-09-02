@@ -815,3 +815,45 @@ button.primary:hover:not(:disabled) {
   font-size: 0.8rem;
   margin-top: 1rem;
 }
+
+/* Loading overlay (popup) */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 42, 38, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 200;
+}
+
+.loading-overlay-card {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 1.1rem 1.5rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 2.5px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

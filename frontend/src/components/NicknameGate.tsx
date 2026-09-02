@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { createProfile, resumeProfile, setNickname } from '../api'
+import LoadingOverlay from './LoadingOverlay'
 
 interface Props {
   onReady: (nickname: string) => void
@@ -39,6 +40,9 @@ export default function NicknameGate({ onReady }: Props) {
 
   return (
     <div className="nickname-gate">
+      {busy && (
+        <LoadingOverlay message="서버 연결 중... 처음 접속이면 최대 1분 정도 걸릴 수 있어요." />
+      )}
       <div className="nickname-gate-card">
         <h1>PyCoach</h1>
         <p className="nickname-gate-intro">닉네임으로 나만의 학습 진도를 저장해요.</p>

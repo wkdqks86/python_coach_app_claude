@@ -3,6 +3,7 @@ import type { KeyboardEvent } from 'react'
 import { runCode, submitCode } from '../api'
 import type { Problem, SubmitResult } from '../types'
 import CoachBox from './CoachBox'
+import LoadingOverlay from './LoadingOverlay'
 
 interface Props {
   problem: Problem
@@ -28,28 +29,29 @@ export default function ProblemPanel({
   const [output, setOutput] = useState<{ stdout: string; stderr: string } | null>(null)
   const [result, setResult] = useState<SubmitResult | null>(null)
   const [hintsShown, setHintsShown] = useState(0)
-  const [busy, setBusy] = useState(false)
+  const [busyAction, setBusyAction] = useState<'run' | 'submit' | null>(null)
+  const busy = busyAction !== null
   const codeEditorRef = useRef<HTMLTextAreaElement>(null)
 
   async function handleRun() {
-    setBusy(true)
+    setBusyAction('run')
     try {
       const res = await runCode(code, stdin)
       setOutput(res)
       setResult(null)
     } finally {
-      setBusy(false)
+      setBusyAction(null)
     }
   }
 
   async function handleSubmit() {
-    setBusy(true)
+    setBusyAction('submit')
     try {
       const res = await submitCode(problem.id, code)
       setResult(res)
       setOutput({ stdout: res.stdout, stderr: res.stderr })
     } finally {
-      setBusy(false)
+      setBusyAction(null)
     }
   }
 
@@ -77,6 +79,8 @@ export default function ProblemPanel({
 
   return (
     <div className="panel">
+      {busyAction === 'run' && <LoadingOverlay message="코드를 실행하는 중..." />}
+      {busyAction === 'submit' && <LoadingOverlay message="채점하는 중..." />}
       {badge && <span className="badge review-badge">{badge}</span>}
       {hasProgress && (
         <>
