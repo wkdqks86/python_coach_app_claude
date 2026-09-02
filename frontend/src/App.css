@@ -179,6 +179,56 @@ button.primary:hover:not(:disabled) {
 }
 
 /* Home */
+.phase-section {
+  margin: 1.1rem 0;
+}
+
+.phase-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 1.3rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.phase-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.phase-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.phase-chevron {
+  width: 0;
+  height: 0;
+  flex-shrink: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--text-faint);
+}
+
+.phase-chevron.open {
+  border-top: none;
+  border-bottom: 6px solid var(--text-faint);
+}
+
+.phase-body {
+  padding-top: 0.2rem;
+}
+
 .level-card {
   background: var(--surface);
   border: 1px solid var(--border-soft);
