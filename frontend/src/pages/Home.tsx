@@ -10,7 +10,8 @@ interface Props {
 export default function Home({ onStart }: Props) {
   const [levels, setLevels] = useState<LevelSummary[] | null>(null)
   const [progressByLevel, setProgressByLevel] = useState<Record<number, LevelProgress>>({})
-  const [openPhaseId, setOpenPhaseId] = useState<number | null>(null)
+  // undefined = not decided yet (auto-open still pending); null = user closed it.
+  const [openPhaseId, setOpenPhaseId] = useState<number | null | undefined>(undefined)
 
   useEffect(() => {
     getLevels().then(setLevels)
@@ -34,7 +35,7 @@ export default function Home({ onStart }: Props) {
   // Default-open whichever phase the learner is currently in, once progress
   // has loaded — before that (or once every phase is done), start on Phase 1.
   useEffect(() => {
-    if (openPhaseId !== null) return
+    if (openPhaseId !== undefined) return
     if (Object.keys(progressByLevel).length === 0) return
     const current = nextLevel ? phaseFor(nextLevel.id) : PHASES[0]
     setOpenPhaseId(current?.id ?? PHASES[0].id)
