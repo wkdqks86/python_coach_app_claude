@@ -18,7 +18,10 @@ BOX_INTERVALS_DAYS = [1, 3, 7, 14]
 
 @contextmanager
 def get_connection():
-    conn = psycopg.connect(DATABASE_URL)
+    # prepare_threshold=None disables server-side prepared statements —
+    # Supabase/pgbouncer-style poolers can route a session across different
+    # backend connections, where a cached prepared plan doesn't reliably apply.
+    conn = psycopg.connect(DATABASE_URL, prepare_threshold=None)
     try:
         yield conn
     finally:
@@ -30,7 +33,7 @@ def init_db() -> None:
         with conn.cursor() as cur:
             cur.execute(
                 """
-                CREATE TABLE IF NOT EXISTS users (
+                CREATE TABLE IF NOT EXISTS pycoach_users (
                     nickname TEXT PRIMARY KEY,
                     created_at TIMESTAMPTZ NOT NULL DEFAULT now()
                 )
@@ -82,7 +85,7 @@ def create_user(nickname: str) -> bool:
     with get_connection() as conn:
         try:
             with conn.cursor() as cur:
-                cur.execute("INSERT INTO users (nickname) VALUES (%s)", (nickname,))
+                cur.execute("INSERT INTO pycoach_users (nickname) VALUES (%s)", (nickname,))
             conn.commit()
             return True
         except psycopg.errors.UniqueViolation:
@@ -93,7 +96,7 @@ def create_user(nickname: str) -> bool:
 def user_exists(nickname: str) -> bool:
     with get_connection() as conn:
         with conn.cursor() as cur:
-            cur.execute("SELECT 1 FROM users WHERE nickname = %s", (nickname,))
+            cur.execute("SELECT 1 FROM pycoach_users WHERE nickname = %s", (nickname,))
             row = cur.fetchone()
     return row is not None
 
