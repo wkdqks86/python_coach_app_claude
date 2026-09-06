@@ -41,7 +41,7 @@ def init_db() -> None:
             )
             cur.execute(
                 """
-                CREATE TABLE IF NOT EXISTS attempts (
+                CREATE TABLE IF NOT EXISTS pycoach_attempts (
                     id SERIAL PRIMARY KEY,
                     nickname TEXT NOT NULL DEFAULT '',
                     problem_id TEXT NOT NULL,
@@ -53,7 +53,7 @@ def init_db() -> None:
             )
             cur.execute(
                 """
-                CREATE TABLE IF NOT EXISTS review_schedule (
+                CREATE TABLE IF NOT EXISTS pycoach_review_schedule (
                     nickname TEXT NOT NULL,
                     problem_id TEXT NOT NULL,
                     box INTEGER NOT NULL DEFAULT 0,
@@ -65,7 +65,7 @@ def init_db() -> None:
             )
             cur.execute(
                 """
-                CREATE TABLE IF NOT EXISTS review_events (
+                CREATE TABLE IF NOT EXISTS pycoach_review_events (
                     id SERIAL PRIMARY KEY,
                     nickname TEXT NOT NULL DEFAULT '',
                     problem_id TEXT NOT NULL,
@@ -105,7 +105,7 @@ def save_attempt(nickname: str, problem_id: str, code: str, passed: bool) -> Non
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "INSERT INTO attempts (nickname, problem_id, code, passed) VALUES (%s, %s, %s, %s)",
+                "INSERT INTO pycoach_attempts (nickname, problem_id, code, passed) VALUES (%s, %s, %s, %s)",
                 (nickname, problem_id, code, int(passed)),
             )
         conn.commit()
@@ -117,7 +117,7 @@ def get_review_items(nickname: str) -> list[dict]:
     with get_connection() as conn:
         with conn.cursor(row_factory=dict_row) as cur:
             cur.execute(
-                "SELECT problem_id, code, passed, created_at FROM attempts "
+                "SELECT problem_id, code, passed, created_at FROM pycoach_attempts "
                 "WHERE nickname = %s ORDER BY created_at ASC, id ASC",
                 (nickname,),
             )
@@ -146,7 +146,7 @@ def get_solved_problem_ids(nickname: str) -> set[str]:
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "SELECT DISTINCT problem_id FROM attempts WHERE nickname = %s AND passed = 1",
+                "SELECT DISTINCT problem_id FROM pycoach_attempts WHERE nickname = %s AND passed = 1",
                 (nickname,),
             )
             rows = cur.fetchall()
@@ -157,7 +157,7 @@ def get_fail_counts_by_problem(nickname: str) -> dict[str, int]:
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "SELECT problem_id, COUNT(*) FROM attempts "
+                "SELECT problem_id, COUNT(*) FROM pycoach_attempts "
                 "WHERE nickname = %s AND passed = 0 GROUP BY problem_id",
                 (nickname,),
             )
@@ -170,7 +170,7 @@ def get_attempt_stats(nickname: str) -> tuple[int, int]:
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "SELECT COUNT(*), SUM(passed) FROM attempts WHERE nickname = %s", (nickname,)
+                "SELECT COUNT(*), SUM(passed) FROM pycoach_attempts WHERE nickname = %s", (nickname,)
             )
             row = cur.fetchone()
     return row[0] or 0, row[1] or 0
@@ -181,7 +181,7 @@ def get_active_dates(nickname: str) -> list[str]:
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "SELECT DISTINCT date(created_at) AS d FROM attempts "
+                "SELECT DISTINCT date(created_at) AS d FROM pycoach_attempts "
                 "WHERE nickname = %s ORDER BY d ASC",
                 (nickname,),
             )
@@ -201,7 +201,7 @@ def record_review_outcome(nickname: str, problem_id: str, passed: bool) -> None:
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "SELECT box FROM review_schedule WHERE nickname = %s AND problem_id = %s",
+                "SELECT box FROM pycoach_review_schedule WHERE nickname = %s AND problem_id = %s",
                 (nickname, problem_id),
             )
             row = cur.fetchone()
@@ -210,7 +210,7 @@ def record_review_outcome(nickname: str, problem_id: str, passed: bool) -> None:
                 next_review = (date.today() + timedelta(days=BOX_INTERVALS_DAYS[0])).isoformat()
                 cur.execute(
                     """
-                    INSERT INTO review_schedule (nickname, problem_id, box, next_review_at, updated_at)
+                    INSERT INTO pycoach_review_schedule (nickname, problem_id, box, next_review_at, updated_at)
                     VALUES (%s, %s, 0, %s, now())
                     ON CONFLICT (nickname, problem_id) DO UPDATE SET
                         box = 0, next_review_at = excluded.next_review_at, updated_at = now()
@@ -218,7 +218,7 @@ def record_review_outcome(nickname: str, problem_id: str, passed: bool) -> None:
                     (nickname, problem_id, next_review),
                 )
                 cur.execute(
-                    "INSERT INTO review_events (nickname, problem_id, outcome) VALUES (%s, %s, 'missed')",
+                    "INSERT INTO pycoach_review_events (nickname, problem_id, outcome) VALUES (%s, %s, 'missed')",
                     (nickname, problem_id),
                 )
                 conn.commit()
@@ -230,20 +230,20 @@ def record_review_outcome(nickname: str, problem_id: str, passed: bool) -> None:
             next_box = row[0] + 1
             if next_box >= len(BOX_INTERVALS_DAYS):
                 cur.execute(
-                    "DELETE FROM review_schedule WHERE nickname = %s AND problem_id = %s",
+                    "DELETE FROM pycoach_review_schedule WHERE nickname = %s AND problem_id = %s",
                     (nickname, problem_id),
                 )
                 outcome = "graduated"
             else:
                 next_review = (date.today() + timedelta(days=BOX_INTERVALS_DAYS[next_box])).isoformat()
                 cur.execute(
-                    "UPDATE review_schedule SET box = %s, next_review_at = %s, updated_at = now() "
+                    "UPDATE pycoach_review_schedule SET box = %s, next_review_at = %s, updated_at = now() "
                     "WHERE nickname = %s AND problem_id = %s",
                     (next_box, next_review, nickname, problem_id),
                 )
                 outcome = "advanced"
             cur.execute(
-                "INSERT INTO review_events (nickname, problem_id, outcome) VALUES (%s, %s, %s)",
+                "INSERT INTO pycoach_review_events (nickname, problem_id, outcome) VALUES (%s, %s, %s)",
                 (nickname, problem_id, outcome),
             )
         conn.commit()
@@ -254,7 +254,7 @@ def get_due_review_problem_ids(nickname: str) -> list[str]:
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "SELECT problem_id FROM review_schedule "
+                "SELECT problem_id FROM pycoach_review_schedule "
                 "WHERE nickname = %s AND next_review_at <= %s ORDER BY next_review_at ASC",
                 (nickname, today),
             )
@@ -270,7 +270,7 @@ def get_attempt_stats_in_range(nickname: str, start: str, end: str) -> tuple[int
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "SELECT COUNT(*), SUM(passed) FROM attempts "
+                "SELECT COUNT(*), SUM(passed) FROM pycoach_attempts "
                 "WHERE nickname = %s AND date(created_at) BETWEEN %s AND %s",
                 (nickname, start, end),
             )
@@ -282,7 +282,7 @@ def get_active_dates_in_range(nickname: str, start: str, end: str) -> list[str]:
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "SELECT DISTINCT date(created_at) AS d FROM attempts "
+                "SELECT DISTINCT date(created_at) AS d FROM pycoach_attempts "
                 "WHERE nickname = %s AND date(created_at) BETWEEN %s AND %s ORDER BY d ASC",
                 (nickname, start, end),
             )
@@ -294,7 +294,7 @@ def get_fail_counts_in_range(nickname: str, start: str, end: str) -> dict[str, i
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "SELECT problem_id, COUNT(*) FROM attempts "
+                "SELECT problem_id, COUNT(*) FROM pycoach_attempts "
                 "WHERE nickname = %s AND passed = 0 AND date(created_at) BETWEEN %s AND %s "
                 "GROUP BY problem_id",
                 (nickname, start, end),
@@ -311,7 +311,7 @@ def get_newly_solved_problem_ids(nickname: str, start: str, end: str) -> list[st
             cur.execute(
                 """
                 SELECT problem_id, MIN(created_at) AS first_pass
-                FROM attempts
+                FROM pycoach_attempts
                 WHERE nickname = %s AND passed = 1
                 GROUP BY problem_id
                 HAVING date(MIN(created_at)) BETWEEN %s AND %s
@@ -323,11 +323,11 @@ def get_newly_solved_problem_ids(nickname: str, start: str, end: str) -> list[st
 
 
 def get_review_event_counts_in_range(nickname: str, start: str, end: str) -> dict[str, int]:
-    """Counts of review_events by outcome ('missed' | 'advanced' | 'graduated')."""
+    """Counts of pycoach_review_events by outcome ('missed' | 'advanced' | 'graduated')."""
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "SELECT outcome, COUNT(*) FROM review_events "
+                "SELECT outcome, COUNT(*) FROM pycoach_review_events "
                 "WHERE nickname = %s AND date(created_at) BETWEEN %s AND %s GROUP BY outcome",
                 (nickname, start, end),
             )
