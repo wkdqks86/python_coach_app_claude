@@ -22,7 +22,11 @@ def _clean(nickname: str) -> str:
 @router.post("/new")
 def create_profile(req: NicknameRequest):
     nickname = _clean(req.nickname)
-    if not db.create_user(nickname):
+    try:
+        created = db.create_user(nickname)
+    except Exception as e:  # TEMP DEBUG — remove once the Render DB issue is found
+        raise HTTPException(status_code=500, detail=f"DEBUG {type(e).__name__}: {e}")
+    if not created:
         raise HTTPException(
             status_code=409, detail="이미 사용 중인 닉네임이에요. 다른 닉네임을 입력해주세요."
         )
