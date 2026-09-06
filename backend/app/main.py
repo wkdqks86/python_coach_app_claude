@@ -1,11 +1,8 @@
-import traceback
 from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.exception_handlers import http_exception_handler
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
 
 load_dotenv()
 
@@ -33,17 +30,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# TEMP DEBUG — remove once the Render Postgres issue is fully resolved.
-@app.exception_handler(Exception)
-async def debug_exception_handler(request: Request, exc: Exception):
-    if isinstance(exc, HTTPException):
-        return await http_exception_handler(request, exc)
-    return JSONResponse(
-        status_code=500,
-        content={"debug_trace": traceback.format_exc()},
-    )
-
 
 app.include_router(levels.router)
 app.include_router(practice.router)
