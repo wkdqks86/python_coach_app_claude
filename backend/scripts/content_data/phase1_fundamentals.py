@@ -314,7 +314,7 @@ LEVELS = [
                 "prompt": "input()으로 숫자 두 개를 한 줄씩 입력받아 더한 값을 출력하세요.",
                 "reference_code": "a = int(input())\nb = int(input())\nprint(a + b)",
                 "stdin": "3\n5\n",
-                "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 3 / 5",
+                "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 7 / 2",
                 "hints": [
                     "input()의 결과는 문자열이라 바로 더하면 오류가 납니다.",
                     "int()로 감싸서 숫자로 바꾼 다음 각각 변수에 저장하세요.",
@@ -360,7 +360,7 @@ LEVELS = [
                 "prompt": "input()으로 숫자 두 개를 입력받아 합, 차, 곱을 아래 형식으로 출력하는 간단한 계산기를 만드세요.\n합: N\n차: N\n곱: N",
                 "reference_code": 'a = int(input())\nb = int(input())\nprint("합:", a + b)\nprint("차:", a - b)\nprint("곱:", a * b)',
                 "stdin": "4\n2\n",
-                "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 4 / 2",
+                "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 9 / 3",
                 "hints": [
                     "먼저 두 입력값을 int()로 변환해서 변수에 저장하세요.",
                     "콤마로 라벨과 계산식을 함께 출력하면 자동으로 띄어쓰기가 들어갑니다.",
@@ -411,7 +411,7 @@ LEVELS = [
                 "prompt": 'input()으로 숫자를 하나 입력받아, 짝수면 "짝수입니다", 홀수면 "홀수입니다"를 출력하세요.',
                 "reference_code": 'n = int(input())\nif n % 2 == 0:\n    print("짝수입니다")\nelse:\n    print("홀수입니다")',
                 "stdin": "4\n",
-                "input_hint": "숫자를 입력해보세요. 예: 4",
+                "input_hint": "숫자를 입력해보세요. 예: 7",
                 "hints": [
                     "짝수인지는 % 2 == 0으로 확인할 수 있습니다 (나머지가 0이면 짝수).",
                     "if로 짝수 조건을 검사하고, else로 나머지 경우를 처리하세요.",
@@ -424,7 +424,7 @@ LEVELS = [
                 "prompt": 'input()으로 나이를 입력받아, 19살 이상이면 "성인입니다", 아니면 "미성년자입니다"를 출력하세요.',
                 "reference_code": 'age = int(input())\nif age >= 19:\n    print("성인입니다")\nelse:\n    print("미성년자입니다")',
                 "stdin": "20\n",
-                "input_hint": "나이를 입력해보세요. 예: 20",
+                "input_hint": "나이를 입력해보세요. 예: 25",
                 "hints": [
                     "'19살 이상'은 >= 연산자로 표현합니다.",
                     "if로 나이 조건을 검사하고, else로 나머지 경우를 처리하세요.",
@@ -437,7 +437,7 @@ LEVELS = [
                 "prompt": 'input()으로 점수를 입력받아 90 이상이면 "A", 80 이상이면 "B", 그 외에는 "C"를 출력하세요.',
                 "reference_code": 'score = int(input())\nif score >= 90:\n    print("A")\nelif score >= 80:\n    print("B")\nelse:\n    print("C")',
                 "stdin": "85\n",
-                "input_hint": "점수를 입력해보세요. 예: 85",
+                "input_hint": "점수를 입력해보세요. 예: 72",
                 "hints": [
                     "조건이 세 가지(90 이상 / 80 이상 / 그 외)이므로 elif가 필요합니다.",
                     "if, elif, else 순서로 점수 구간을 위에서부터 검사하세요. 순서가 중요합니다.",
@@ -450,7 +450,7 @@ LEVELS = [
                 "prompt": 'input()으로 이름과 나이를 순서대로 입력받아, "OOO님은 성인입니다." 또는 "OOO님은 미성년자입니다."를 출력하세요. (19살 기준)',
                 "reference_code": 'name = input()\nage = int(input())\nif age >= 19:\n    print(name + "님은 성인입니다.")\nelse:\n    print(name + "님은 미성년자입니다.")',
                 "stdin": "파이코치\n17\n",
-                "input_hint": "첫 줄에 이름, 둘째 줄에 나이를 입력해보세요. 예: 홍길동 / 17",
+                "input_hint": "첫 줄에 이름, 둘째 줄에 나이를 입력해보세요. 예: 영희 / 22",
                 "hints": [
                     "이름과 나이, 두 번 input()을 받아야 합니다. 나이는 숫자로 변환하세요.",
                     "문자열 이어붙이기(+)와 if/else를 함께 사용해보세요.",
@@ -711,7 +711,7 @@ LEVELS = [
                 "prompt": '정답은 50입니다. input()으로 추측값을 반복 입력받아, 정답보다 작으면 "더 큰 숫자입니다", 크면 "더 작은 숫자입니다", 같으면 "정답입니다!"를 출력하고 멈추는 업다운 게임을 만드세요.',
                 "reference_code": 'answer = 50\nwhile True:\n    guess = int(input())\n    if guess == answer:\n        print("정답입니다!")\n        break\n    elif guess < answer:\n        print("더 큰 숫자입니다")\n    else:\n        print("더 작은 숫자입니다")',
                 "stdin": "30\n70\n50\n",
-                "input_hint": "여러 줄에 걸쳐 숫자를 입력해보세요. 예: 30 / 70 / 50",
+                "input_hint": "여러 줄에 걸쳐 숫자를 입력해보세요. 예: 20 / 80 / 50",
                 "hints": [
                     "이전 문제에 조건을 하나 더 추가하는 것뿐입니다: 작을 때 / 클 때 / 같을 때.",
                     "elif 조건에는 추측값과 정답을 비교하는 식이 들어갑니다.",
@@ -1047,7 +1047,7 @@ LEVELS = [
                 "prompt": 'add(a, b), subtract(a, b), multiply(a, b) 세 함수를 만들고, input()으로 숫자 두 개를 받아 각 함수의 결과를 "합: N", "차: N", "곱: N" 형식으로 출력하세요.',
                 "reference_code": 'def add(a, b):\n    return a + b\n\ndef subtract(a, b):\n    return a - b\n\ndef multiply(a, b):\n    return a * b\n\nx = int(input())\ny = int(input())\nprint("합:", add(x, y))\nprint("차:", subtract(x, y))\nprint("곱:", multiply(x, y))',
                 "stdin": "6\n2\n",
-                "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 6 / 2",
+                "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 9 / 4",
                 "hints": [
                     "세 함수 모두 두 개의 매개변수를 받아 계산 결과를 return하는 형태로 만드세요.",
                     "함수를 다 만든 뒤, input()으로 받은 두 값을 각 함수에 넘겨서 결과를 출력하세요.",
@@ -1377,7 +1377,7 @@ LEVELS = [
                 "prompt": 'input()으로 메모 내용을 입력받아 notes.txt에 저장하고, 저장 직후 파일을 다시 읽어 "저장된 메모: OOO" 형식으로 출력하세요.',
                 "reference_code": 'memo = input()\nwith open("notes.txt", "w") as f:\n    f.write(memo)\n\nwith open("notes.txt") as f:\n    saved = f.read()\nprint("저장된 메모: " + saved)',
                 "stdin": "오늘도 화이팅\n",
-                "input_hint": "메모로 남길 문장을 입력해보세요. 예: 오늘도 화이팅",
+                "input_hint": "메모로 남길 문장을 입력해보세요. 예: 파이팅 넘치는 하루",
                 "hints": [
                     "input()으로 받은 값을 변수에 저장한 뒤, 그 변수를 파일에 write하세요.",
                     "저장 후 파일을 다시 열어 read()로 읽은 값을 변수에 담아 출력하세요.",

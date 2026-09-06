@@ -86,7 +86,7 @@
         "memo = input()\nwith open(\"notes.txt\", \"w\") as f:\n    f.write(memo)\n\nwith open(\"notes.txt\") as f:\n    saved = f.read()\nprint(\"저장된 메모: \" + ____)"
       ],
       "stdin": "오늘도 화이팅\n",
-      "input_hint": "메모로 남길 문장을 입력해보세요. 예: 오늘도 화이팅"
+      "input_hint": "메모로 남길 문장을 입력해보세요. 예: 파이팅 넘치는 하루"
     }
   ]
 }

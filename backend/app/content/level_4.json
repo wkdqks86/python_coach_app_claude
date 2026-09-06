@@ -57,7 +57,7 @@
         "a = int(input())\nb = int(input())\nprint(____)"
       ],
       "stdin": "3\n5\n",
-      "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 3 / 5"
+      "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 7 / 2"
     },
     {
       "id": "p3-power",
@@ -107,7 +107,7 @@
         "a = int(input())\nb = int(input())\nprint(\"합:\", ____)\nprint(\"차:\", ____)\nprint(\"곱:\", ____)"
       ],
       "stdin": "4\n2\n",
-      "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 4 / 2"
+      "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 9 / 3"
     }
   ]
 }

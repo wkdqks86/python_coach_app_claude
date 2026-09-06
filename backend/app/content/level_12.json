@@ -93,7 +93,7 @@
         "def add(a, b):\n    return a + b\n\ndef subtract(a, b):\n    return a - b\n\ndef multiply(a, b):\n    return a * b\n\nx = int(input())\ny = int(input())\nprint(\"합:\", ____(x, y))\nprint(\"차:\", ____(x, y))\nprint(\"곱:\", ____(x, y))"
       ],
       "stdin": "6\n2\n",
-      "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 6 / 2"
+      "input_hint": "숫자를 한 줄씩 입력해보세요. 예: 9 / 4"
     }
   ]
 }
