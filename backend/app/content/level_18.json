@@ -72,6 +72,14 @@
         "np.zeros((행, 열)) 형태로 크기를 튜플로 넘깁니다.",
         "원하는 행과 열의 개수를 튜플로 넣어보세요.",
         "import numpy as np\nprint(np.zeros((____, ____)))"
+      ],
+      "required": [
+        "import:numpy",
+        [
+          "method:zeros",
+          "method:eye",
+          "method:ones"
+        ]
       ]
     },
     {
@@ -84,6 +92,14 @@
         "대각선만 1이고 나머지는 0인 배열을 만드는 numpy 함수가 있습니다.",
         "그 함수에 원하는 크기(한 변의 길이)를 넣어보세요.",
         "import numpy as np\nprint(np.____(3))"
+      ],
+      "required": [
+        "import:numpy",
+        [
+          "method:zeros",
+          "method:eye",
+          "method:ones"
+        ]
       ]
     }
   ]

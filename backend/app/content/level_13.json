@@ -36,6 +36,9 @@
         "매개변수에 = 기본값을 붙이면 호출할 때 생략할 수 있습니다.",
         "기본값 자리에 어떤 문자열을 넣어야 할지 문제를 다시 읽어보세요.",
         "def greet(name=____):\n    print(name + \"님 안녕하세요\")\n\ngreet()\ngreet(\"파이코치\")"
+      ],
+      "required": [
+        "node:FunctionDef:default"
       ]
     },
     {
@@ -48,6 +51,9 @@
         "매개변수 앞에 *를 붙이면 여러 개의 인자를 튜플 하나로 받을 수 있습니다.",
         "가변 인자로 받은 값들의 합을 구하는 내장 함수를 사용해보세요.",
         "def total(____):\n    return sum(args)\n\nprint(total(1, 2, 3, 4))"
+      ],
+      "required": [
+        "node:FunctionDef:vararg"
       ]
     },
     {
@@ -60,6 +66,9 @@
         "lambda 매개변수: 결과식 형태로 한 줄 함수를 만들 수 있습니다.",
         "결과식 자리에 제곱을 계산하는 식을 넣어보세요.",
         "square = lambda x: x ____ 2\nprint(square(6))"
+      ],
+      "required": [
+        "node:Lambda"
       ]
     },
     {
@@ -72,6 +81,9 @@
         "람다 안에서도 삼항 표현식(값1 if 조건 else 값2)을 쓸 수 있습니다.",
         "조건 자리에 두 매개변수를 비교하는 식을 넣어보세요.",
         "bigger = lambda a, b: a if a ____ b else b\nprint(bigger(3, 8))"
+      ],
+      "required": [
+        "node:Lambda"
       ]
     },
     {
@@ -84,6 +96,10 @@
         "기본값 파라미터와 *args를 함께 쓸 수 있습니다. 기본값 파라미터를 먼저 적으세요.",
         "sum(prices)로 전체 합을 구한 뒤, 할인율을 반영하는 식을 곱하세요.",
         "def total_price(discount=0, *prices):\n    return sum(prices) * (1 - ____)\n\nprint(total_price(0, 1000, 2000, 3000))\nprint(total_price(0.1, 1000, 2000, 3000))"
+      ],
+      "required": [
+        "node:FunctionDef:default",
+        "node:FunctionDef:vararg"
       ]
     }
   ]

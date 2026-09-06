@@ -22,8 +22,11 @@ import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from content_data import phase1_fundamentals, phase2_data_analysis, phase3_kaggle  # noqa: E402
+from content_data.required_constructs import compute_required  # noqa: E402
+from app.code_checks import check_required_constructs  # noqa: E402
 
 CONTENT_DIR = Path(__file__).parent.parent / "app" / "content"
 
@@ -60,6 +63,19 @@ def build_level(level: dict) -> dict:
     for p in level["problems"]:
         stdin = p.get("stdin", "")
         expected_stdout = run(p["reference_code"], stdin)
+
+        required = compute_required(p)
+        if required:
+            # The reference solution must satisfy its own requirement, or
+            # every learner who writes the intended solution would be
+            # wrongly rejected by the structural check.
+            missing = check_required_constructs(p["reference_code"], required)
+            if missing:
+                raise ValueError(
+                    f"문제 '{p['id']}'의 reference_code가 자체 필수 조건을 만족하지 않습니다: "
+                    f"{missing} (required={required})"
+                )
+
         problem = {
             "id": p["id"],
             "concept_id": p["concept_id"],
@@ -72,6 +88,8 @@ def build_level(level: dict) -> dict:
             problem["stdin"] = stdin
         if p.get("input_hint"):
             problem["input_hint"] = p["input_hint"]
+        if required:
+            problem["required"] = required
         problems.append(problem)
 
     return {

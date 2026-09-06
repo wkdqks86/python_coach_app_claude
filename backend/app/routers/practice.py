@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 
 from app import content_loader, db
+from app.code_checks import check_required_constructs
 from app.deps import require_nickname
 from app.execution import run_python
 from app.schemas import RunRequest, RunResult, SubmitRequest, SubmitResult
@@ -47,13 +48,29 @@ def submit(req: SubmitRequest, nickname: str = Depends(require_nickname)):
     # 정답 비교가 흔들리지 않도록 하기 위함이다.
     stdin = content_loader.get_expected_stdin(req.problem_id)
     stdout, stderr, timed_out = run_python(req.code, stdin)
-    passed = not timed_out and _outputs_match(stdout, expected)
+    output_matches = not timed_out and _outputs_match(stdout, expected)
+
+    # 출력만 맞으면 통과시키면, 로직 없이 정답 문자열을 그대로 print()해도
+    # 통과해버린다. 문제가 요구하는 구성 요소(반복문/함수 정의 등)를 실제로
+    # 썼는지도 함께 확인한다 — "어떻게" 풀었는지는 안 보되, 아예 안 푼 건 아닌지는 본다.
+    missing_constructs: list[str] = []
+    if output_matches:
+        required = content_loader.get_required_constructs(req.problem_id)
+        if required:
+            missing_constructs = check_required_constructs(req.code, required)
+
+    passed = output_matches and not missing_constructs
 
     db.save_attempt(nickname, req.problem_id, req.code, passed)
     db.record_review_outcome(nickname, req.problem_id, passed)
 
     if passed:
         feedback = "정확합니다! 다음 문제로 넘어가도 좋아요."
+    elif missing_constructs:
+        feedback = (
+            "출력은 맞지만 이 문제가 요구하는 방식으로 풀지 않았어요. "
+            f"다음을 사용해서 다시 작성해보세요: {', '.join(missing_constructs)}"
+        )
     elif stderr:
         feedback = "코드를 실행하는 중 오류가 발생했어요. 아래 오류 메시지를 확인해보세요."
     elif timed_out:

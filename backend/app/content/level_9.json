@@ -36,6 +36,9 @@
         "리스트의 순서(인덱스)는 0부터 시작합니다. 두 번째 항목의 인덱스는 몇일까요?",
         "그 인덱스 번호로 fruits에 접근해보세요.",
         "fruits = [\"사과\", \"바나나\", \"포도\"]\nprint(fruits[____])"
+      ],
+      "required": [
+        "node:Subscript"
       ]
     },
     {
@@ -48,6 +51,12 @@
         "리스트에는 정렬해주는 메서드가 바로 붙어 있습니다.",
         "그 메서드를 호출한 뒤 nums를 다시 출력하세요.",
         "nums = [3, 1, 4, 1, 5]\nnums.____()\nprint(nums)"
+      ],
+      "required": [
+        [
+          "method:sort",
+          "method:count"
+        ]
       ]
     },
     {
@@ -60,6 +69,12 @@
         "리스트.count(값)으로 특정 값이 몇 번 나오는지 셀 수 있습니다.",
         "찾고 싶은 값을 count() 괄호 안에 넣어보세요.",
         "nums = [1, 2, 2, 3, 2, 4]\nprint(nums.____(2))"
+      ],
+      "required": [
+        [
+          "method:sort",
+          "method:count"
+        ]
       ]
     },
     {
@@ -72,6 +87,9 @@
         "[식 for 변수 in 리스트 if 조건] 형태로 조건을 추가할 수 있습니다.",
         "조건 자리에 짝수를 판별하는 식을 넣으세요.",
         "nums = [1, 2, 3, 4, 5]\nevens = [n for n in nums if n % 2 == ____]\nprint(evens)"
+      ],
+      "required": [
+        "node:ListComp"
       ]
     },
     {
@@ -84,6 +102,9 @@
         "조건 없이 [식 for 변수 in 리스트] 만으로도 새 리스트를 만들 수 있습니다.",
         "식 자리에 제곱을 계산하는 표현을 넣으세요.",
         "nums = [1, 2, 3, 4, 5]\nsquares = [n ____ 2 for n in nums]\nprint(squares)"
+      ],
+      "required": [
+        "node:ListComp"
       ]
     }
   ]

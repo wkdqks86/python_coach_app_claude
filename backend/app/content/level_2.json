@@ -36,6 +36,9 @@
         "변수는 '이름 = 값' 형태로 만듭니다.",
         "변수를 만든 뒤 print(변수이름) 형태로 그 변수를 출력하면 됩니다.",
         "name = \"____\"\nprint(name)"
+      ],
+      "required": [
+        "node:Assign"
       ]
     },
     {
@@ -50,7 +53,10 @@
         "____ = input()\nprint(____)"
       ],
       "stdin": "파이코치\n",
-      "input_hint": "아무 이름이나 입력해보세요. 예: 홍길동"
+      "input_hint": "아무 이름이나 입력해보세요. 예: 홍길동",
+      "required": [
+        "call:input"
+      ]
     },
     {
       "id": "p3-greeting",
@@ -64,7 +70,10 @@
         "name = input()\nprint(\"안녕하세요, \" + ____ + \"님!\")"
       ],
       "stdin": "파이코치\n",
-      "input_hint": "이름을 입력해보세요. 예: 홍길동"
+      "input_hint": "이름을 입력해보세요. 예: 홍길동",
+      "required": [
+        "op:Add"
+      ]
     },
     {
       "id": "p4-two-variables",
@@ -76,6 +85,9 @@
         "변수를 두 개 만들어야 합니다. city와 hobby 각각에 값을 저장하세요.",
         "고정된 문구와 변수를 + 로 이어 붙여서 각 줄을 만들어보세요.",
         "city = \"서울\"\nhobby = \"코딩\"\nprint(\"사는 곳: \" + ____)\nprint(\"취미: \" + ____)"
+      ],
+      "required": [
+        "node:Assign"
       ]
     },
     {
@@ -90,7 +102,10 @@
         "name = input()\nage = input()\nprint(____ + \"님은 \" + ____ + \"살입니다.\")"
       ],
       "stdin": "파이코치\n5\n",
-      "input_hint": "첫 줄에 이름, 둘째 줄에 나이를 입력해보세요. 예: 홍길동 / 10"
+      "input_hint": "첫 줄에 이름, 둘째 줄에 나이를 입력해보세요. 예: 홍길동 / 10",
+      "required": [
+        "op:Add"
+      ]
     }
   ]
 }

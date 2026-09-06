@@ -36,6 +36,10 @@
         "open()을 쓰기 모드로 연 뒤, 파일에 내용을 저장하는 메서드를 사용하세요.",
         "저장한 뒤에는 파일을 다시 열어서, 전체 내용을 가져오는 메서드로 읽어 출력하세요.",
         "with open(\"memo.txt\", \"w\") as f:\n    f.____(\"오늘의 다짐: 꾸준히 하자\")\n\nwith open(\"memo.txt\") as f:\n    print(f.____())"
+      ],
+      "required": [
+        "call:open",
+        "method:write"
       ]
     },
     {
@@ -48,6 +52,10 @@
         "문자열 안에 줄바꿈을 뜻하는 이스케이프 문자를 넣으면 파일 안에서도 줄이 바뀝니다.",
         "그 문자를 두 단어 사이에 넣어서 한 번에 저장하세요.",
         "with open(\"todo.txt\", \"w\") as f:\n    f.write(\"숙제____운동\")\n\nwith open(\"todo.txt\") as f:\n    print(f.read())"
+      ],
+      "required": [
+        "call:open",
+        "method:read"
       ]
     },
     {
@@ -60,6 +68,9 @@
         "가장 먼저 import math로 모듈을 가져와야 합니다.",
         "제곱근을 구하는 함수 이름을 math 모듈에서 찾아보세요.",
         "import math\nprint(math.____(16))"
+      ],
+      "required": [
+        "import:math"
       ]
     },
     {
@@ -72,6 +83,9 @@
         "내림(소수점 버리기)을 뜻하는 함수는 math 모듈 안에 있습니다.",
         "문제에 이미 함수 이름이 나와 있어요, math. 뒤에 그대로 이어 쓰면 됩니다.",
         "import math\nprint(math.____(7.8))"
+      ],
+      "required": [
+        "import:math"
       ]
     },
     {
@@ -86,7 +100,11 @@
         "memo = input()\nwith open(\"notes.txt\", \"w\") as f:\n    f.write(memo)\n\nwith open(\"notes.txt\") as f:\n    saved = f.read()\nprint(\"저장된 메모: \" + ____)"
       ],
       "stdin": "오늘도 화이팅\n",
-      "input_hint": "메모로 남길 문장을 입력해보세요. 예: 파이팅 넘치는 하루"
+      "input_hint": "메모로 남길 문장을 입력해보세요. 예: 파이팅 넘치는 하루",
+      "required": [
+        "call:open",
+        "method:write"
+      ]
     }
   ]
 }

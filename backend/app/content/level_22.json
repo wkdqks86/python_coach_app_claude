@@ -43,6 +43,13 @@
         "isna()는 각 값이 비어있는지 True/False로 알려줍니다.",
         "True는 1로 취급되기 때문에, 그 개수를 세는 함수를 이어 붙이면 결측치 개수를 알 수 있습니다.",
         "import pandas as pd\nscores = pd.Series([90, None, 95])\nprint(scores.isna().____())"
+      ],
+      "required": [
+        "import:pandas",
+        [
+          "method:isna",
+          "method:fillna"
+        ]
       ]
     },
     {
@@ -55,6 +62,13 @@
         "fillna(값)으로 빈 자리를 원하는 값으로 채울 수 있습니다.",
         "채운 결과를 다시 같은 변수에 저장한 뒤 출력하세요.",
         "import pandas as pd\nscores = pd.Series([90, None, 95])\nscores = scores.fillna(____)\nprint(scores)"
+      ],
+      "required": [
+        "import:pandas",
+        [
+          "method:isna",
+          "method:fillna"
+        ]
       ]
     },
     {
@@ -67,6 +81,10 @@
         "groupby(\"분류\")로 같은 분류끼리 묶을 수 있습니다.",
         "묶은 뒤 원하는 컬럼을 선택하고, 합계를 구하는 메서드를 이어 붙이세요.",
         "import pandas as pd\ndata = {\"분류\": [\"과일\", \"과일\", \"채소\"], \"수량\": [10, 20, 5]}\ndf = pd.DataFrame(data)\nprint(df.groupby(\"분류\")[\"수량\"].____())"
+      ],
+      "required": [
+        "import:pandas",
+        "method:groupby"
       ]
     },
     {
@@ -79,6 +97,10 @@
         "sort_values(\"점수\", ascending=False)로 점수를 내림차순 정렬할 수 있습니다.",
         "정렬한 결과를 변수에 저장한 뒤, 그 결과에서 원하는 컬럼만 출력하세요.",
         "import pandas as pd\ndata = {\"이름\": [\"철수\", \"영희\", \"민수\"], \"점수\": [70, 95, 85]}\ndf = pd.DataFrame(data)\nsorted_df = df.sort_values(\"점수\", ascending=____)\nprint(sorted_df[\"이름\"])"
+      ],
+      "required": [
+        "import:pandas",
+        "method:sort_values"
       ]
     },
     {
@@ -91,6 +113,10 @@
         "컬럼.isin([값1, 값2])로 목록에 포함된 값인지 한 번에 확인할 수 있습니다.",
         "isin()으로 만든 조건을 df[ ] 안에 그대로 넣어서 필터링하세요.",
         "import pandas as pd\ndf = pd.DataFrame({\"과일\": [\"사과\", \"바나나\", \"포도\", \"오렌지\"]})\nmask = df[\"과일\"].isin([____, ____])\nprint(df[mask])"
+      ],
+      "required": [
+        "import:pandas",
+        "method:isin"
       ]
     }
   ]

@@ -72,6 +72,14 @@ _EXPECTED_STDIN: dict[str, str] = {
     for problem in level["problems"]
 }
 
+# problem_id -> required code constructs (see app/code_checks.py), kept
+# server-side so grading can reject output-only hardcoding.
+_REQUIRED_CONSTRUCTS: dict[str, list] = {
+    problem["id"]: problem.get("required", [])
+    for level in _RAW_LEVELS.values()
+    for problem in level["problems"]
+}
+
 
 def list_levels() -> list[LevelSummary]:
     return [
@@ -135,3 +143,7 @@ def get_problem_prompt(problem_id: str) -> str | None:
 
 def get_expected_stdin(problem_id: str) -> str:
     return _EXPECTED_STDIN.get(problem_id, "")
+
+
+def get_required_constructs(problem_id: str) -> list:
+    return _REQUIRED_CONSTRUCTS.get(problem_id, [])
