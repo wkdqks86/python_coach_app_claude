@@ -43,3 +43,13 @@ app.include_router(profile.router)
 @app.get("/api/hello")
 def hello():
     return {"message": "PyCoach 백엔드가 정상적으로 연결되었습니다."}
+
+
+@app.get("/api/health")
+def health():
+    # 서버 깨우기 + DB에 실제로 쿼리를 보내 Supabase 무료 프로젝트의 자동 일시정지를 막는다.
+    with db.get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("select 1")
+            cur.fetchone()
+    return {"status": "ok"}
