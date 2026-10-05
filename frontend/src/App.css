@@ -561,6 +561,14 @@ button.primary:hover:not(:disabled) {
   animation: fade-in 0.2s ease;
 }
 
+.hint-code {
+  white-space: pre-wrap;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  overflow-x: auto;
+}
+
 .next-btn {
   margin-top: 1.2rem;
   margin-left: 0.75rem;

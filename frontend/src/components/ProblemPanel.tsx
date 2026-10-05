@@ -168,11 +168,16 @@ export default function ProblemPanel({
             힌트 보기 ({hintsShown}/{problem.hints.length})
           </button>
         )}
-        {problem.hints.slice(0, hintsShown).map((hint, i) => (
-          <p key={i} className="hint">
-            힌트 {i + 1}: {hint}
-          </p>
-        ))}
+        {problem.hints.slice(0, hintsShown).map((hint, i) => {
+          // 마지막 힌트는 빈칸(____)이 있는 코드라, 줄바꿈·들여쓰기가 살아 있어야 읽힌다.
+          const isCode = hint.includes('\n') || hint.includes('____')
+          return (
+            <p key={i} className={isCode ? 'hint hint-code' : 'hint'}>
+              힌트 {i + 1}:{isCode && hint.includes('\n') ? '\n' : ' '}
+              {hint}
+            </p>
+          )
+        })}
       </div>
 
       <CoachBox problemId={problem.id} code={code} />
